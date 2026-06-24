@@ -74,6 +74,8 @@ section.alt{background:var(--bg-alt);border-top:1px solid var(--line);border-bot
 .person h3{font-size:17px}
 .person .role{font-size:13px;font-weight:600;color:var(--teal-d);margin:5px 0 6px}
 .person .area{font-size:13px;color:var(--muted)}
+.person .photo{width:124px;height:140px;border-radius:14px;object-fit:cover;object-position:center top;margin:0 auto 16px;display:block;box-shadow:var(--shadow)}
+.person .bio{font-size:13px;color:var(--muted);line-height:1.62;text-align:left;margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
 
 .proj{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);transition:.18s}
 .proj:hover{box-shadow:var(--shadow-h);transform:translateY(-3px)}
@@ -337,23 +339,81 @@ nav.links a{font-size:14px}
 .brand{font-size:19px}
 .lockbar{font-size:13px}
 
-.res .rsoon{font-size:12.5px;font-weight:600;color:#9aa0a6;font-style:italic}
+/* === v3 — ince teal vurgu + derinlik (geri almak için bu bloğu sil) === */
+:root{
+  --accent:#235e56;          /* logo teali — sade, yerinde vurgu */
+  --accent-d:#1b4842;
+  --accent-tint:#eff4f2;     /* çok hafif teal zemin */
+  --accent-line:#d2e1dc;
+}
+/* vurgu noktaları: butonlar, linkler, aktif durumlar — gerisi gri-mavi kalır */
+.btn-primary{background:var(--accent);box-shadow:0 1px 2px rgba(27,72,66,.18),0 8px 20px rgba(27,72,66,.16)}
+.btn-primary:hover{background:var(--accent-d)}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent-d)}
+a:hover{color:var(--accent-d)}
+nav.links a.active{color:var(--accent-d);background:var(--accent-tint)}
+.hero .eyebrow,.page-head .eyebrow{color:var(--accent-d)}
+.head .eyebrow,.news-card .date,.newslist .date{color:var(--accent-d)}
+.more,.center-link a,.person .role{color:var(--accent-d)}
+.card .ic{background:var(--accent-tint);color:var(--accent-d)}
+.proj .strip{background:linear-gradient(90deg,var(--accent),var(--accent-d))}
+.proj .tag{color:var(--accent-d);background:var(--accent-tint)}
+*:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
 
-/* tab bar — dar ekranda yatay kaydır (6 sekme taşmasın) */
+/* hero: aynı sakinlik, hafif teal ışıma ile derinlik */
+.hero{
+  background:
+    radial-gradient(820px 360px at 84% -12%, rgba(35,94,86,.08), transparent 62%),
+    linear-gradient(180deg,var(--accent-tint),#fff 72%);
+  padding:84px 0 64px;
+}
+/* eyebrow'a küçük editör çizgisi (sol hizalı başlıklarda) */
+.hero .eyebrow,.page-head .eyebrow{display:inline-flex;align-items:center}
+.hero .eyebrow::before,.page-head .eyebrow::before{
+  content:"";width:26px;height:2px;background:var(--accent);margin-right:11px;border-radius:2px;opacity:.85;
+}
+/* bölüm başlıklarına ince merkez vurgu */
+.head h2::after{
+  content:"";display:block;width:38px;height:3px;border-radius:3px;
+  background:var(--accent);margin:15px auto 0;opacity:.9;
+}
+.contact .head h2::after{background:var(--teal)}
+
+/* kartlara biraz daha derinlik + hover'da teal kenar */
+.card,.person,.proj,.infocard{border-color:#e9ebee}
+.card:hover,.person:hover,.proj:hover{border-color:var(--accent-line)}
+.card .ic{transition:.18s}
+.card:hover .ic{background:var(--accent);color:#fff}
+
+/* page-head: hero ile aynı ince ışıma */
+.page-head{background:
+  radial-gradient(680px 280px at 88% -20%, rgba(35,94,86,.06), transparent 60%),
+  linear-gradient(180deg,var(--accent-tint),#fff)}
+
+/* === üst menü açılır alt menüleri (nav dropdown) === */
+.navitem{position:relative;display:inline-flex;align-items:center}
+.navitem>a{display:inline-flex;align-items:center;gap:6px}
+.caret{font-size:9px;line-height:1;color:var(--muted);transition:transform .16s ease,color .16s}
+.navitem:hover .caret,.navitem:focus-within .caret{transform:rotate(180deg);color:var(--accent-d)}
+.dropdown{position:absolute;top:100%;left:0;margin-top:8px;min-width:240px;background:#fff;border:1px solid var(--line);border-radius:11px;box-shadow:var(--shadow-h);padding:7px;display:flex;flex-direction:column;gap:1px;opacity:0;visibility:hidden;transform:translateY(7px);transition:opacity .16s,transform .16s,visibility .16s;z-index:120}
+.navitem:hover .dropdown,.navitem:focus-within .dropdown{opacity:1;visibility:visible;transform:translateY(0)}
+.has-drop::after{content:"";position:absolute;top:100%;left:0;width:240px;height:11px} /* hover köprüsü (boşlukta hover kopmasın) */
+.dropdown a{display:block;padding:9px 13px;border-radius:7px;font-size:13.5px;font-weight:500;line-height:1.3;color:var(--body);white-space:nowrap}
+.dropdown a:hover{background:var(--accent-tint);color:var(--accent-d)}
+.card[id],.proj[id],.person[id]{scroll-margin-top:92px}
+
+@media(max-width:600px){
+  .navitem{display:block}
+  .navitem>a{display:flex}
+  .caret{display:none}
+  .dropdown{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;border:0;border-radius:0;padding:0 0 8px 14px;margin:0;min-width:0;background:none;gap:0}
+  nav.links .dropdown a{padding:8px 6px;font-size:14px;font-weight:500;color:var(--muted);border-top:0;border-radius:0}
+  nav.links .dropdown a:hover{background:none;color:var(--accent-d)}
+  .has-drop::after{display:none}
+  nav.links>*:not(:first-child){border-top:1px solid var(--line)}
+}
+
+/* merge: Künyeler 6. sekme yatay-kaydırma + kaynaklar "Yakında" etiketi */
 .tabs{overflow-x:auto;scrollbar-width:thin}
 .tabs button{white-space:nowrap;flex:0 0 auto}
-
-/* ============================================================
-   tasarım rötuşu v3 — marka-uyumlu teal + odak/derinlik/etkileşim
-   daha profesyonel görünüm; TÜMÜNÜ geri almak için bu bloğu sil
-   ============================================================ */
-:root{--teal:#2f6f63;--teal-d:#235e56;--teal-tint:#e7f1ee}
-::selection{background:#cfe6df}
-a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,.btn:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
-.btn{transition:transform .15s,box-shadow .15s,background .15s,border-color .15s}
-.btn-primary{box-shadow:0 1px 2px rgba(35,94,86,.16),0 6px 16px rgba(35,94,86,.16)}
-.btn-primary:hover{transform:translateY(-1px);box-shadow:0 6px 14px rgba(35,94,86,.22),0 14px 30px rgba(35,94,86,.18)}
-.prose a:hover,.about a:hover,.res .rlinks a:hover,.pub .plinks a:hover,.cgrid a:hover,.reglinks a:hover{text-decoration:underline;text-underline-offset:2px}
-.card,.person,.proj,.infocard,.res,.pub{border-color:#e6e9ec}
-.card:hover,.person:hover,.proj:hover{border-color:#cfdcd7}
-.lm-stat .num,.keys b,table.jt td.num,.hl .big,.vrow .v{font-variant-numeric:tabular-nums}
+.res .rsoon{font-size:12.5px;font-weight:600;color:#9aa0a6;font-style:italic}
