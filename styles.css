@@ -417,3 +417,16 @@ nav.links a.active{color:var(--accent-d);background:var(--accent-tint)}
 .tabs{overflow-x:auto;scrollbar-width:thin}
 .tabs button{white-space:nowrap;flex:0 0 auto}
 .res .rsoon{font-size:12.5px;font-weight:600;color:#9aa0a6;font-style:italic}
+
+/* Formlar (iletişim / başvuru) */
+.api-form{max-width:560px}
+.field{margin-bottom:15px}
+.field label{display:block;font-size:14px;font-weight:600;color:var(--ink);margin-bottom:6px}
+.api-form input,.api-form textarea,.api-form select{width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:8px;font:inherit;font-size:15px;color:var(--ink);background:#fff}
+.api-form input:focus,.api-form textarea:focus,.api-form select:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px var(--teal-tint)}
+.api-form textarea{resize:vertical;min-height:120px}
+.api-form .hp{display:none}
+.api-form button[disabled]{opacity:.6;cursor:default}
+.form-msg{margin-top:12px;font-size:14.5px;min-height:1.2em;font-weight:500}
+.form-msg.ok{color:#1b7a4b}
+.form-msg.err{color:#c0392b}

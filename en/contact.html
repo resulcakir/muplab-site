@@ -10,5 +10,17 @@
       <div class="ci"><div class="t" style="color:var(--ink)">Address</div><p style="color:var(--muted)">Faculty of Humanities and Social Sciences, Çiftlikköy Campus, 33343 Mersin, Türkiye</p></div>
       <div class="ci"><div class="t" style="color:var(--ink)">Email</div><p><a href="mailto:info@muplab.com">info@muplab.com</a></p></div>
       <div class="ci"><div class="t" style="color:var(--ink)">University</div><p><a href="https://www.mersin.edu.tr">Mersin University · Department of Psychology</a></p></div></div></div></section>
+<section class="block alt"><div class="container narrow">
+  <h2 class="sech">Send a message</h2>
+  <form class="api-form" data-endpoint="/api/iletisim" data-ok="Your message has been received — thank you! We'll get back to you soon." data-err="Could not send. Please try again or email info@muplab.com.">
+    <div class="field"><label for="i-ad">Your name</label><input id="i-ad" name="ad" required maxlength="255"></div>
+    <div class="field"><label for="i-email">Email</label><input id="i-email" name="email" type="email" required maxlength="255"></div>
+    <div class="field"><label for="i-konu">Subject</label><input id="i-konu" name="konu" maxlength="255"></div>
+    <div class="field"><label for="i-mesaj">Message</label><textarea id="i-mesaj" name="mesaj" required maxlength="5000"></textarea></div>
+    <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <button class="btn btn-primary" type="submit">Send</button>
+    <p class="form-msg" role="status" aria-live="polite"></p>
+  </form>
+</div></section>
 <footer class="foot"><div class="container"><div class="foot-links"><a href="research.html">Research</a><a href="news.html">News</a><a href="team.html">Team</a><a href="projects.html">Projects</a><a href="living-ma.html">Living MA</a><a href="contact.html">Contact</a><a href="publications.html">Publications</a><a href="resources.html">Resources</a><a href="join.html">Join us</a></div><div class="foot-copy">© 2026 MUPLAB · Mersin University Psychology Laboratory &nbsp;·&nbsp; <a href="mailto:info@muplab.com">info@muplab.com</a></div></div></footer>
-<script src="../nav-menu.js"></script></body></html>
+<script src="../nav-menu.js"></script><script src="../forms.js"></script></body></html>

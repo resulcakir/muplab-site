@@ -10,5 +10,17 @@
       <div class="ci"><div class="t" style="color:var(--ink)">Adres</div><p style="color:var(--muted)">İnsan ve Toplum Bilimleri Fakültesi, Çiftlikköy Kampüsü, 33343 Mersin, Türkiye</p></div>
       <div class="ci"><div class="t" style="color:var(--ink)">E-posta</div><p><a href="mailto:info@muplab.com">info@muplab.com</a></p></div>
       <div class="ci"><div class="t" style="color:var(--ink)">Üniversite</div><p><a href="https://www.mersin.edu.tr">Mersin Üniversitesi · Psikoloji Bölümü</a></p></div></div></div></section>
+<section class="block alt"><div class="container narrow">
+  <h2 class="sech">Mesaj gönderin</h2>
+  <form class="api-form" data-endpoint="/api/iletisim" data-ok="Mesajınız alındı, teşekkürler! En kısa sürede döneriz." data-err="Mesaj gönderilemedi. Lütfen tekrar deneyin ya da info@muplab.com adresine yazın.">
+    <div class="field"><label for="i-ad">Adınız</label><input id="i-ad" name="ad" required maxlength="255"></div>
+    <div class="field"><label for="i-email">E-posta</label><input id="i-email" name="email" type="email" required maxlength="255"></div>
+    <div class="field"><label for="i-konu">Konu</label><input id="i-konu" name="konu" maxlength="255"></div>
+    <div class="field"><label for="i-mesaj">Mesajınız</label><textarea id="i-mesaj" name="mesaj" required maxlength="5000"></textarea></div>
+    <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <button class="btn btn-primary" type="submit">Gönder</button>
+    <p class="form-msg" role="status" aria-live="polite"></p>
+  </form>
+</div></section>
 <footer class="foot"><div class="container"><div class="foot-links"><a href="arastirma.html">Araştırma</a><a href="haberler.html">Haberler</a><a href="ekip.html">Ekip</a><a href="projeler.html">Projeler</a><a href="living-ma.html">Living MA</a><a href="iletisim.html">İletişim</a><a href="yayinlar.html">Yayınlar</a><a href="kaynaklar.html">Kaynaklar</a><a href="katilin.html">Bize Katılın</a></div><div class="foot-copy">© 2026 MUPLAB · Mersin Üniversitesi Psikoloji Laboratuvarı &nbsp;·&nbsp; <a href="mailto:info@muplab.com">info@muplab.com</a></div></div></footer>
-<script src="nav-menu.js"></script></body></html>
+<script src="nav-menu.js"></script><script src="forms.js"></script></body></html>
