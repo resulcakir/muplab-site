@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url><loc>https://muplab.com/</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://muplab.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://muplab.com/en/"/></url>
+  <url><loc>https://muplab.com/arastirma.html</loc></url>
+  <url><loc>https://muplab.com/haberler.html</loc></url>
+  <url><loc>https://muplab.com/ekip.html</loc></url>
+  <url><loc>https://muplab.com/projeler.html</loc></url>
+  <url><loc>https://muplab.com/living-ma.html</loc></url>
+  <url><loc>https://muplab.com/iletisim.html</loc></url>
+  <url><loc>https://muplab.com/yayinlar.html</loc></url>
+  <url><loc>https://muplab.com/kaynaklar.html</loc></url>
+  <url><loc>https://muplab.com/katilin.html</loc></url>
+  <url><loc>https://muplab.com/en/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://muplab.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://muplab.com/"/></url>
+  <url><loc>https://muplab.com/en/research.html</loc></url>
+  <url><loc>https://muplab.com/en/news.html</loc></url>
+  <url><loc>https://muplab.com/en/team.html</loc></url>
+  <url><loc>https://muplab.com/en/projects.html</loc></url>
+  <url><loc>https://muplab.com/en/living-ma.html</loc></url>
+  <url><loc>https://muplab.com/en/contact.html</loc></url>
+  <url><loc>https://muplab.com/en/publications.html</loc></url>
+  <url><loc>https://muplab.com/en/resources.html</loc></url>
+  <url><loc>https://muplab.com/en/join.html</loc></url>
+</urlset>
