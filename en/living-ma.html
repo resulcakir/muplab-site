@@ -6,9 +6,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Slab:wght@500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../styles.css"><link rel="icon" type="image/png" href="../assets/favicon.png"></head><body>
 <header class="nav"><div class="container nav-in"><a class="brand" href="index.html"><img class="blogo" src="../assets/logo.png" alt="MUPLAB"><span>MUP<span class="lb">LAB</span></span></a><input type="checkbox" id="navchk" class="navchk" aria-hidden="true"><label for="navchk" class="navtoggle" aria-label="Menü"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></label><nav class="links"><a href="index.html">Home</a><a href="research.html">Research</a><a href="news.html">News</a><a href="team.html">Team</a><a href="projects.html">Projects</a><a href="contact.html">Contact</a><a href="publications.html">Publications</a><a href="resources.html">Resources</a><a href="join.html">Join us</a><a class="lang" href="../living-ma.html">TR</a></nav></div></header>
-<section class="page-head"><div class="container"><span class="eyebrow">Bayesian Living Meta-Analysis · v1.0</span><h1>The effect of auricular taVNS on learning</h1><p>The effect of taVNS on accuracy and response time (RT) across declarative and working memory, cognitive control, and associative & skill acquisition. Bayesian random-effects (brms · bayesmeta); ACC and RT pooled <b>separately</b>, positive <em>g</em> favors taVNS.</p></div></section>
+<section class="page-head"><div class="container"><span class="eyebrow">Bayesian Living Meta-Analysis · <span id="lm-ver">v1.0</span></span><h1>The effect of auricular taVNS on learning</h1><p>The effect of taVNS on accuracy and response time (RT) across declarative and working memory, cognitive control, and associative & skill acquisition. Bayesian random-effects (brms · bayesmeta); ACC and RT pooled <b>separately</b>, positive <em>g</em> favors taVNS.</p></div></section>
 <section class="block"><div class="container lmwide">
-  <div class="reglinks"><span>Registration: <b>PROSPERO</b></span><span>Data: <b>OSF</b></span><span>Code: <b>brms · bayesmeta</b></span><span>Updated: <b>23 June 2026</b></span></div>
+  <div class="reglinks"><span>Registration: <b>PROSPERO</b></span><span>Data: <b>OSF</b></span><span>Code: <b>brms · bayesmeta</b></span><span>Updated: <b id="lm-date">23 June 2026</b></span></div>
   <div class="callout" style="border-color:#cdd5d2;background:var(--bg-alt);color:var(--body)"><b>v1.0 — registered.</b> 24 studies, 36 primary effect sizes (22 ACC + 14 RT). Headline values are the registered brms model; in the <b>interactive</b> panel below you can include/exclude any study and run the analysis on your chosen subset (in-browser, not saved).</div>
   <div class="modelbox"><b>Model & priors</b><ul><li>Random-effects normal-normal; priors: effect μ ~ N(0, 0.5), τ ~ Half-Normal(0.3).</li><li>ACC and RT analyzed separately; RT is ×(−1) so positive favors taVNS.</li><li>Backbone cluster-robust RVE; the Bayesian version adds robustness + P(g>0) + prediction interval.</li></ul></div>
   <h2 class="sech">Primary pooled (registered, brms)</h2>
@@ -171,6 +171,7 @@ document.getElementById('a-range').oninput=e=>{A=parseFloat(e.target.value);docu
 setOutcome('accuracy');renderStudies();paintRegistered();
 /* Fetch the living-MA snapshot from api.muplab.com; embedded data stays as fallback. */
 (function(){
+  function lmTarih(iso){try{var d=new Date(iso);if(isNaN(d))return iso;var p=function(n){return(n<10?'0':'')+n;};return p(d.getDate())+'.'+p(d.getMonth()+1)+'.'+d.getFullYear();}catch(e){return iso;}}
   fetch("https://api.muplab.com/api/living-ma",{cache:"no-store"})
     .then(function(r){return r.ok?r.json():null;})
     .then(function(d){
@@ -178,6 +179,8 @@ setOutcome('accuracy');renderStudies();paintRegistered();
         ROWS_ALL=d.rows; LOCK=d.lock;
         rows=ROWS_ALL.map(function(r){return Object.assign({},r,{inc:r.prim});});
         setOutcome(outcome); renderStudies(); paintRegistered();
+        var ve=document.getElementById('lm-ver'); if(ve&&d.surum) ve.textContent=d.surum;
+        var de=document.getElementById('lm-date'); if(de&&d.tarih) de.textContent=lmTarih(d.tarih);
       }
     }).catch(function(){});
 })();
