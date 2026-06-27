@@ -17,9 +17,7 @@
     if (!url) return "";
     return '<a class="gs" href="' + esc(url) + '" target="_blank" rel="noopener" ' +
       'aria-label="Google Scholar" title="Google Scholar">' +
-      '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">' +
-      '<path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/>' +
-      '</svg></a>';
+      '<img src="/assets/scholar.png" alt="Google Scholar" width="22" height="22"></a>';
   }
 
   fetch(API + "/api/ekip", { cache: "no-store" })
