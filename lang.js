@@ -29,7 +29,7 @@
 
     if (want !== cur) {
       var t = cur === "tr" ? T2E[file] : E2T[file];
-      if (t) { location.replace(t); return; }
+      if (t) { window.__muplabRedirect = 1; location.replace(t); return; }
     }
 
     // Dil bağlantısı tıklanınca tercihi kaydet
