@@ -436,13 +436,22 @@ nav.links a.active{color:var(--accent-d);background:var(--accent-tint)}
 .person .gs:hover{transform:translateY(-1px);opacity:1}
 .person .gs img{width:24px;height:24px;display:block}
 
-/* Ana sayfa hero — kampüs fotoğrafı arka planı (okunaklılık için koyu overlay) */
+/* Ana sayfa hero — kampüs fotoğrafı (hafif blur + koyu overlay) */
 .hero{
-  position:relative;
-  background:linear-gradient(180deg,rgba(10,22,34,.6),rgba(10,22,34,.4)),url(/assets/campus2.jpg) center 42%/cover no-repeat;
+  position:relative;overflow:hidden;background:#142634;
   padding:clamp(96px,14vw,176px) 0 clamp(84px,12vw,148px);
   border-bottom:none;
 }
+.hero::before{
+  content:"";position:absolute;inset:0;z-index:0;
+  background:url(/assets/campus2.jpg) center 42%/cover no-repeat;
+  filter:blur(5px);transform:scale(1.08);
+}
+.hero::after{
+  content:"";position:absolute;inset:0;z-index:0;
+  background:linear-gradient(180deg,rgba(10,22,34,.55),rgba(10,22,34,.42));
+}
+.hero>.container{position:relative;z-index:1}
 .hero .eyebrow{color:#dbeeff}
 .hero .eyebrow::before{background:#dbeeff;opacity:.9}
 .hero h1{color:#fff}
