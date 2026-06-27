@@ -439,7 +439,7 @@ nav.links a.active{color:var(--accent-d);background:var(--accent-tint)}
 /* Ana sayfa hero — kampüs fotoğrafı arka planı (okunaklılık için koyu overlay) */
 .hero{
   position:relative;
-  background:linear-gradient(180deg,rgba(10,22,34,.6),rgba(10,22,34,.4)),url(/assets/campus.jpg) center 40%/cover no-repeat;
+  background:linear-gradient(180deg,rgba(10,22,34,.6),rgba(10,22,34,.4)),url(/assets/campus2.jpg) center 40%/cover no-repeat;
   padding:clamp(76px,11vw,124px) 0 clamp(62px,9vw,104px);
   border-bottom:none;
 }
