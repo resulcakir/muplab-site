@@ -435,3 +435,15 @@ nav.links a.active{color:var(--accent-d);background:var(--accent-tint)}
 .person .gs{display:inline-flex;align-items:center;justify-content:center;margin-top:13px;transition:.15s;opacity:.92}
 .person .gs:hover{transform:translateY(-1px);opacity:1}
 .person .gs img{width:24px;height:24px;display:block}
+
+/* Ana sayfa hero — kampüs fotoğrafı arka planı (okunaklılık için koyu overlay) */
+.hero{
+  position:relative;
+  background:linear-gradient(180deg,rgba(15,34,52,.72),rgba(15,34,52,.56)),url(/assets/campus.jpg) center 40%/cover no-repeat;
+  padding:clamp(76px,11vw,124px) 0 clamp(62px,9vw,104px);
+  border-bottom:none;
+}
+.hero .eyebrow{color:#dbeeff}
+.hero .eyebrow::before{background:#dbeeff;opacity:.9}
+.hero h1{color:#fff}
+.hero p{color:rgba(255,255,255,.92)}
