@@ -431,6 +431,7 @@ nav.links a.active{color:var(--accent-d);background:var(--accent-tint)}
 .form-msg.ok{color:#1b7a4b}
 .form-msg.err{color:#c0392b}
 
-/* Google Scholar ikonu (ekip kartları) */
-.person .gs{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;margin-top:14px;border-radius:50%;color:#fff;background:#4285F4;transition:.15s}
-.person .gs:hover{background:#2b6cd4;transform:translateY(-1px)}
+/* Google Scholar logosu (ekip kartları) */
+.person .gs{display:inline-flex;align-items:center;justify-content:center;margin-top:13px;color:#4285F4;transition:.15s}
+.person .gs:hover{color:#1a56c4;transform:translateY(-1px)}
+.person .gs svg{width:21px;height:21px}
