@@ -445,7 +445,7 @@ nav.links a.active{color:var(--accent-d);background:var(--accent-tint)}
 .hero::before{
   content:"";position:absolute;inset:0;z-index:0;
   background:url(/assets/campus2.jpg) center 42%/cover no-repeat;
-  filter:blur(5px);transform:scale(1.08);
+  filter:blur(2.5px);transform:scale(1.05);
 }
 .hero::after{
   content:"";position:absolute;inset:0;z-index:0;
