@@ -32,17 +32,18 @@
     <p>The neuroscience of taste, learning, and behavior.</p>
   </div>
 </section>
-<div class="note">DEMO — yatay kayan foto duvarı. Eldeki birkaç foto tekrar ediyor; gerçeğinde 20–40 farklı foto olacak.</div>
+<div class="note">DEMO — yatay kayan foto duvarı (26 lab fotosu). Beğenirsen ana sayfa hero'suna taşınır.</div>
 <script>
-  var imgs=["/assets/campus.jpg","/assets/team/maria.jpg","/assets/campus2.jpg","/assets/team/emre.jpg","/assets/team/resul.jpg"];
-  // 4 satır, hepsi sola akar, farklı hızlarda (sürekli, tek yön)
-  var rows=[{dur:44,off:0},{dur:58,off:2},{dur:50,off:3},{dur:64,off:1}];
+  var N=26, base=[];
+  for(var i=1;i<=N;i++) base.push("/assets/hero-wall/"+i+".jpg");
+  function rot(a,k){return a.slice(k).concat(a.slice(0,k));}
+  // 4 satır, hepsi sola akar; her satır farklı sıra ve hızda (sürekli, tek yön)
+  var rows=[{dur:62,off:0,rev:false},{dur:80,off:7,rev:true},{dur:70,off:13,rev:false},{dur:90,off:20,rev:true}];
   var wall=document.getElementById("wall");
   rows.forEach(function(r){
     var row=document.createElement("div");
     row.className="row"; row.style.animationDuration=r.dur+"s";
-    var half=[];
-    for(var k=0;k<10;k++){half.push(imgs[(k+r.off)%imgs.length]);}
+    var half=rot(base,r.off); if(r.rev) half=half.slice().reverse();
     half.concat(half).forEach(function(src){          // sorunsuz döngü için 2 kopya
       var im=document.createElement("img");
       im.src=src; im.alt=""; im.loading="lazy";
