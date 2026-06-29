@@ -9,8 +9,7 @@
   function rot(a, k) { k = ((k % N) + N) % N; return a.slice(k).concat(a.slice(0, k)); }
 
   var tileH = 66, gap = 4;
-  var heroH = (el.parentNode && el.parentNode.clientHeight) || el.clientHeight || 560;
-  var rowCount = Math.min(20, Math.ceil(heroH / (tileH + gap)) + 1);
+  var rowCount = 6;   // hero = 6 görsellik yükseklik
 
   for (var ri = 0; ri < rowCount; ri++) {
     var dur = 70 + (ri % 6) * 8;      // satıra göre değişen hız (70..110s, daha sakin)

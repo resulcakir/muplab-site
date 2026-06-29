@@ -439,7 +439,7 @@ nav.links a.active{color:var(--accent-d);background:var(--accent-tint)}
 /* Ana sayfa hero — kayan foto duvarı + koyu overlay */
 .hero{
   position:relative;overflow:hidden;background:#0e1620;
-  padding:clamp(60px,8vw,112px) 0 clamp(52px,7vw,96px);
+  min-height:424px;display:flex;align-items:center;   /* ~6 görsellik yükseklik */
   border-bottom:none;
 }
 .hero-wall{position:absolute;inset:0;z-index:0;display:flex;flex-direction:column;gap:4px;padding:4px;filter:saturate(.9)}
@@ -450,7 +450,7 @@ nav.links a.active{color:var(--accent-d);background:var(--accent-tint)}
   content:"";position:absolute;inset:0;z-index:1;
   background:linear-gradient(180deg,rgba(10,18,28,.66),rgba(10,18,28,.76));
 }
-.hero>.container{position:relative;z-index:2}
+.hero>.container{position:relative;z-index:2;width:100%}
 .hero .eyebrow{color:#dbeeff}
 .hero .eyebrow::before{background:#dbeeff;opacity:.9}
 .hero h1{color:#fff}
