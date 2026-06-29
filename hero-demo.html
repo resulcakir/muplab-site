@@ -8,9 +8,9 @@
   body{font-family:Inter,system-ui,sans-serif;background:#0c1118;color:#fff}
   .hero{position:relative;height:80vh;min-height:480px;overflow:hidden;display:flex;align-items:center}
   /* yatay kayan satırlar */
-  .wall{position:absolute;inset:0;display:flex;flex-direction:column;gap:6px;padding:6px;filter:saturate(.92)}
-  .row{display:flex;gap:6px;flex:1;width:max-content;will-change:transform;animation:slide linear infinite}
-  .row img{height:100%;width:auto;object-fit:cover;border-radius:6px;display:block}
+  .wall{position:absolute;inset:0;display:flex;flex-direction:column;gap:5px;padding:5px;filter:saturate(.92)}
+  .row{display:flex;gap:5px;flex:1;width:max-content;will-change:transform;animation:slide linear infinite}
+  .row img{height:100%;width:auto;object-fit:cover;border-radius:4px;display:block}
   @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
   /* overlay + içerik */
   .ovl{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,14,22,.6),rgba(8,14,22,.72));z-index:1}
@@ -39,8 +39,9 @@
   function rot(a,k){return a.slice(k).concat(a.slice(0,k));}
   // 6 satır, küçük tile, hepsi sola sürekli akar; her satır farklı sıra/hızda
   var rows=[
-    {dur:58,off:0, rev:false},{dur:76,off:5, rev:true},{dur:66,off:10,rev:false},
-    {dur:86,off:15,rev:true}, {dur:62,off:20,rev:false},{dur:80,off:3, rev:true}
+    {dur:56,off:0, rev:false},{dur:74,off:3, rev:true}, {dur:64,off:7, rev:false},
+    {dur:84,off:11,rev:true}, {dur:60,off:15,rev:false},{dur:78,off:18,rev:true},
+    {dur:68,off:22,rev:false},{dur:88,off:25,rev:true}
   ];
   var wall=document.getElementById("wall");
   rows.forEach(function(r){
