@@ -8,9 +8,9 @@
   body{font-family:Inter,system-ui,sans-serif;background:#0c1118;color:#fff}
   .hero{position:relative;height:80vh;min-height:480px;overflow:hidden;display:flex;align-items:center}
   /* yatay kayan satırlar */
-  .wall{position:absolute;inset:0;display:flex;flex-direction:column;gap:5px;padding:5px;filter:saturate(.92)}
-  .row{display:flex;gap:5px;flex:1;width:max-content;will-change:transform;animation:slide linear infinite}
-  .row img{height:100%;width:auto;object-fit:cover;border-radius:4px;display:block}
+  .wall{position:absolute;inset:0;display:flex;flex-direction:column;gap:4px;padding:4px;filter:saturate(.92)}
+  .row{display:flex;gap:4px;width:max-content;will-change:transform;animation:slide linear infinite}
+  .row img{height:100%;width:auto;object-fit:cover;border-radius:3px;display:block}
   @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
   /* overlay + içerik */
   .ovl{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,14,22,.6),rgba(8,14,22,.72));z-index:1}
@@ -36,27 +36,26 @@
 <script>
   var N=56, base=[];   // 26 lab fotosu + 30 geçici soyut görsel
   for(var i=1;i<=N;i++) base.push("/assets/hero-wall/"+i+".jpg");
-  function rot(a,k){return a.slice(k).concat(a.slice(0,k));}
-  // 10 satır, küçük tile, hepsi sola sürekli akar; her satır farklı sıra/hızda
-  var rows=[
-    {dur:54,off:0, rev:false},{dur:72,off:5, rev:true}, {dur:62,off:11,rev:false},
-    {dur:82,off:17,rev:true}, {dur:58,off:23,rev:false},{dur:76,off:29,rev:true},
-    {dur:66,off:35,rev:false},{dur:86,off:41,rev:true}, {dur:60,off:47,rev:false},
-    {dur:78,off:52,rev:true}
-  ];
+  function rot(a,k){k=((k%N)+N)%N;return a.slice(k).concat(a.slice(0,k));}
   var wall=document.getElementById("wall");
-  rows.forEach(function(r){
+  // SABİT küçük tile -> her ekranda aynı boyut; satır sayısı otomatik dolar
+  var tileH=52, gap=4;
+  var heroH=document.querySelector(".hero").clientHeight;
+  var rowCount=Math.min(20, Math.ceil(heroH/(tileH+gap))+1);
+  for(var ri=0; ri<rowCount; ri++){
+    var dur=52+(ri%6)*7;          // satıra göre değişen hız (52..87s)
+    var off=(ri*9)%N;
+    var rev=(ri%2===1);
     var row=document.createElement("div");
-    row.className="row"; row.style.animationDuration=r.dur+"s";
-    // havuzdan satıra göre 30'luk pencere (geniş ekranda boşluk kalmaz, DOM hafif)
-    var half=rot(base,r.off).slice(0,30);
-    if(r.rev) half=half.slice().reverse();
-    half.concat(half).forEach(function(src){          // sorunsuz döngü için tüm seti 2 kopya
+    row.className="row"; row.style.height=tileH+"px"; row.style.animationDuration=dur+"s";
+    var half=rot(base,off).slice(0,28);   // satır başına 28'lik pencere
+    if(rev) half=half.slice().reverse();
+    half.concat(half).forEach(function(src){
       var im=document.createElement("img");
       im.src=src; im.alt=""; im.loading="lazy";
       row.appendChild(im);
     });
     wall.appendChild(row);
-  });
+  }
 </script>
 </body></html>
