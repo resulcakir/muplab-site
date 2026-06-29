@@ -4,7 +4,7 @@
 (function () {
   var el = document.getElementById("hero-wall");
   if (!el) return;
-  var N = 56, base = [];
+  var N = 26, base = [];   // sadece gerçek lab fotoları (soyutlar 27-56 çıkarıldı)
   for (var i = 1; i <= N; i++) base.push("/assets/hero-wall/" + i + ".jpg");
   function rot(a, k) { k = ((k % N) + N) % N; return a.slice(k).concat(a.slice(0, k)); }
 
