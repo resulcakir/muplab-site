@@ -13,7 +13,7 @@
   var rowCount = Math.min(20, Math.ceil(heroH / (tileH + gap)) + 1);
 
   for (var ri = 0; ri < rowCount; ri++) {
-    var dur = 52 + (ri % 6) * 7;      // satıra göre değişen hız (52..87s)
+    var dur = 70 + (ri % 6) * 8;      // satıra göre değişen hız (70..110s, daha sakin)
     var off = (ri * 9) % N;
     var rev = (ri % 2 === 1);
     var row = document.createElement("div");
