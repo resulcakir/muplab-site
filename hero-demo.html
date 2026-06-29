@@ -32,23 +32,24 @@
     <p>The neuroscience of taste, learning, and behavior.</p>
   </div>
 </section>
-<div class="note">DEMO — yatay kayan foto duvarı (26 lab fotosu). Beğenirsen ana sayfa hero'suna taşınır.</div>
+<div class="note">DEMO — kayan foto duvarı (26 lab fotosu + 30 geçici soyut görsel; sonra gerçek fotolarla değiştirilecek).</div>
 <script>
-  var N=26, base=[];
+  var N=56, base=[];   // 26 lab fotosu + 30 geçici soyut görsel
   for(var i=1;i<=N;i++) base.push("/assets/hero-wall/"+i+".jpg");
   function rot(a,k){return a.slice(k).concat(a.slice(0,k));}
-  // 6 satır, küçük tile, hepsi sola sürekli akar; her satır farklı sıra/hızda
+  // 10 satır, küçük tile, hepsi sola sürekli akar; her satır farklı sıra/hızda
   var rows=[
-    {dur:56,off:0, rev:false},{dur:74,off:3, rev:true}, {dur:64,off:7, rev:false},
-    {dur:84,off:11,rev:true}, {dur:60,off:15,rev:false},{dur:78,off:18,rev:true},
-    {dur:68,off:22,rev:false},{dur:88,off:25,rev:true}
+    {dur:54,off:0, rev:false},{dur:72,off:5, rev:true}, {dur:62,off:11,rev:false},
+    {dur:82,off:17,rev:true}, {dur:58,off:23,rev:false},{dur:76,off:29,rev:true},
+    {dur:66,off:35,rev:false},{dur:86,off:41,rev:true}, {dur:60,off:47,rev:false},
+    {dur:78,off:52,rev:true}
   ];
   var wall=document.getElementById("wall");
   rows.forEach(function(r){
     var row=document.createElement("div");
     row.className="row"; row.style.animationDuration=r.dur+"s";
-    // 26 fotoyu satıra göre döndürerek diz (geniş ekranda boşluk kalmaz)
-    var half=rot(base,r.off);
+    // havuzdan satıra göre 30'luk pencere (geniş ekranda boşluk kalmaz, DOM hafif)
+    var half=rot(base,r.off).slice(0,30);
     if(r.rev) half=half.slice().reverse();
     half.concat(half).forEach(function(src){          // sorunsuz döngü için tüm seti 2 kopya
       var im=document.createElement("img");
