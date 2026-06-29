@@ -8,7 +8,7 @@
   for (var i = 1; i <= N; i++) base.push("/assets/hero-wall/" + i + ".jpg");
   function rot(a, k) { k = ((k % N) + N) % N; return a.slice(k).concat(a.slice(0, k)); }
 
-  var tileH = 52, gap = 4;
+  var tileH = 60, gap = 4;
   var heroH = (el.parentNode && el.parentNode.clientHeight) || el.clientHeight || 560;
   var rowCount = Math.min(20, Math.ceil(heroH / (tileH + gap)) + 1);
 
