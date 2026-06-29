@@ -436,23 +436,23 @@ nav.links a.active{color:var(--accent-d);background:var(--accent-tint)}
 .person .gs:hover{transform:translateY(-1px);opacity:1}
 .person .gs img{width:24px;height:24px;display:block}
 
-/* Ana sayfa hero — kampüs fotoğrafı (hafif blur + koyu overlay) */
+/* Ana sayfa hero — kayan foto duvarı + koyu overlay */
 .hero{
-  position:relative;overflow:hidden;background:#142634;
+  position:relative;overflow:hidden;background:#0e1620;
   padding:clamp(96px,14vw,176px) 0 clamp(84px,12vw,148px);
   border-bottom:none;
 }
-.hero::before{
-  content:"";position:absolute;inset:0;z-index:0;
-  background:url(/assets/campus2.jpg) center 42%/cover no-repeat;
-  filter:blur(2.5px);transform:scale(1.05);
-}
+.hero-wall{position:absolute;inset:0;z-index:0;display:flex;flex-direction:column;gap:4px;padding:4px;filter:saturate(.9)}
+.hero-wall .hw-row{display:flex;gap:4px;width:max-content;will-change:transform;animation:hwslide linear infinite}
+.hero-wall .hw-row img{height:100%;width:auto;object-fit:cover;border-radius:3px;display:block}
+@keyframes hwslide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .hero::after{
-  content:"";position:absolute;inset:0;z-index:0;
-  background:linear-gradient(180deg,rgba(10,22,34,.55),rgba(10,22,34,.42));
+  content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,rgba(10,18,28,.66),rgba(10,18,28,.76));
 }
-.hero>.container{position:relative;z-index:1}
+.hero>.container{position:relative;z-index:2}
 .hero .eyebrow{color:#dbeeff}
 .hero .eyebrow::before{background:#dbeeff;opacity:.9}
 .hero h1{color:#fff}
 .hero p{color:rgba(255,255,255,.92)}
+@media(prefers-reduced-motion:reduce){.hero-wall .hw-row{animation:none!important}}
