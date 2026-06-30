@@ -456,3 +456,38 @@ nav.links a.active{color:var(--accent-d);background:var(--accent-tint)}
 .hero h1{color:#fff}
 .hero p{color:rgba(255,255,255,.92)}
 @media(prefers-reduced-motion:reduce){.hero-wall .hw-row{animation:none!important}}
+
+/* ============ v4 — kozmetik cila (Faz 1-5) — geri almak için bu bloğu sil ============ */
+:root{ --t:.2s cubic-bezier(.4,0,.2,1); --muted:#5d646a; }   /* tutarlı geçiş + AA kontrastlı gri */
+
+/* Faz 2 — butonlar: yumuşak hover/lift + dokunma hedefi */
+.btn{transition:background var(--t),border-color var(--t),color var(--t),transform var(--t),box-shadow var(--t);min-height:44px;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.btn-primary{box-shadow:0 1px 2px rgba(27,72,66,.16),0 6px 16px rgba(27,72,66,.14)}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 3px 6px rgba(27,72,66,.2),0 14px 28px rgba(27,72,66,.22)}
+.btn-outline:hover{transform:translateY(-1px)}
+.btn:active{transform:translateY(0)}
+
+/* Faz 2 — kartlar: tutarlı geçiş + biraz daha belirgin hover */
+.card,.person,.proj,.infocard{transition:transform var(--t),box-shadow var(--t),border-color var(--t)}
+.card:hover,.person:hover,.proj:hover{transform:translateY(-4px)}
+.card .ic{transition:background var(--t),color var(--t)}
+
+/* Faz 2 — nav yumuşak geçiş + içerik linklerinde zarif alt çizgi */
+nav.links a{transition:color var(--t),background var(--t)}
+.prose a,.res .rlinks a,.pub .plinks a{text-underline-offset:3px;text-decoration-thickness:1.5px}
+.prose a:hover,.res .rlinks a:hover,.pub .plinks a:hover{text-decoration:underline}
+
+/* Faz 3 — bölüm ritmi */
+.head{margin-bottom:46px}
+.about p+p{margin-top:16px}
+
+/* Faz 4 — hero derinlik (kenar vinyeti + okunaklılık) */
+.hero::after{background:
+  linear-gradient(180deg, rgba(10,18,28,.5), rgba(10,18,28,.72)),
+  radial-gradient(140% 120% at 50% 50%, transparent 42%, rgba(8,14,22,.42) 100%)}
+
+/* Faz 4 — scroll-reveal (nav-menu.js .reveal/.in ekler; JS yoksa içerik görünür kalır) */
+@media(prefers-reduced-motion:no-preference){
+  html.js-reveal .reveal{opacity:0;transform:translateY(16px);transition:opacity .55s ease, transform .55s cubic-bezier(.2,.7,.3,1)}
+  html.js-reveal .reveal.in{opacity:1;transform:none}
+}
