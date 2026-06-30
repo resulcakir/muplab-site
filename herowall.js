@@ -4,12 +4,12 @@
 (function () {
   var el = document.getElementById("hero-wall");
   if (!el) return;
-  var N = 26, base = [];   // sadece gerçek lab fotoları (soyutlar 27-56 çıkarıldı)
+  var N = 50, base = [];   // gerçek lab fotoları
   for (var i = 1; i <= N; i++) base.push("/assets/hero-wall/" + i + ".jpg");
   function rot(a, k) { k = ((k % N) + N) % N; return a.slice(k).concat(a.slice(0, k)); }
 
   var tileH = 66, gap = 4;
-  var rowCount = 6;   // hero = 6 görsellik yükseklik
+  var rowCount = 5;   // hero = 5 görsellik yükseklik
 
   for (var ri = 0; ri < rowCount; ri++) {
     var dur = 70 + (ri % 6) * 8;      // satıra göre değişen hız (70..110s, daha sakin)
