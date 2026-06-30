@@ -4,7 +4,7 @@
 (function () {
   var el = document.getElementById("hero-wall");
   if (!el) return;
-  var N = 50, base = [];
+  var N = 36, base = [];
   for (var i = 1; i <= N; i++) base.push("/assets/hero-wall/" + i + ".jpg");
   function shuffle(a) {
     a = a.slice();
