@@ -446,6 +446,7 @@ nav.links a.active{color:var(--accent-d);background:var(--accent-tint)}
 }
 .hero-wall{position:absolute;inset:0;z-index:0;display:grid;gap:4px;padding:4px;filter:saturate(.9);align-content:start}
 .hero-wall img{width:100%;height:100%;object-fit:cover;border-radius:3px;display:block}
+.hero-wall .hw-blank{width:100%;height:100%;border-radius:3px;background:#0b1018;display:block}
 .hero::after{
   content:"";position:absolute;inset:0;z-index:1;
   background:linear-gradient(180deg,rgba(10,18,28,.66),rgba(10,18,28,.76));
