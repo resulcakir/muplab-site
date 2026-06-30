@@ -17,7 +17,9 @@
   }
 
   var tileH = 66, gap = 4;
-  var rowCount = 5;         // hero = 5 görsellik yükseklik
+  // satır sayısını hero yüksekliğine göre hesapla (+1) -> altta boşluk kalmaz
+  var heroH = (el.parentNode && el.parentNode.clientHeight) || 320;
+  var rowCount = Math.min(20, Math.ceil(heroH / (tileH + gap)) + 1);
 
   for (var ri = 0; ri < rowCount; ri++) {
     var dur = 70 + (ri % 6) * 8;          // satıra göre değişen hız (70..110s)
