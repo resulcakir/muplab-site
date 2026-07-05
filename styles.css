@@ -507,27 +507,33 @@ h1,h2,h3,h4{letter-spacing:-.1px}
 @media(prefers-reduced-motion:no-preference){.hero-wall .hwt img{transition:opacity 1.2s ease}}
 @media(max-width:480px){.hero p.hero-live{right:20px;bottom:12px;font-size:9px;letter-spacing:.14em}}
 
-/* ============ v7 — YARIK SAYFA hero (açık zemin, split; hero-yarik dalı) — bento'ya dönüş: index hero markup'ını eski haline getir + bu bloğu sil ============ */
-.hero.hero-split{background:linear-gradient(180deg,#fff 0%,var(--bg-alt) 62%,var(--accent-tint) 100%);min-height:clamp(540px,74vh,720px);padding:72px 0;display:flex;align-items:center;overflow:hidden}
+/* ============ v7.1 — YARIK SAYFA hero (geniş ekran dolgunluğu) — bento'ya dönüş: `git revert -m 1 55a8385` ============ */
+.hero.hero-split{--hcw:var(--container);background:linear-gradient(180deg,#fff 0%,var(--bg-alt) 62%,var(--accent-tint) 100%);min-height:clamp(560px,76vh,780px);padding:56px 0;display:flex;align-items:center;overflow:hidden;position:relative}
 .hero.hero-split::after{content:none}
-.hero.hero-split>.container{position:relative;z-index:2;width:100%;display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:clamp(36px,5vw,64px);align-items:center}
+.hero.hero-split>.container{position:relative;z-index:2;width:100%;display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);gap:clamp(32px,4vw,56px);align-items:center}
 .hero.hero-split .eyebrow{color:var(--accent-d)}
 .hero.hero-split .eyebrow::before{background:var(--accent)}
-.hero.hero-split h1{color:var(--ink)}
+.hero.hero-split h1{color:var(--ink);font-size:clamp(32px,3.2vw,60px)}
 .hero.hero-split p{color:var(--body)}
-.hero.hero-split .hero-grid{display:flex;gap:6px;height:clamp(420px,54vh,540px);overflow:hidden;align-items:flex-start}
+.hero.hero-split .hero-copy>p{font-size:clamp(16.5px,1.2vw,20px);max-width:34em}
+.hero.hero-split .hero-meta{margin-top:44px;padding-top:16px;border-top:1px solid var(--accent-line);font-family:var(--gro);font-weight:600;font-size:10.5px;line-height:2;letter-spacing:.12em;color:var(--muted)}
+.hero.hero-split .hero-right{position:relative;min-width:0}
+.hero.hero-split .hero-grid{display:flex;gap:6px;height:clamp(440px,62vh,680px);overflow:hidden;align-items:flex-start;margin-right:calc(-28px - max((100vw - var(--hcw))/2, 0px))}
 .hero.hero-split .hg-col{flex:1;min-width:0;display:flex;flex-direction:column;gap:6px}
-.hero.hero-split .hg-col:nth-child(1){margin-top:96px;border-left:2px solid var(--accent);padding-left:10px}
-.hero.hero-split .hg-col:nth-child(2){margin-top:48px}
+.hero.hero-split .hg-col:first-child{border-left:2px solid var(--accent);padding-left:10px}
 .hero.hero-split .hg-t{position:relative;width:100%;overflow:hidden;border-radius:2px;background:#e3e8e6}
 .hero.hero-split .hg-t img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.92)}
 .hero.hero-split .hg-t img.back{opacity:0}
+.hero.hero-split p.hero-live{position:static;margin:12px 0 0;max-width:none;text-align:right;margin-right:calc(0px - max((100vw - var(--hcw))/2, 0px));font-family:var(--gro);font-weight:600;font-size:10px;line-height:1;letter-spacing:.16em;color:#5b6168;text-transform:uppercase}
+.hero.hero-split p.hero-live b{color:var(--accent-d);font-weight:600}
+@media(min-width:2000px){.hero.hero-split{--hcw:1320px}.hero.hero-split>.container{max-width:1320px}}
 @media(prefers-reduced-motion:no-preference){.hero.hero-split .hg-t img{transition:opacity .9s ease}}
-@media(max-width:960px){.hero.hero-split .hg-col:nth-child(1){margin-top:64px}.hero.hero-split .hg-col:nth-child(2){margin-top:32px}}
 @media(max-width:759px){
   .hero.hero-split{min-height:0;padding:56px 0 0}
   .hero.hero-split>.container{grid-template-columns:minmax(0,1fr);gap:0}
-  .hero.hero-split .hero-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;height:200px;margin-top:44px;align-content:start}
+  .hero.hero-split .hero-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;height:200px;margin-top:40px;align-content:start;margin-right:0}
   .hero.hero-split .hg-col{display:contents}
   .hero.hero-split .hg-t{aspect-ratio:1/1!important}
+  .hero.hero-split .hero-meta{margin-top:32px}
+  .hero.hero-split p.hero-live{display:none}
 }

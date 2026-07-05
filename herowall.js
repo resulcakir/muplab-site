@@ -1,22 +1,21 @@
-/* Ana sayfa hero — YARIK SAYFA (split) canli izgara (hero-yarik dali).
-   Acik zemin, solda metin; sagda 3 kolonlu, ust kenari basamakli foto izgarasi.
-   Yuvalar SABIT oranli (duzen hic oynamaz, CLS=0); ~8 sn'de bir rastgele yuva,
-   duvarda gorunmeyen rezerv fotolardan birine yerinde crossfade olur (KAYMA YOK).
-   Duvardaki fotolar hep TEKRARSIZ: takaslar yalnizca rezervden beslenir.
+/* Ana sayfa hero — YARIK SAYFA (split) canli izgara v7.1.
+   Acik zemin, solda metin; sagda basamakli, SAG KENARA TASAN foto izgarasi.
+   Kolon sayisi ekrana uyar (3-5); yuvalar SABIT oranli (duzen oynamaz, CLS=0).
+   ~8 sn'de bir rastgele yuva, duvarda gorunmeyen rezerv fotoya yerinde
+   crossfade olur (KAYMA YOK); duvar her an tekrarsiz (rezerv >= 3 korunur).
    prefers-reduced-motion: tamamen statik.
    Havuz: /assets/hero-wall/<n>.jpg */
 (function () {
   var grid = document.getElementById("hero-wall");
   if (!grid) return;
-  var colEls = grid.querySelectorAll(".hg-col");
-  if (!colEls.length) return;
 
   // Kuratorlu havuz (logolar/grafikler, zayif ve yakin-kopya kareler haric).
   var pool = [1, 2, 5, 7, 9, 13, 14, 15, 17, 18, 20, 21, 22, 23, 25, 29, 30, 34];
   var POOL = pool.map(function (n) { return "/assets/hero-wall/" + n + ".jpg"; });
 
   var SWAP_MS = 8000;   // vida: takas araligi (0 = kapali)
-  var GAPY = 6;
+  var RESERVE_MIN = 3;  // vida: duvara girmeyip takas icin bekletilen foto sayisi
+  var GAPY = 6, STEP = 48;
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var mobile = window.matchMedia && window.matchMedia("(max-width: 759px)").matches;
 
@@ -29,23 +28,41 @@
     return a;
   }
 
+  // kolonlar ekrana gore: ~230px kolon hedefi, 3-5 arasi
+  var gridW = grid.clientWidth || 520;
+  var nCols = mobile ? 3 : Math.max(3, Math.min(5, Math.round(gridW / 230)));
+  var colEls = [];
+  for (var c = 0; c < nCols; c++) {
+    var col = document.createElement("div");
+    col.className = "hg-col";
+    if (!mobile) col.style.marginTop = ((nCols - 1 - c) * STEP) + "px";
+    grid.appendChild(col);
+    colEls.push(col);
+  }
+
   // yuva oranlari (genislik/yukseklik) — sabit: yeni foto ayni kutuya cover ile oturur
-  var RATIOS = [
+  var PATTERNS = [
     [0.8, 1, 0.75, 0.85],
     [1, 0.75, 0.8, 1],
-    [0.75, 0.85, 1, 0.8]
+    [0.75, 0.85, 1, 0.8],
+    [0.85, 0.8, 1, 0.75],
+    [1, 0.8, 0.85, 0.75]
   ];
-  var OFFSETS = mobile ? [0, 0, 0] : [96, 48, 0];
-  var gridH = grid.clientHeight || 480;
+  var gridH = grid.clientHeight || 520;
 
   var bag = shuffle(POOL);
   var tiles = [];
-  for (var ci = 0; ci < 3; ci++) {
+  for (var ci = 0; ci < nCols; ci++) {
     var colEl = colEls[ci];
-    var colW = colEl.clientWidth || ((grid.clientWidth - 12) / 3) || 150;
-    var y = OFFSETS[ci], k = 0;
-    while (y < gridH + 40 && bag.length) {
-      var ratio = RATIOS[ci][k % RATIOS[ci].length];
+    var colW = colEl.clientWidth || ((gridW - (nCols - 1) * GAPY) / nCols) || 150;
+    var offset = mobile ? 0 : (nCols - 1 - ci) * STEP;
+    var y = offset, k = 0;
+    while (bag.length > RESERVE_MIN) {
+      var ratio = PATTERNS[ci % PATTERNS.length][k % 4];
+      // masaustu: kiymik yok — yuva ancak >= %45'i gorunuyorsa eklenir (kesik ama bilincli);
+      // mobil bant (CSS 1/1) tasarak dolar
+      if (mobile) { if (y >= gridH + 40) break; }
+      else if (y >= gridH || (gridH - y) < (colW / ratio) * 0.45) break;
       var d = document.createElement("div");
       d.className = "hg-t";
       d.style.aspectRatio = String(ratio);
