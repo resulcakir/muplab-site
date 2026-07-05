@@ -492,3 +492,17 @@ nav.links a{transition:color var(--t),background var(--t)}
 :root{ --slab:"Newsreader","Roboto Slab",Georgia,serif }
 h1,h2,h3,h4{letter-spacing:-.1px}
 .hero h1{letter-spacing:-.3px}
+
+/* ============ v6 — YAŞAYAN BENTO hero duvarı (2026-07-05) — geri al: bu bloğu sil + herowall.js'i git'ten geri döndür + index/en'deki .hero-live satırını sil ============ */
+.hero{min-height:clamp(560px,78vh,760px);padding:88px 0 96px}
+.hero-wall{display:grid;gap:5px;padding:0;filter:none;background:#0b1018;align-content:start}
+.hero-wall .hwt{position:relative;overflow:hidden;border-radius:3px;background:#0b1018}
+.hero-wall .hwt img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.9);border-radius:0}
+.hero-wall .hwt img.back{opacity:0}
+.hero::after{background:
+  radial-gradient(130% 105% at 50% 42%, rgba(10,18,28,0) 52%, rgba(8,13,20,.52) 100%),
+  linear-gradient(90deg, rgba(10,18,28,.6) 0%, rgba(10,18,28,.24) 58%, rgba(10,18,28,.06) 100%),
+  linear-gradient(180deg, rgba(10,18,28,.4), rgba(10,18,28,.56))}
+.hero p.hero-live{position:absolute;right:28px;bottom:16px;z-index:2;margin:0;max-width:none;font-family:var(--gro);font-weight:600;font-size:10px;line-height:1;letter-spacing:.18em;color:rgba(255,255,255,.5);text-transform:uppercase}
+@media(prefers-reduced-motion:no-preference){.hero-wall .hwt img{transition:opacity 1.2s ease}}
+@media(max-width:480px){.hero p.hero-live{right:20px;bottom:12px;font-size:9px;letter-spacing:.14em}}
