@@ -52,31 +52,46 @@
 
   var bag = shuffle(POOL);
   var tiles = [];
+  // round-robin dolgu: her turda EN KISA kolona yuva eklenir — genis duvarda
+  // foto butcesi kolonlara esit dagilir, son kolon ac kalmaz
+  var slots = [];
   for (var ci = 0; ci < nCols; ci++) {
-    var colEl = colEls[ci];
-    var colW = colEl.clientWidth || ((gridW - (nCols - 1) * GAPY) / nCols) || 150;
-    var offset = mobile ? 0 : (nCols - 1 - ci) * STEP;
-    var y = offset, k = 0;
-    while (bag.length > RESERVE_MIN) {
-      var ratio = PATTERNS[ci % PATTERNS.length][k % 4];
-      // masaustu: kiymik yok — yuva ancak >= %45'i gorunuyorsa eklenir (kesik ama bilincli);
-      // mobil bant (CSS 1/1) tasarak dolar
-      if (mobile) { if (y >= gridH + 40) break; }
-      else if (y >= gridH || (gridH - y) < (colW / ratio) * 0.45) break;
-      var d = document.createElement("div");
-      d.className = "hg-t";
-      d.style.aspectRatio = String(ratio);
-      var src = bag.shift();
-      var a = document.createElement("img");
-      a.src = src; a.alt = ""; a.decoding = "async";
-      var b = document.createElement("img");
-      b.alt = ""; b.decoding = "async"; b.className = "back";
-      d.appendChild(a); d.appendChild(b);
-      colEl.appendChild(d);
-      tiles.push({ el: d, imgs: [a, b], front: 0, src: src });
-      y += colW / ratio + GAPY;
-      k++;
+    slots.push({
+      el: colEls[ci],
+      w: colEls[ci].clientWidth || ((gridW - (nCols - 1) * GAPY) / nCols) || 150,
+      y: mobile ? 0 : (nCols - 1 - ci) * STEP,
+      k: 0, full: false, pat: PATTERNS[ci % PATTERNS.length]
+    });
+  }
+  function canTake(c) {
+    if (c.full) return false;
+    // masaustu: kiymik yok — yuva ancak >= %45'i gorunuyorsa eklenir (kesik ama bilincli);
+    // mobil bant (CSS 1/1) tasarak dolar
+    if (mobile) { if (c.y >= gridH + 40) c.full = true; }
+    else if (c.y >= gridH || (gridH - c.y) < (c.w / c.pat[c.k % 4]) * 0.45) c.full = true;
+    return !c.full;
+  }
+  while (bag.length > RESERVE_MIN) {
+    var pick = null;
+    for (var pi = 0; pi < slots.length; pi++) {
+      if (!canTake(slots[pi])) continue;
+      if (!pick || slots[pi].y < pick.y) pick = slots[pi];
     }
+    if (!pick) break;
+    var ratio = pick.pat[pick.k % 4];
+    var d = document.createElement("div");
+    d.className = "hg-t";
+    d.style.aspectRatio = String(ratio);
+    var src = bag.shift();
+    var a = document.createElement("img");
+    a.src = src; a.alt = ""; a.decoding = "async";
+    var b = document.createElement("img");
+    b.alt = ""; b.decoding = "async"; b.className = "back";
+    d.appendChild(a); d.appendChild(b);
+    pick.el.appendChild(d);
+    tiles.push({ el: d, imgs: [a, b], front: 0, src: src });
+    pick.y += pick.w / ratio + GAPY;
+    pick.k++;
   }
   var reserve = bag; // duvarda OLMAYAN fotolar — takas kaynagi, tekrar imkansiz
 
