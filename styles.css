@@ -339,7 +339,7 @@ footer.foot .container{display:flex;flex-direction:column;gap:11px;align-items:c
 .splash .sp-word i{font-style:normal;display:inline-block;opacity:0;transform:translateY(12px);animation:spRise .4s cubic-bezier(.23,1,.32,1) var(--d) both}
 @keyframes spNode{from{opacity:0;transform:scale(.4)}to{opacity:var(--o,.85);transform:scale(1)}}
 @keyframes spEdge{to{stroke-dashoffset:0}}
-@keyframes spNet{to{opacity:0;transform:translateY(-26px) scale(.16)}}
+@keyframes spNet{to{opacity:0;transform:scale(1.06)}} /* cokme degil cozulme: ag dagilarak yerini markaya birakir */
 @keyframes spLogo{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
 @keyframes spRise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 @keyframes spBrandOut{from{opacity:1;transform:translateY(-50%)}to{opacity:0;transform:translateY(calc(-50% - 34px))}}
