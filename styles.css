@@ -325,6 +325,15 @@ footer.foot .container{display:flex;flex-direction:column;gap:11px;align-items:c
 @keyframes splashOut{to{opacity:0;visibility:hidden}}
 .splash-seen .splash,.splash.hide{display:none}
 
+/* ---- 14b. sayfalar arasi gecis (View Transitions; destegi olmayanda etkisiz) ---- */
+@media(prefers-reduced-motion:no-preference){
+  @view-transition{navigation:auto}
+  ::view-transition-old(root){animation:vtOut .14s cubic-bezier(.4,0,1,1) both}
+  ::view-transition-new(root){animation:vtIn .22s cubic-bezier(.23,1,.32,1) both}
+  @keyframes vtOut{to{opacity:0}}
+  @keyframes vtIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+}
+
 /* ---- 15. yardimcilar ---- */
 @media(prefers-reduced-motion:no-preference){
   html.js-reveal .reveal{opacity:0;transform:translateY(16px);transition:opacity .55s ease, transform .55s cubic-bezier(.2,.7,.3,1)}
