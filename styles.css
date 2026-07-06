@@ -324,26 +324,22 @@ footer.foot .container{display:flex;flex-direction:column;gap:11px;align-items:c
 
 /* ---- 14. giris ekrani (splash) — "Sinaps": noron agi -> beyin -> iris cikisi ---- */
 .splash{position:fixed;inset:0;z-index:9999;overflow:hidden;background:transparent;pointer-events:none}
-.splash .sp-iris{position:absolute;left:50%;top:46%;width:320vmax;height:320vmax;margin:-160vmax 0 0 -160vmax;border-radius:50%;background:radial-gradient(circle at 50% 47%,#ffffff 0%,var(--bg-alt) 46%,var(--accent-tint) 72%,#e6efec 100%);will-change:transform;animation:spIris .6s cubic-bezier(.77,0,.175,1) 2.85s both}
+.splash .sp-iris{position:absolute;left:50%;top:46%;width:320vmax;height:320vmax;margin:-160vmax 0 0 -160vmax;border-radius:50%;background:radial-gradient(circle at 50% 47%,#ffffff 0%,var(--bg-alt) 46%,var(--accent-tint) 72%,#e6efec 100%);will-change:transform;animation:spIris .6s cubic-bezier(.77,0,.175,1) 2.05s both}
 .splash .sp-net{position:absolute;inset:0;width:100%;height:100%}
-.splash .sp-net .fgl{transform-box:view-box;transform-origin:50% 42%;animation:spNetOut .5s cubic-bezier(.77,0,.175,1) 1.95s both}
-.splash .sp-net .bgl{animation:spFadeOut .35s ease .95s both}
+.splash .sp-net>g{transform-box:view-box;transform-origin:50% 42%;animation:spNet .58s cubic-bezier(.77,0,.175,1) .95s both}
 .splash .sp-net circle{fill:var(--accent);opacity:0;transform-box:fill-box;transform-origin:center;animation:spNode .45s cubic-bezier(.23,1,.32,1) var(--d) both}
-.splash .sp-net .fgl circle{animation:spNode .45s cubic-bezier(.23,1,.32,1) var(--d) both,spMorph .65s cubic-bezier(.77,0,.175,1) var(--md,1s) forwards}
-.splash .sp-net .fgl circle.fl{animation:spNode .45s cubic-bezier(.23,1,.32,1) var(--d) both,spFlash .32s ease-out var(--fd) both,spMorph .65s cubic-bezier(.77,0,.175,1) var(--md,1s) forwards}
-.splash .sp-net line{stroke:var(--accent);stroke-width:1.05;animation:spEdge .5s cubic-bezier(.23,1,.32,1) var(--d) both,spFadeOut .35s ease .95s forwards}
+.splash .sp-net circle.fl{animation:spNode .45s cubic-bezier(.23,1,.32,1) var(--d) both,spFlash .32s ease-out var(--fd) both}
+.splash .sp-net line{stroke:var(--accent);stroke-width:1.05;animation:spEdge .5s cubic-bezier(.23,1,.32,1) var(--d) both}
 .splash .sp-net .bgl line{stroke-width:.8}
 .splash .sp-net .pulse{fill:#2e8574;opacity:0;offset-path:var(--p);offset-rotate:0deg;animation:spPulse .5s linear var(--d) both}
-.splash .sp-brand{position:absolute;left:0;right:0;top:46%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;gap:18px;animation:spBrandOut .45s cubic-bezier(.77,0,.175,1) 2.75s both}
-.splash .sp-logo{height:min(96px,22vw);width:auto;opacity:0;transform:scale(.9);animation:spLogo .5s cubic-bezier(.23,1,.32,1) 2s both}
+.splash .sp-brand{position:absolute;left:0;right:0;top:46%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;gap:18px;animation:spBrandOut .45s cubic-bezier(.77,0,.175,1) 2s both}
+.splash .sp-logo{height:min(96px,22vw);width:auto;opacity:0;transform:scale(.9);animation:spLogo .5s cubic-bezier(.23,1,.32,1) 1.05s both}
 .splash .sp-word{display:flex;font-family:var(--gro),sans-serif;font-weight:700;font-size:clamp(24px,6vw,32px);letter-spacing:.22em;color:var(--ink)}
 .splash .sp-word .lab{color:var(--accent)}
 .splash .sp-word i{font-style:normal;display:inline-block;opacity:0;transform:translateY(12px);animation:spRise .4s cubic-bezier(.23,1,.32,1) var(--d) both}
 @keyframes spNode{from{opacity:0;transform:scale(.4)}to{opacity:var(--o,.85);transform:scale(1)}}
 @keyframes spEdge{to{stroke-dashoffset:0}}
-@keyframes spNetOut{to{opacity:0;transform:translateY(-6px) scale(.55)}}
-@keyframes spFadeOut{to{opacity:0}}
-@keyframes spMorph{to{transform:translate(var(--tx),var(--ty));opacity:.95}}
+@keyframes spNet{to{opacity:0;transform:translateY(-26px) scale(.16)}}
 @keyframes spLogo{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
 @keyframes spRise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 @keyframes spBrandOut{from{opacity:1;transform:translateY(-50%)}to{opacity:0;transform:translateY(calc(-50% - 34px))}}
