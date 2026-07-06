@@ -5,21 +5,28 @@
 <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/assets/fonts/inter-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css"><link rel="icon" type="image/png" href="assets/favicon.png"><link rel="icon" type="image/svg+xml" href="/assets/favicon.svg"><link rel="apple-touch-icon" href="/assets/apple-touch-icon.png"><meta name="theme-color" content="#235e56"><script src="lang.js"></script></head><body>
 <header class="nav"><div class="container nav-in"><a class="brand" href="index.html"><img class="blogo" src="assets/logo.png" alt="MUPLAB"><span>MUP<span class="lb">LAB</span></span></a><input type="checkbox" id="navchk" class="navchk" aria-hidden="true"><label for="navchk" class="navtoggle" aria-label="Menü"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></label><nav class="links"><a href="index.html">Anasayfa</a><a href="haberler.html">Haberler</a><a href="ekip.html">Ekip</a><a href="projeler.html">Projeler</a><a href="iletisim.html" class="active">İletişim</a><a href="yayinlar.html">Yayınlar</a><a href="kaynaklar.html">Kaynaklar</a><a href="katilin.html">Bize Katılın</a><a class="lang" href="en/contact.html">EN</a></nav></div></header>
-<section class="page-head"><div class="container"><span class="eyebrow">İletişim</span><h1>Bizimle iletişime geçin</h1><p>İş birliği, lisansüstü başvuru ya da ölçek talepleri için bize ulaşın.</p></div></section><section class="block"><div class="container"><div class="cgrid" style="text-align:left">
-      <div class="ci"><div class="t" style="color:var(--ink)">Adres</div><p style="color:var(--muted)">İnsan ve Toplum Bilimleri Fakültesi, Çiftlikköy Kampüsü, 33343 Mersin, Türkiye</p></div>
-      <div class="ci"><div class="t" style="color:var(--ink)">E-posta</div><p><a href="mailto:info@muplab.com">info@muplab.com</a></p></div>
-      <div class="ci"><div class="t" style="color:var(--ink)">Üniversite</div><p><a href="https://www.mersin.edu.tr">Mersin Üniversitesi · Psikoloji Bölümü</a></p></div></div></div></section>
-<section class="block alt"><div class="container narrow">
-  <h2 class="sech">Mesaj gönderin</h2>
-  <form class="api-form" data-endpoint="/api/iletisim" data-ok="Mesajınız alındı, teşekkürler! En kısa sürede döneriz." data-err="Mesaj gönderilemedi. Lütfen tekrar deneyin ya da info@muplab.com adresine yazın.">
-    <div class="field"><label for="i-ad">Adınız</label><input id="i-ad" name="ad" required maxlength="255"></div>
-    <div class="field"><label for="i-email">E-posta</label><input id="i-email" name="email" type="email" required maxlength="255"></div>
-    <div class="field"><label for="i-konu">Konu</label><input id="i-konu" name="konu" maxlength="255"></div>
-    <div class="field"><label for="i-mesaj">Mesajınız</label><textarea id="i-mesaj" name="mesaj" required maxlength="5000"></textarea></div>
-    <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-    <button class="btn btn-primary" type="submit">Gönder</button>
-    <p class="form-msg" role="status" aria-live="polite"></p>
-  </form>
+<section class="page-head"><div class="container"><span class="eyebrow">İletişim</span><h1>Bizimle iletişime geçin</h1><p>İş birliği, lisansüstü başvuru ya da ölçek talepleri için bize ulaşın.</p></div></section>
+<section class="block"><div class="container">
+  <div class="contact-grid">
+    <div class="cinfo">
+      <div class="ci2"><h3>Adres</h3><p>İnsan ve Toplum Bilimleri Fakültesi, Çiftlikköy Kampüsü, 33343 Mersin, Türkiye</p></div>
+      <div class="ci2"><h3>E-posta</h3><p><a href="mailto:info@muplab.com">info@muplab.com</a></p></div>
+      <div class="ci2"><h3>Üniversite</h3><p><a href="https://www.mersin.edu.tr">Mersin Üniversitesi · Psikoloji Bölümü</a></p></div>
+      <div class="ci2"><h3>Yanıt süresi</h3><p>Mesajlara genellikle 2-3 iş günü içinde dönüş yapıyoruz.</p></div>
+    </div>
+    <div class="cform">
+      <h2 class="formh">Mesaj gönderin</h2>
+      <form class="api-form" data-endpoint="/api/iletisim" data-ok="Mesajınız alındı, teşekkürler! En kısa sürede döneriz." data-err="Mesaj gönderilemedi. Lütfen tekrar deneyin ya da info@muplab.com adresine yazın.">
+        <div class="field"><label for="i-ad">Adınız</label><input id="i-ad" name="ad" required maxlength="255"></div>
+        <div class="field"><label for="i-email">E-posta</label><input id="i-email" name="email" type="email" required maxlength="255"></div>
+        <div class="field"><label for="i-konu">Konu</label><input id="i-konu" name="konu" maxlength="255"></div>
+        <div class="field"><label for="i-mesaj">Mesajınız</label><textarea id="i-mesaj" name="mesaj" required maxlength="5000"></textarea></div>
+        <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button class="btn btn-primary" type="submit">Gönder</button>
+        <p class="form-msg" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
 </div></section>
 <footer class="foot"><div class="container"><div class="foot-links"><a href="haberler.html">Haberler</a><a href="ekip.html">Ekip</a><a href="projeler.html">Projeler</a><a href="living-ma.html">Living MA</a><a href="iletisim.html">İletişim</a><a href="yayinlar.html">Yayınlar</a><a href="kaynaklar.html">Kaynaklar</a><a href="katilin.html">Bize Katılın</a></div><div class="foot-copy">© 2026 MUPLAB · Mersin Üniversitesi Psikoloji Laboratuvarı &nbsp;·&nbsp; <a href="mailto:info@muplab.com">info@muplab.com</a></div></div></footer>
 <script src="nav-menu.js"></script><script src="forms.js"></script></body></html>
