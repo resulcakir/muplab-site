@@ -322,50 +322,30 @@ footer.foot .container{display:flex;flex-direction:column;gap:11px;align-items:c
 .foot-links a:hover{color:#fff}
 .foot-copy{font-size:13px}
 
-/* ---- 14. giris ekrani (splash) — "Glitch": kromatik ayrisma + yirtilma cikisi ---- */
-.splash{position:fixed;inset:0;z-index:9999;overflow:hidden;background:transparent;font-family:var(--gro),sans-serif}
-/* alti serit: tek radyal zeminin dilimleri (cikista zit yonlere yirtilir) */
-.splash .tear{position:absolute;left:0;right:0;background-image:radial-gradient(120% 130% at 50% 38%,#13202e 0%,#0c1420 45%,#070c14 100%);background-size:100% 600%;background-repeat:no-repeat;will-change:translate}
-.splash .t1{top:0;height:calc(100%/6 + 1px);background-position:0 0%}
-.splash .t2{top:calc(100%/6);height:calc(100%/6 + 1px);background-position:0 20%}
-.splash .t3{top:calc(200%/6);height:calc(100%/6 + 1px);background-position:0 40%}
-.splash .t4{top:calc(300%/6);height:calc(100%/6 + 1px);background-position:0 60%}
-.splash .t5{top:calc(400%/6);height:calc(100%/6 + 1px);background-position:0 80%}
-.splash .t6{top:calc(500%/6);height:calc(100%/6);background-position:0 100%}
-.splash .amb{position:absolute;inset:0;pointer-events:none;background:radial-gradient(58% 48% at 50% 44%,rgba(46,133,116,.20),transparent 70%),radial-gradient(140% 120% at 50% 50%,transparent 55%,rgba(0,0,0,.45) 100%)}
-.splash .noise{position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(160,220,210,.035) 0 1px,transparent 1px 3px);animation:spgFlick 2.3s steps(1,end) both}
-.splash .score{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px}
-.splash .slogo{width:min(96px,24vw);height:auto;opacity:0;filter:drop-shadow(0 0 12px rgba(111,208,194,.55)) drop-shadow(0 0 30px rgba(46,133,116,.35));animation:spgLogoPop .4s cubic-bezier(.2,.7,.2,1) 1.15s both,spgLogoTick .26s steps(1,end) 1.58s both;will-change:transform,translate,clip-path}
-.splash .wm-wrap{position:relative;height:70px;display:flex;align-items:center;justify-content:center}
-.splash .wm{font-weight:700;font-size:clamp(34px,7vw,58px);line-height:1;letter-spacing:.22em;white-space:nowrap}
-.splash .wm-base{position:relative;animation:spgWmIn 1.5s steps(1,end) .1s both;will-change:translate,opacity}
-.splash .wm .mup{color:#eef3f2;text-shadow:0 0 18px rgba(255,255,255,.10)}
-.splash .wm .lab{color:#6fd0c2;text-shadow:0 0 10px rgba(111,208,194,.75),0 0 30px rgba(46,133,116,.5)}
-.splash .wm-c{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;mix-blend-mode:screen;opacity:0;will-change:clip-path,translate,opacity}
-.splash .wm-teal{color:#6fd0c2;animation:spgCteal 1.5s steps(1,end) .1s both}
-.splash .wm-warm{color:#b5612f;animation:spgCwarm 1.5s steps(1,end) .1s both}
-.splash .stag{font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:.34em;color:rgba(214,232,228,.55);opacity:0;text-align:center;animation:spgTag .45s ease-out 1.75s both}
-.splash .scan{position:absolute;left:-2%;width:104%;height:110px;top:0;translate:0 -130px;opacity:0;pointer-events:none;mix-blend-mode:screen;background:linear-gradient(180deg,transparent 0%,rgba(111,208,194,.05) 35%,rgba(143,240,224,.15) 49%,rgba(255,255,255,.22) 50%,rgba(143,240,224,.15) 51%,rgba(111,208,194,.05) 65%,transparent 100%);animation:spgScan .8s linear 1.5s both;will-change:translate}
-/* cikis: glitch-out + serit yirtilmasi (JS 2.3s'te .sp-out ekler) */
-.splash.sp-out .score,.splash.sp-out .amb,.splash.sp-out .noise,.splash.sp-out .scan{animation:spgCoreOut .14s steps(2,end) forwards}
-.splash.sp-out .tear{border-top:1px solid rgba(111,208,194,.28)}
-.splash.sp-out .t1{animation:spgTearL .42s cubic-bezier(.65,0,.35,1) .10s forwards}
-.splash.sp-out .t2{animation:spgTearR .42s cubic-bezier(.65,0,.35,1) .04s forwards}
-.splash.sp-out .t3{animation:spgTearL .42s cubic-bezier(.65,0,.35,1) .13s forwards}
-.splash.sp-out .t4{animation:spgTearR .42s cubic-bezier(.65,0,.35,1) .06s forwards}
-.splash.sp-out .t5{animation:spgTearL .42s cubic-bezier(.65,0,.35,1) .02s forwards}
-.splash.sp-out .t6{animation:spgTearR .42s cubic-bezier(.65,0,.35,1) .09s forwards}
-@keyframes spgFlick{0%{opacity:.7}9%{opacity:.4}11%{opacity:.85}31%{opacity:.5}33%{opacity:.9}47%{opacity:.55}49%{opacity:.8}72%{opacity:.6}74%{opacity:.85}100%{opacity:.7}}
-@keyframes spgLogoPop{0%{opacity:0;transform:scale(1.18)}100%{opacity:1;transform:scale(1)}}
-@keyframes spgLogoTick{0%{translate:0 0;clip-path:none}30%{translate:-7px 0;clip-path:inset(16% 0 42% 0)}55%{translate:5px 0;clip-path:inset(55% 0 8% 0)}80%{translate:0 0;clip-path:none}100%{translate:0 0;clip-path:none}}
-@keyframes spgWmIn{0%{opacity:0;translate:0 0}4%{opacity:1;translate:0 0}7%{opacity:.35;translate:-3px 0}9%{opacity:1;translate:2px 0}12%{opacity:1;translate:0 0}30%{opacity:1;translate:0 0}32%{opacity:.6;translate:3px 0}34%{opacity:1;translate:-2px 0}36%{opacity:1;translate:0 0}60%{opacity:1;translate:0 0}62%{opacity:.7;translate:-2px 0}64%{opacity:1;translate:0 0}100%{opacity:1;translate:0 0}}
-@keyframes spgCteal{0%{opacity:0;clip-path:inset(0 0 100% 0);translate:0 0}5%{opacity:.9;clip-path:inset(12% 0 62% 0);translate:-7px -2px}8%{opacity:.9;clip-path:inset(48% 0 22% 0);translate:8px 1px}11%{opacity:.9;clip-path:inset(78% 0 4% 0);translate:-5px 0}13%{opacity:0;clip-path:inset(0 0 100% 0);translate:0 0}30%{opacity:0;clip-path:inset(0 0 100% 0);translate:0 0}31%{opacity:.9;clip-path:inset(30% 0 44% 0);translate:9px 0}33%{opacity:.9;clip-path:inset(6% 0 74% 0);translate:-8px 2px}36%{opacity:0;clip-path:inset(0 0 100% 0);translate:0 0}60%{opacity:0;clip-path:inset(0 0 100% 0);translate:0 0}61%{opacity:.85;clip-path:inset(56% 0 18% 0);translate:-6px 0}63%{opacity:0;clip-path:inset(0 0 100% 0);translate:0 0}100%{opacity:0;clip-path:inset(0 0 100% 0);translate:0 0}}
-@keyframes spgCwarm{0%{opacity:0;clip-path:inset(100% 0 0 0);translate:0 0}6%{opacity:.85;clip-path:inset(60% 0 14% 0);translate:7px 2px}9%{opacity:.85;clip-path:inset(20% 0 58% 0);translate:-8px -1px}12%{opacity:.85;clip-path:inset(2% 0 84% 0);translate:6px 0}14%{opacity:0;clip-path:inset(100% 0 0 0);translate:0 0}31%{opacity:0;clip-path:inset(100% 0 0 0);translate:0 0}32%{opacity:.85;clip-path:inset(64% 0 10% 0);translate:-9px 0}34%{opacity:.85;clip-path:inset(38% 0 36% 0);translate:8px -2px}37%{opacity:0;clip-path:inset(100% 0 0 0);translate:0 0}61%{opacity:0;clip-path:inset(100% 0 0 0);translate:0 0}62%{opacity:.8;clip-path:inset(10% 0 66% 0);translate:6px 0}64%{opacity:0;clip-path:inset(100% 0 0 0);translate:0 0}100%{opacity:0;clip-path:inset(100% 0 0 0);translate:0 0}}
-@keyframes spgTag{0%{opacity:0;translate:0 8px}100%{opacity:1;translate:0 0}}
-@keyframes spgScan{0%{translate:0 -130px;opacity:0}12%{opacity:1}88%{opacity:1}100%{translate:0 560px;opacity:0}}
-@keyframes spgCoreOut{0%{opacity:1;translate:0 0;transform:none}50%{opacity:.6;translate:14px 0;transform:skewX(5deg)}100%{opacity:0;translate:-20px 0;transform:none}}
-@keyframes spgTearL{0%{translate:0 0}16%{translate:8px 0}100%{translate:-103% 0}}
-@keyframes spgTearR{0%{translate:0 0}16%{translate:-8px 0}100%{translate:103% 0}}
+/* ---- 14. giris ekrani (splash) — "Sinaps": noron agi -> beyin -> iris cikisi ---- */
+.splash{position:fixed;inset:0;z-index:9999;overflow:hidden;background:transparent;pointer-events:none}
+.splash .sp-iris{position:absolute;left:50%;top:46%;width:320vmax;height:320vmax;margin:-160vmax 0 0 -160vmax;border-radius:50%;background:radial-gradient(circle at 50% 47%,#ffffff 0%,var(--bg-alt) 46%,var(--accent-tint) 72%,#e6efec 100%);will-change:transform;animation:spIris .6s cubic-bezier(.77,0,.175,1) 2.05s both}
+.splash .sp-net{position:absolute;inset:0;width:100%;height:100%}
+.splash .sp-net>g{transform-box:view-box;transform-origin:50% 42%;animation:spNet .58s cubic-bezier(.77,0,.175,1) .95s both}
+.splash .sp-net circle{fill:var(--accent);opacity:0;transform-box:fill-box;transform-origin:center;animation:spNode .45s cubic-bezier(.23,1,.32,1) var(--d) both}
+.splash .sp-net circle.fl{animation:spNode .45s cubic-bezier(.23,1,.32,1) var(--d) both,spFlash .32s ease-out var(--fd) both}
+.splash .sp-net line{stroke:var(--accent);stroke-width:1.05;animation:spEdge .5s cubic-bezier(.23,1,.32,1) var(--d) both}
+.splash .sp-net .bgl line{stroke-width:.8}
+.splash .sp-net .pulse{fill:#2e8574;opacity:0;offset-path:var(--p);offset-rotate:0deg;animation:spPulse .5s linear var(--d) both}
+.splash .sp-brand{position:absolute;left:0;right:0;top:46%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;gap:18px;animation:spBrandOut .45s cubic-bezier(.77,0,.175,1) 2s both}
+.splash .sp-logo{height:min(96px,22vw);width:auto;opacity:0;transform:scale(.9);animation:spLogo .5s cubic-bezier(.23,1,.32,1) 1.05s both}
+.splash .sp-word{display:flex;font-family:var(--gro),sans-serif;font-weight:700;font-size:clamp(24px,6vw,32px);letter-spacing:.22em;color:var(--ink)}
+.splash .sp-word .lab{color:var(--accent)}
+.splash .sp-word i{font-style:normal;display:inline-block;opacity:0;transform:translateY(12px);animation:spRise .4s cubic-bezier(.23,1,.32,1) var(--d) both}
+@keyframes spNode{from{opacity:0;transform:scale(.4)}to{opacity:var(--o,.85);transform:scale(1)}}
+@keyframes spEdge{to{stroke-dashoffset:0}}
+@keyframes spNet{to{opacity:0;transform:scale(1.06)}} /* cokme degil cozulme: ag dagilarak yerini markaya birakir */
+@keyframes spLogo{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+@keyframes spRise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes spBrandOut{from{opacity:1;transform:translateY(-50%)}to{opacity:0;transform:translateY(calc(-50% - 34px))}}
+@keyframes spIris{from{transform:scale(1)}to{transform:scale(.001)}}
+@keyframes spPulse{0%{opacity:0;offset-distance:0%}14%{opacity:.95}86%{opacity:.95}100%{opacity:0;offset-distance:100%}}
+@keyframes spFlash{0%{transform:scale(1)}45%{transform:scale(2);opacity:1}100%{transform:scale(1);opacity:var(--o,.85)}}
 .splash-seen .splash,.splash.hide{display:none}
 
 /* ---- 14b. sayfalar arasi gecis (View Transitions; destegi olmayanda etkisiz) ---- */
