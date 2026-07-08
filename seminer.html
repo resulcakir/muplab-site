@@ -283,7 +283,10 @@
 
   var KEY = 'muplab_seminer';
   var NEXT = 'seminer-sunum.html';
-  var EXPECTED = 'd81622ec24944df23c9892dd6f176bbc9933bd85d7381d9f8c54ab4d708e42e0';
+  /* Credential check runs on the lab's own server (api.muplab.com);
+     the local address is used automatically during development. */
+  var API = (location.hostname === 'localhost' || location.hostname === '127.0.0.1')
+            ? 'http://127.0.0.1:5000' : 'https://api.muplab.com';
 
   /* Already signed in: go straight to the presentation */
   try{
@@ -335,22 +338,10 @@
   idEl.addEventListener('input', hideError);
   pwEl.addEventListener('input', hideError);
 
-  function sha256Hex(text){
-    var data = new TextEncoder().encode(text);
-    return crypto.subtle.digest('SHA-256', data).then(function(buf){
-      var bytes = new Uint8Array(buf);
-      var hex = '';
-      for (var i = 0; i < bytes.length; i++){
-        hex += bytes[i].toString(16).padStart(2, '0');
-      }
-      return hex;
-    });
-  }
-
   form.addEventListener('submit', function(ev){
     ev.preventDefault();
 
-    var id = idEl.value.trim().toLowerCase();
+    var id = idEl.value.trim();
     var pw = pwEl.value;
 
     if (!id || !pw){
@@ -359,29 +350,38 @@
       return;
     }
 
-    if (!(window.crypto && crypto.subtle && window.TextEncoder)){
-      showError('Verification requires a secure connection. Please open the page from the https:// site address.');
-      return;
-    }
-
     btn.disabled = true;
     btn.textContent = 'Verifying…';
 
-    sha256Hex(id + ':' + pw).then(function(hex){
-      if (hex === EXPECTED){
-        try{ sessionStorage.setItem(KEY, '1'); }catch(e){}
+    fetch(API + '/api/seminer/giris', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: id, sifre: pw })
+    }).then(function(resp){
+      return resp.json().then(function(veri){ return { st: resp.status, veri: veri }; });
+    }).then(function(r){
+      if (r.st === 200 && r.veri && r.veri.ok){
+        try{
+          sessionStorage.setItem(KEY, '1');
+          sessionStorage.setItem(KEY + '_rol', r.veri.rol || 'juri');
+          if (r.veri.etiket) sessionStorage.setItem(KEY + '_ad', r.veri.etiket);
+        }catch(e){}
         location.replace(NEXT);
         return;
       }
       btn.disabled = false;
       btn.textContent = 'Sign in';
-      showError('The credentials do not match — please try again.');
-      pwEl.value = '';
-      pwEl.focus();
+      if (r.st === 429){
+        showError('Too many attempts — please wait a while and try again.');
+      } else {
+        showError('The credentials do not match — please try again.');
+        pwEl.value = '';
+        pwEl.focus();
+      }
     }).catch(function(){
       btn.disabled = false;
       btn.textContent = 'Sign in';
-      showError('Verification failed — please reopen the page from the https:// address and try again.');
+      showError('Could not reach the verification service — please check your connection and try again.');
     });
   });
 })();
