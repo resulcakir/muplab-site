@@ -133,6 +133,8 @@ html.jsanim .rvl.in+.rvl.in+.rvl.in+.rvl.in{transition-delay:.24s}
 .fin .wrap{position:relative;z-index:1}
 .fin::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(46% 40% at 24% 18%,rgba(255,255,255,.09),transparent 70%),radial-gradient(42% 34% at 78% 82%,rgba(224,138,76,.12),transparent 70%);opacity:.5;animation:finNefes 9s ease-in-out infinite alternate}
 @keyframes finNefes{from{opacity:.32}to{opacity:.85}}
+.lockrow a.lock{color:inherit}
+.lockrow a.lock:hover{text-decoration:underline;text-underline-offset:3px}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto}}
 </style></head><body>
 <div class="prog" id="prog" aria-hidden="true"></div>
@@ -145,7 +147,7 @@ html.jsanim .rvl.in+.rvl.in+.rvl.in+.rvl.in{transition-delay:.24s}
 
 <section class="shero"><div class="wrap">
   <span class="kick">Living Bayesian Meta-Analysis</span>
-  <h1>How do you build a meta-analysis that updates as the evidence <em>lives</em>?</h1>
+  <h1>How do you build a meta-analysis that updates as the evidence <em>lives?</em></h1>
   <p class="lede">This presentation shows, step by step, <b>how we built</b> our living Bayesian meta-analysis of <b>the effect of auricular taVNS on learning</b>, and <b>how the live system</b> on muplab.com works. All of the panels below are interactive — you can try them with the real data.</p>
   <div class="stats" id="sayac">
     <div class="stat"><b data-n="24">0</b><span>studies (v1.0, registered)</span></div>
@@ -170,7 +172,7 @@ html.jsanim .rvl.in+.rvl.in+.rvl.in+.rvl.in{transition-delay:.24s}
   <div class="ps rvl"><span class="pet">01 · Introduction</span><h2>Why a "living" meta-analysis?</h2></div>
   <div class="pb rvl">
     <p>A conventional meta-analysis starts to age on the day it is published: once a new study appears in the field, the result no longer shows the full picture. A <b>living meta-analysis</b> solves this problem by setting up the analysis not as a one-time publication but as a <b>continuously updated, versioned system</b>.</p>
-    <p>In our setup, the protocol and analysis plan are registered in <b>PROSPERO</b>; the data are open on <b>OSF</b>; the model code is in R with <b>brms · bayesmeta</b>. When a new study is published, the automated PubMed search reports it; if the study meets the eligibility criteria, the data are extracted, the model is rerun, and the site is updated with a new version.</p>
+    <p>In our setup, the protocol and analysis plan are registered in <b>PROSPERO</b>; the data are open on <b><a href="https://github.com/resulcakir/SR-BMA" target="_blank" rel="noopener">GitHub</a></b>; the model code is in R with <b><a href="https://github.com/resulcakir/SR-BMA" target="_blank" rel="noopener">brms · bayesmeta</a></b>. When a new study is published, the automated PubMed search reports it; if the study meets the eligibility criteria, the data are extracted, the model is rerun, and the site is updated with a new version.</p>
     <p>The Bayesian setup fits this loop particularly well: each new study is an update that carries the current knowledge <b>from prior to posterior</b> — that is precisely the statistical meaning of the word "living". You can try this idea yourself below.</p>
   </div>
 </div></div></section>
@@ -198,7 +200,7 @@ html.jsanim .rvl.in+.rvl.in+.rvl.in+.rvl.in{transition-delay:.24s}
         <path class="akis-return" id="akis-return" d="M 988 46 C 1052 46 1052 128 900 128 L 240 128 C 120 128 120 46 228 46"></path>
         <circle class="akis-flowdot" r="4"></circle>
         <circle class="akis-flowdot akis-flowdot2" r="4"></circle>
-        <text class="akis-returnlabel" x="564" y="122">new publication → the loop restarts</text>
+        <text class="akis-returnlabel" x="564" y="141">new publication → the loop restarts</text>
       </svg>
 
       <ol class="akis-nodes" role="tablist" aria-label="The living loop stops">
@@ -230,7 +232,7 @@ html.jsanim .rvl.in+.rvl.in+.rvl.in+.rvl.in{transition-delay:.24s}
     #sec-akis .akis-tour[aria-pressed="true"] .akis-tour-ic{background:rgba(255,255,255,.18);color:#fff}
     #sec-akis .akis-hint{margin:0;font-size:.8rem;color:var(--muted);font-family:var(--gro);letter-spacing:.02em}
 
-    #sec-akis .akis-flowwrap{position:relative;margin:0 0 30px}
+    #sec-akis .akis-flowwrap{position:relative;margin:0 0 30px;padding-bottom:38px}
     #sec-akis .akis-track{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:0}
     #sec-akis .akis-line{fill:none;stroke:var(--line);stroke-width:2}
     #sec-akis .akis-return{fill:none;stroke:var(--line);stroke-width:1.6;stroke-dasharray:5 6}
@@ -334,14 +336,14 @@ html.jsanim .rvl.in+.rvl.in+.rvl.in+.rvl.in{transition-delay:.24s}
         chips:['Filter: <b>predefined criteria</b>','Output: <b>eligible primary studies</b>'],
         note:'Entered the pool in registered v1.0: 24 studies.'},
       {ic:'table',lbl:'Data extraction',title:'4 · Data extraction',
-        body:'A standard effect size (Hedges’ g) and its standard error (SE) are extracted from the eligible studies; each effect is labeled by its domain (Declarative Memory, Working Memory, Cognitive Control, Associative & Skill Acquisition). The direction is standardized: with RT ×(−1), a positive value always reads as favoring taVNS. All extracted data are open on OSF.',
-        steps:['Extraction of Hedges g + SE (one primary effect per study)','Domain label: one of the 4 learning domains','Direction standardization: RT ×(−1)','The dataset is committed to OSF — open and reusable'],
-        chips:['Metric: <b>g + SE</b> (direction standardized)','Open data: <b>OSF</b>'],
+        body:'A standard effect size (Hedges’ g) and its standard error (SE) are extracted from the eligible studies; each effect is labeled by its domain (Declarative Memory, Working Memory, Cognitive Control, Associative & Skill Acquisition). The direction is standardized: with RT ×(−1), a positive value always reads as favoring taVNS. All extracted data are open on GitHub.',
+        steps:['Extraction of Hedges g + SE (one primary effect per study)','Domain label: one of the 4 learning domains','Direction standardization: RT ×(−1)','The dataset is committed to GitHub — open and reusable'],
+        chips:['Metric: <b>g + SE</b> (direction standardized)','Open data: <a href=\u0022https://github.com/resulcakir/SR-BMA\u0022 target=\u0022_blank\u0022 rel=\u0022noopener\u0022><b>GitHub</b></a>'],
         note:'Registered v1.0: 36 primary effect sizes (22 ACC + 14 RT).'},
       {ic:'curve',lbl:'Bayesian model in R',title:'5 · Bayesian model in R',
         body:'Pooling is done on the lab’s analysis computer, in R, and is re-run from scratch at every version update. The model is specified with brms: a random-effects normal-normal setup, estimated by MCMC sampling on Stan; it is cross-checked with bayesmeta, and the classical backbone is metafor’s cluster-robust (RVE) model. Domain comparisons (subgroup / meta-regression) are part of the same model. The results are summarized from the posterior samples: pooled estimate, 95% CrI, P(g>0), and prediction interval.',
         steps:['Model specification: <b>brms</b> (random-effects; domain subgroups)','Estimation: <b>Stan MCMC</b> sampling — on the lab computer','Cross-check: <b>bayesmeta</b> · backbone: <b>metafor RVE</b>','Posterior summaries: g, 95% CrI, P(g>0), prediction interval → locked output'],
-        chips:['Prior: <b>μ ~ N(0, 0.5)</b>','Prior: <b>τ ~ Half-Normal(0.3)</b>','<a href="/kaynaklar.html">Analysis code → Resources page</a>'],
+        chips:['Prior: <b>μ ~ N(0, 0.5)</b>','Prior: <b>τ ~ Half-Normal(0.3)</b>','<a href=\u0022https://github.com/resulcakir/SR-BMA\u0022 target=\u0022_blank\u0022 rel=\u0022noopener\u0022>Analysis code on GitHub</a>'],
         note:'Registered ACC: g=+0.15, 95% CrI [0.06, 0.25], P(g>0)=99.9%, k=22. Registered RT: g=+0.18, 95% CrI [0.02, 0.37], P(g>0)=98.3%, k=14.'},
       {ic:'browser',lbl:'Site update',title:'6 · Site update',
         body:'The results are committed to the site in two layers. The registered layer: brms figures are embedded as fixed PNGs in static pages and published on GitHub Pages. The exploration layer: the panel on the living-MA page computes directly in the visitor’s browser using conjugate math. Dynamic work such as forms and team data is handled by an API running on the lab’s own server — each layer does its own job.',
@@ -588,9 +590,9 @@ html.jsanim .rvl.in+.rvl.in+.rvl.in+.rvl.in{transition-delay:.24s}
     }
 
     /* ---- terminal ---- */
-    #sec-tarama .trm{margin-top:18px;background:#132420;border:1px solid #1e3a34;border-radius:14px;overflow:hidden;box-shadow:0 14px 34px -18px rgba(10,30,26,.5)}
-    #sec-tarama .trm-bar{display:flex;align-items:center;gap:6px;padding:10px 14px;background:#0e1c19;border-bottom:1px solid #1e3a34}
-    #sec-tarama .trm-bar i{width:9px;height:9px;border-radius:50%;background:#2c4c45}
+    #sec-tarama .trm{margin-top:18px;background:#0a0b0b;border:1px solid #232626;border-radius:14px;overflow:hidden;box-shadow:0 14px 34px -18px rgba(10,30,26,.5)}
+    #sec-tarama .trm-bar{display:flex;align-items:center;gap:6px;padding:10px 14px;background:#000;border-bottom:1px solid #1d1f1f}
+    #sec-tarama .trm-bar i{width:9px;height:9px;border-radius:50%;background:#2f3634}
     #sec-tarama .trm-bar span{margin-left:8px;font-family:var(--gro);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#7ba99f}
     #sec-tarama .trm-body{padding:16px 18px 18px;display:grid;gap:7px}
     #sec-tarama .trm-body p{margin:0;font-family:ui-monospace,'Cascadia Mono','Consolas',monospace;font-size:12.8px;line-height:1.5;color:#cfe5de;white-space:nowrap;overflow:hidden}
@@ -675,6 +677,7 @@ html.jsanim .rvl.in+.rvl.in+.rvl.in+.rvl.in{transition-delay:.24s}
           <div class="sb-prog" aria-hidden="true"><span id="sb-prog-fill"></span></div>
           <div class="sb-row">
             <button type="button" class="sb-btn sb-btn-sec" id="sb-all">Add all</button>
+            <button type="button" class="sb-btn sb-btn-sec" id="sb-prev" disabled>Remove last</button>
             <button type="button" class="sb-btn sb-btn-ghost" id="sb-reset">Reset</button>
           </div>
 
@@ -844,7 +847,7 @@ html.jsanim .rvl.in+.rvl.in+.rvl.in+.rvl.in{transition-delay:.24s}
         postPath=$("#sb-post"),postFill=$("#sb-post-fill"),
         dotsG=$("#sb-dots"),lastLab=$("#sb-last-lab"),axisG=$("#sb-axis"),
         elK=$("#sb-k"),elM=$("#sb-m"),elCri=$("#sb-cri"),elP=$("#sb-p"),
-        btnNext=$("#sb-next"),btnAll=$("#sb-all"),btnReset=$("#sb-reset"),
+        btnNext=$("#sb-next"),btnAll=$("#sb-all"),btnReset=$("#sb-reset"),btnPrev=$("#sb-prev"),
         nextName=$("#sb-next-name"),slider=$("#sb-s0"),s0Val=$("#sb-s0-val"),
         progFill=$("#sb-prog-fill");
     var svgNS="http://www.w3.org/2000/svg";
@@ -924,15 +927,30 @@ html.jsanim .rvl.in+.rvl.in+.rvl.in+.rvl.in{transition-delay:.24s}
       if(prev){prev.setAttribute("class","sb-dot");}
       var c=document.createElementNS(svgNS,"circle");
       c.setAttribute("cx",cx);c.setAttribute("cy",cy);c.setAttribute("r",r);
+      c.setAttribute("data-i",i);
       c.setAttribute("class","sb-dot-last");c.style.transformOrigin=cx+"px "+cy+"px";
       var tt=document.createElementNS(svgNS,"title");
       tt.textContent=s.study+" — g="+fmtSigned(s.g,3)+", se="+s.se.toFixed(3);
       c.appendChild(tt);dotsG.appendChild(c);
+      labelAt(s,c);
+    }
+    function labelAt(s,c){
+      var cx=+c.getAttribute("cx"),cy=+c.getAttribute("cy"),r=+c.getAttribute("r");
       lastLab.textContent=s.study;
       var anchor=cx>W*0.78?"end":(cx<W*0.22?"start":"middle");
       lastLab.setAttribute("text-anchor",anchor);
       lastLab.setAttribute("x",cx);lastLab.setAttribute("y",Math.max(mT+10,cy-r-7));
     }
+    /* hover: hangi nokta hangi calisma */
+    dotsG.addEventListener("pointerover",function(e){
+      var t=e.target.closest("circle");if(!t)return;
+      labelAt(STUDIES[+t.getAttribute("data-i")],t);
+    });
+    dotsG.addEventListener("pointerout",function(){
+      var son=dotsG.lastElementChild;
+      if(son){labelAt(STUDIES[+son.getAttribute("data-i")],son);}
+      else{lastLab.textContent="";}
+    });
     function clearDots(){placed=[];dotsG.textContent="";lastLab.textContent="";}
 
     /* --- formatting --- */
@@ -955,12 +973,13 @@ html.jsanim .rvl.in+.rvl.in+.rvl.in+.rvl.in{transition-delay:.24s}
         btnNext.disabled=true;
       }
       btnAll.disabled=(k>=N);
+      btnPrev.disabled=(k===0);
       return post;
     }
 
     /* --- actions --- */
     function setAuto(on){
-      btnNext.disabled=on||k>=N;btnAll.disabled=on||k>=N;btnReset.disabled=on;slider.disabled=on;
+      btnNext.disabled=on||k>=N;btnAll.disabled=on||k>=N;btnPrev.disabled=on||k===0;btnReset.disabled=on;slider.disabled=on;
     }
     function addNext(){
       if(k>=N)return;
@@ -982,6 +1001,17 @@ html.jsanim .rvl.in+.rvl.in+.rvl.in+.rvl.in{transition-delay:.24s}
         else{autoTimer=null;setAuto(false);updateStats();}
       })();
     }
+    function removeLast(){
+      if(k<=0||autoTimer)return;
+      k--;placed.pop();
+      var sonC=dotsG.lastElementChild;
+      if(sonC)dotsG.removeChild(sonC);
+      var yeni=dotsG.lastElementChild;
+      if(yeni){yeni.setAttribute("class","sb-dot-last");labelAt(STUDIES[+yeni.getAttribute("data-i")],yeni);}
+      else{lastLab.textContent="";}
+      var post=updateStats();
+      animateTo(post.M,post.sd);
+    }
     function reset(){
       if(autoTimer){clearTimeout(autoTimer);autoTimer=null;setAuto(false);}
       k=0;clearDots();
@@ -990,6 +1020,7 @@ html.jsanim .rvl.in+.rvl.in+.rvl.in+.rvl.in{transition-delay:.24s}
     }
 
     btnNext.addEventListener("click",addNext);
+    btnPrev.addEventListener("click",removeLast);
     btnAll.addEventListener("click",addAll);
     btnReset.addEventListener("click",reset);
     slider.addEventListener("input",function(){
@@ -1052,8 +1083,9 @@ html.jsanim .rvl.in+.rvl.in+.rvl.in+.rvl.in{transition-delay:.24s}
         <div class="hv-deney">
           <p class="hv-deney-t">Try it</p>
           <div class="hv-deney-item">
-            <p class="hv-deney-q"><b>How much does the pool depend on any single study?</b> Remove a random study and watch how far the pool shifts; press again to continue. A single study rarely drives a robust pool.</p>
+            <p class="hv-deney-q"><b>How much does the pool depend on any single study?</b> Remove a random study and watch how far the pool shifts; press again to continue, or undo to bring the last one back. A single study rarely drives a robust pool.</p>
             <button type="button" class="hv-deneybtn" id="hv-deney-rand">Remove a random study</button>
+            <button type="button" class="hv-deneybtn hv-deneybtn-ghost" id="hv-deney-undo" disabled>Undo removal</button>
           </div>
           <div class="hv-deney-item">
             <p class="hv-deney-q"><b>A view by domain.</b> Use the checkbox in a group header to switch a whole domain off and on — the pool is computed only from the selected domains.</p>
@@ -1097,32 +1129,32 @@ html.jsanim .rvl.in+.rvl.in+.rvl.in+.rvl.in{transition-delay:.24s}
     #sec-havuz .hv-ch-r{text-align:right;padding-right:6px}
 
     #sec-havuz .hv-row,#sec-havuz .hv-grow,#sec-havuz .hv-poolrow,#sec-havuz .hv-axis{display:grid;grid-template-columns:var(--hv-cols);align-items:center}
-    #sec-havuz .hv-row{min-height:40px;transition:background .2s}
+    #sec-havuz .hv-row{min-height:30px;transition:background .2s}
     #sec-havuz .hv-row:hover{background:#fafbfb}
 
     /* domain group header row */
-    #sec-havuz .hv-grow{min-height:44px;margin-top:6px}
+    #sec-havuz .hv-grow{min-height:38px;margin-top:6px}
     #sec-havuz .hv-grow:first-child{margin-top:0}
-    #sec-havuz .hv-glab{display:flex;align-items:center;gap:9px;min-height:44px;padding:2px 10px 2px 2px;cursor:pointer;min-width:0}
+    #sec-havuz .hv-glab{display:flex;align-items:center;gap:9px;min-height:38px;padding:2px 10px 2px 2px;cursor:pointer;min-width:0}
     #sec-havuz .hv-glab input{width:16px;height:16px;flex:none;accent-color:var(--accent);cursor:pointer;margin:0}
     #sec-havuz .hv-glab input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
     #sec-havuz .hv-gname{font-size:13.5px;font-weight:700;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     #sec-havuz .hv-gk{font-size:12px;font-weight:400;color:var(--muted);margin-left:6px}
 
-    #sec-havuz .hv-lab{display:flex;align-items:center;gap:9px;min-height:40px;padding:2px 10px 2px 20px;cursor:pointer;min-width:0}
+    #sec-havuz .hv-lab{display:flex;align-items:center;gap:9px;min-height:30px;padding:1px 10px 1px 20px;cursor:pointer;min-width:0}
     #sec-havuz .hv-lab input{width:16px;height:16px;flex:none;accent-color:var(--accent);cursor:pointer;margin:0}
     #sec-havuz .hv-lab input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-    #sec-havuz .hv-name{font-size:13px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:opacity .3s}
-    #sec-havuz .hv-rsvg{display:block;width:100%;height:36px}
+    #sec-havuz .hv-name{font-size:12.5px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:opacity .3s}
+    #sec-havuz .hv-rsvg{display:block;width:100%;height:28px}
     #sec-havuz .hv-fig,#sec-havuz .hv-gt{transition:opacity .3s}
     #sec-havuz .hv-row.off .hv-fig{opacity:.15}
     #sec-havuz .hv-row.off .hv-gt{opacity:.3}
     #sec-havuz .hv-row.off .hv-name{opacity:.4;text-decoration:line-through;text-decoration-color:#c6ccd0}
     #sec-havuz .hv-grow.goff .hv-gname{opacity:.45}
 
-    #sec-havuz .hv-poolrow{background:var(--accent-tint);border-top:1px solid var(--line);border-bottom:1px solid var(--line);min-height:46px;margin-top:8px}
+    #sec-havuz .hv-poolrow{background:var(--accent-tint);border-top:1px solid var(--line);border-bottom:1px solid var(--line);min-height:40px;margin-top:8px}
     #sec-havuz .hv-pool-lab{font-family:var(--gro);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-d);padding:0 10px 0 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    #sec-havuz .hv-psvg{display:block;width:100%;height:46px}
+    #sec-havuz .hv-psvg{display:block;width:100%;height:40px}
     #sec-havuz .hv-axis{min-height:28px}
     #sec-havuz .hv-asvg{display:block;width:100%;height:28px}
     #sec-havuz .hv-axis-lab{font-family:var(--gro);font-size:11px;letter-spacing:.06em;color:var(--muted);padding:0 10px 0 4px}
@@ -1151,6 +1183,10 @@ html.jsanim .rvl.in+.rvl.in+.rvl.in+.rvl.in{transition-delay:.24s}
     #sec-havuz .hv-deneybtn:hover{background:var(--accent-d)}
     #sec-havuz .hv-deneybtn:active{transform:scale(.98)}
     #sec-havuz .hv-deneybtn-ghost{background:#fff;color:var(--accent-d);border-color:var(--line)}
+    #sec-havuz .hv-deneybtn[disabled]{opacity:.45;cursor:default;pointer-events:none}
+    #sec-havuz .hv-deney-item .hv-deneybtn+.hv-deneybtn{margin-left:8px}
+    #sec-havuz .hv-row.hv-out-flash{animation:sec-havuz-outflash 1.4s ease}
+    @keyframes sec-havuz-outflash{0%{background:#fbeadb}100%{background:transparent}}
     #sec-havuz .hv-deneybtn-ghost:hover{background:var(--accent-tint);border-color:var(--accent)}
     #sec-havuz .hv-ro-prior{margin:14px 0 0;font-family:var(--gro);font-size:11px;letter-spacing:.04em;color:var(--muted)}
 
@@ -1311,14 +1347,14 @@ html.jsanim .rvl.in+.rvl.in+.rvl.in+.rvl.in{transition-delay:.24s}
           var nm=document.createElement('span');nm.className='hv-name';
           nm.textContent=r.name;nm.title=r.name+' — '+DOMAINS[r.dom].t;
           lab.appendChild(inp);lab.appendChild(nm);
-          var svg=svgEl('svg',{'class':'hv-rsvg',height:36,'aria-hidden':'true'});
+          var svg=svgEl('svg',{'class':'hv-rsvg',height:28,'aria-hidden':'true'});
           var fig=svgEl('g',{'class':'hv-fig'});
           r.zero=svgEl('line',{stroke:'#c9cfd2','stroke-width':1,'stroke-dasharray':'2 3'});
           r.ci=svgEl('line',{stroke:'#1f2328','stroke-width':1.1});
           r.capL=svgEl('line',{stroke:'#1f2328','stroke-width':1.1});
           r.capR=svgEl('line',{stroke:'#1f2328','stroke-width':1.1});
           r.rect=svgEl('rect',{fill:'#1f2328'});
-          r.gt=svgEl('text',{'class':'hv-gt',fill:'#1f2328','font-size':11.5,'text-anchor':'end','font-family':'Inter,system-ui,sans-serif'});
+          r.gt=svgEl('text',{'class':'hv-gt',fill:'#1f2328','font-size':11,'text-anchor':'end','font-family':'Inter,system-ui,sans-serif'});
           r.gt.textContent=fmtF(r.g)+' ['+fmtF(r.g-1.96*r.se)+', '+fmtF(r.g+1.96*r.se)+']';
           svg.appendChild(r.zero);fig.appendChild(r.ci);fig.appendChild(r.capL);fig.appendChild(r.capR);fig.appendChild(r.rect);
           svg.appendChild(fig);svg.appendChild(r.gt);
@@ -1331,7 +1367,7 @@ html.jsanim .rvl.in+.rvl.in+.rvl.in+.rvl.in{transition-delay:.24s}
       var prow=document.createElement('div');prow.className='hv-poolrow';
       var plab=document.createElement('div');plab.className='hv-pool-lab';
       plab.textContent='Pool (conjugate)';
-      var psvg=svgEl('svg',{'class':'hv-psvg',height:46,'aria-hidden':'true'});
+      var psvg=svgEl('svg',{'class':'hv-psvg',height:40,'aria-hidden':'true'});
       var pzero=svgEl('line',{stroke:'#9aa8a3','stroke-width':1,'stroke-dasharray':'2 3'});
       var dia=svgEl('polygon',{fill:'#1b4842','fill-opacity':0.95});
       psvg.appendChild(pzero);psvg.appendChild(dia);
@@ -1361,21 +1397,21 @@ html.jsanim .rvl.in+.rvl.in+.rvl.in+.rvl.in{transition-delay:.24s}
       var x0=p.x(0);
       p.rows.forEach(function(r){
         var xa=p.x(r.g-1.96*r.se),xb=p.x(r.g+1.96*r.se),xm=p.x(r.g);
-        var side=Math.max(5,Math.min(15,15*Math.sqrt((1/(r.se*r.se))/p.wmax)));
+        var side=Math.max(4,Math.min(12,12*Math.sqrt((1/(r.se*r.se))/p.wmax)));
         r.zero.setAttribute('x1',x0);r.zero.setAttribute('x2',x0);
-        r.zero.setAttribute('y1',0);r.zero.setAttribute('y2',36);
+        r.zero.setAttribute('y1',0);r.zero.setAttribute('y2',28);
         r.ci.setAttribute('x1',xa.toFixed(1));r.ci.setAttribute('x2',xb.toFixed(1));
-        r.ci.setAttribute('y1',18);r.ci.setAttribute('y2',18);
+        r.ci.setAttribute('y1',14);r.ci.setAttribute('y2',14);
         r.capL.setAttribute('x1',xa.toFixed(1));r.capL.setAttribute('x2',xa.toFixed(1));
-        r.capL.setAttribute('y1',13.5);r.capL.setAttribute('y2',22.5);
+        r.capL.setAttribute('y1',9.5);r.capL.setAttribute('y2',18.5);
         r.capR.setAttribute('x1',xb.toFixed(1));r.capR.setAttribute('x2',xb.toFixed(1));
-        r.capR.setAttribute('y1',13.5);r.capR.setAttribute('y2',22.5);
-        r.rect.setAttribute('x',(xm-side/2).toFixed(1));r.rect.setAttribute('y',(18-side/2).toFixed(1));
+        r.capR.setAttribute('y1',9.5);r.capR.setAttribute('y2',18.5);
+        r.rect.setAttribute('x',(xm-side/2).toFixed(1));r.rect.setAttribute('y',(14-side/2).toFixed(1));
         r.rect.setAttribute('width',side.toFixed(1));r.rect.setAttribute('height',side.toFixed(1));
-        r.gt.setAttribute('x',w-6);r.gt.setAttribute('y',22);
+        r.gt.setAttribute('x',w-6);r.gt.setAttribute('y',18);
       });
       p.pzero.setAttribute('x1',x0);p.pzero.setAttribute('x2',x0);
-      p.pzero.setAttribute('y1',0);p.pzero.setAttribute('y2',46);
+      p.pzero.setAttribute('y1',0);p.pzero.setAttribute('y2',40);
       while(p.aticks.firstChild)p.aticks.removeChild(p.aticks.firstChild);
       for(var v=Math.ceil(p.d0/0.5)*0.5;v<=p.d1+1e-9;v+=0.5){
         var vv=Math.round(v*2)/2,tx=p.x(vv);
@@ -1389,7 +1425,7 @@ html.jsanim .rvl.in+.rvl.in+.rvl.in+.rvl.in{transition-delay:.24s}
 
     function drawDiamond(p){
       if(!p.x||!p.cur)return;
-      var y=23,h=9;
+      var y=20,h=7.5;
       var xl=p.x(p.cur.lo),xm=p.x(p.cur.m),xr=p.x(p.cur.hi);
       p.dia.setAttribute('points',
         xl.toFixed(1)+','+y+' '+xm.toFixed(1)+','+(y-h)+' '+xr.toFixed(1)+','+y+' '+xm.toFixed(1)+','+(y+h));
@@ -1413,7 +1449,7 @@ html.jsanim .rvl.in+.rvl.in+.rvl.in+.rvl.in{transition-delay:.24s}
         roP=root.querySelector('.hv-ro-p'),roK=root.querySelector('.hv-ro-k'),
         roRegV=root.querySelector('.hv-ro-reg-v'),roNote=root.querySelector('.hv-ro-note'),
         rtNote=root.querySelector('.hv-rtnote');
-    var randBtn=root.querySelector('#hv-deney-rand'),resetBtn=root.querySelector('#hv-deney-reset');
+    var randBtn=root.querySelector('#hv-deney-rand'),resetBtn=root.querySelector('#hv-deney-reset'),undoBtn=root.querySelector('#hv-deney-undo');
 
     function setNote(msg){
       if(!msg){roNote.hidden=true;roNote.textContent='';return;}
@@ -1498,6 +1534,14 @@ html.jsanim .rvl.in+.rvl.in+.rvl.in+.rvl.in{transition-delay:.24s}
     });
 
     /* Try-it actions */
+    var randStack=[];
+    function syncUndo(){undoBtn.disabled=!randStack.length;}
+    function vurgula(r){
+      r.el.classList.remove('hv-out-flash');
+      void r.el.offsetWidth;
+      r.el.classList.add('hv-out-flash');
+      r.el.scrollIntoView({block:'nearest',behavior:reduced()?'auto':'smooth'});
+    }
     randBtn.addEventListener('click',function(){
       var p=active;
       var included=p.rows.filter(function(x){return x.on;});
@@ -1506,10 +1550,24 @@ html.jsanim .rvl.in+.rvl.in+.rvl.in+.rvl.in{transition-delay:.24s}
       var before=pool(p.rows);
       r.on=false;syncRow(r);
       var after=refresh(p);
-      setNote(r.name+' removed (SE = '+r.se.toFixed(3)+'); pool '+fmt(before.M)+' → '+fmt(after.M)+' (k = '+after.k+').');
+      randStack.push({p:p,r:r});syncUndo();
+      vurgula(r);
+      var wB=before.hi-before.lo,wA=after.hi-after.lo;
+      setNote(r.name+' removed (SE = '+r.se.toFixed(3)+'). Pool g '+fmt(before.M)+' → '+fmt(after.M)+' (Δ '+fmt(after.M-before.M,3)+'); CrI width '+wB.toFixed(2)+' → '+wA.toFixed(2)+'; k '+before.k+' → '+after.k+'.');
+    });
+    undoBtn.addEventListener('click',function(){
+      var son=randStack.pop();syncUndo();
+      if(!son)return;
+      if(active!==son.p)setOutcome(son.p.key);
+      var before=pool(son.p.rows);
+      son.r.on=true;syncRow(son.r);
+      var after=refresh(son.p);
+      vurgula(son.r);
+      setNote(son.r.name+' returned to the pool. Pool g '+fmt(before.M)+' → '+fmt(after.M)+' (k = '+after.k+').');
     });
     resetBtn.addEventListener('click',function(){
       active.rows.forEach(function(x){x.on=true;syncRow(x);});
+      randStack=[];syncUndo();
       refresh(active);
       setNote('All studies and domains are in the pool.');
     });
@@ -1531,8 +1589,8 @@ html.jsanim .rvl.in+.rvl.in+.rvl.in+.rvl.in{transition-delay:.24s}
   <p class="gir">The results have two layers. The <b>registered layer</b> is produced in R (brms MCMC), is fixed, and is not affected by any choice made in the browser — the figures below are the exact output of that layer. The <b>exploration layer</b> is the set of panels you just tried: it runs in the browser and can be manipulated freely, but it never changes the registered result.</p></div>
   <div class="lockrow">
     <span class="lock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Registration: PROSPERO</span>
-    <span class="lock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Data: OSF</span>
-    <span class="lock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Code: brms · bayesmeta</span>
+    <a class="lock" href="https://github.com/resulcakir/SR-BMA" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Data: GitHub</a>
+    <a class="lock" href="https://github.com/resulcakir/SR-BMA" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Code: brms · bayesmeta</a>
   </div>
   <div class="otoggle2" role="group" aria-label="Outcome type">
     <button type="button" class="on" data-fig="Accuracy">Accuracy (ACC)</button>
@@ -1561,9 +1619,7 @@ html.jsanim .rvl.in+.rvl.in+.rvl.in+.rvl.in{transition-delay:.24s}
   <h2 class="rvl">We welcome your questions.</h2>
   <p>The living meta-analysis is online as a live system, with its protocol, open data, and versioned results. Live page: <b style="color:#fff">muplab.com/living-ma</b></p>
   <div class="kisiler rvl">
-    <div><b>Assoc. Prof. Maria G. Veldhuizen</b><br><span>Laboratory Director</span></div>
-    <div><b>Assoc. Prof. Emre Han Alpay</b><br><span>Principal Investigator</span></div>
-    <div><b>Res. Asst. Resul Çakır</b><br><span>Researcher</span></div>
+    <div><b>Res. Asst. Resul Çakır</b><br><span>Doctoral seminar — MUPLAB, Mersin University Psychology Laboratory</span></div>
   </div>
   <a class="don" href="/living-ma.html">Open the live living-MA page →</a>
 </div></section>
