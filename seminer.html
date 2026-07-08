@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Seminar Presentation · Committee Access — MUPLAB</title>
+<style>
+/* ---- Fontlar (self-host) ---- */
+@font-face{
+  font-family:'Inter';font-style:normal;font-weight:100 900;font-display:swap;
+  src:url('/assets/fonts/inter-latin.woff2') format('woff2');
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face{
+  font-family:'Inter';font-style:normal;font-weight:100 900;font-display:swap;
+  src:url('/assets/fonts/inter-latin-ext.woff2') format('woff2');
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face{
+  font-family:'Newsreader';font-style:normal;font-weight:200 800;font-display:swap;
+  src:url('/assets/fonts/newsreader-latin.woff2') format('woff2');
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face{
+  font-family:'Newsreader';font-style:normal;font-weight:200 800;font-display:swap;
+  src:url('/assets/fonts/newsreader-latin-ext.woff2') format('woff2');
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face{
+  font-family:'Space Grotesk';font-style:normal;font-weight:300 700;font-display:swap;
+  src:url('/assets/fonts/spacegrotesk-latin.woff2') format('woff2');
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face{
+  font-family:'Space Grotesk';font-style:normal;font-weight:300 700;font-display:swap;
+  src:url('/assets/fonts/spacegrotesk-latin-ext.woff2') format('woff2');
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+
+/* ---- Giriş ekranı (tamamı #mgiris ile scope'lu) ---- */
+#mgiris{
+  --ink:#1f2328; --body:#454b54; --muted:#5d646a; --line:#e7e9ec;
+  --bg:#fff; --bg-alt:#f5f7f6; --accent:#235e56; --accent-d:#1b4842;
+  --accent-tint:#eff4f2; --clay:#b5612f;
+  --slab:'Newsreader',Georgia,'Times New Roman',serif;
+  --sans:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --gro:'Space Grotesk','Inter',system-ui,sans-serif;
+  position:fixed; inset:0; overflow:auto;
+  display:flex; flex-direction:column; align-items:center;
+  padding:32px 20px;
+  background:radial-gradient(120% 120% at 50% 18%, #256058 0%, #1a4a42 55%, #123a34 100%);
+  font-family:var(--sans);
+  -webkit-font-smoothing:antialiased;
+  box-sizing:border-box;
+}
+#mgiris *, #mgiris *::before, #mgiris *::after{ box-sizing:border-box; }
+
+/* Nefes alan parlama — yalnızca opacity animasyonu */
+#mgiris .mg-glow{
+  position:absolute; inset:0; pointer-events:none;
+  background:
+    radial-gradient(46% 34% at 28% 22%, rgba(255,255,255,.10), transparent 70%),
+    radial-gradient(40% 30% at 74% 76%, rgba(181,97,47,.12), transparent 70%);
+  opacity:.55;
+  animation:mgiris-breathe 9s ease-in-out infinite alternate;
+}
+@keyframes mgiris-breathe{
+  from{ opacity:.35; }
+  to{ opacity:.85; }
+}
+
+/* Kart — auto margin ile güvenli dikey ortalama (kısa ekranda kırpılmaz) */
+#mgiris .mg-card{
+  position:relative;
+  width:100%; max-width:412px;
+  margin-top:auto;
+  background:var(--bg);
+  border-radius:18px;
+  padding:44px 40px 36px;
+  box-shadow:0 24px 64px rgba(6,24,21,.38), 0 4px 16px rgba(6,24,21,.22);
+  text-align:center;
+}
+#mgiris .mg-card::before{
+  content:""; position:absolute; top:0; left:40px; right:40px; height:3px;
+  border-radius:0 0 3px 3px;
+  background:linear-gradient(90deg, var(--accent), var(--clay));
+  opacity:.9;
+}
+#mgiris .mg-shake{ animation:mgiris-shake .45s ease; }
+@keyframes mgiris-shake{
+  0%,100%{ transform:translateX(0); }
+  20%{ transform:translateX(-9px); }
+  40%{ transform:translateX(8px); }
+  60%{ transform:translateX(-6px); }
+  80%{ transform:translateX(4px); }
+}
+
+#mgiris .mg-logo{ height:64px; width:auto; display:inline-block; }
+#mgiris .mg-kicker{
+  font-family:var(--gro);
+  font-size:11px; font-weight:500;
+  letter-spacing:.18em; text-transform:uppercase;
+  color:var(--accent);
+  margin:20px 0 8px;
+}
+#mgiris .mg-title{
+  font-family:var(--slab);
+  font-weight:500;
+  font-size:clamp(28px,7vw,34px);
+  line-height:1.15;
+  color:var(--ink);
+  margin:0 0 6px;
+}
+#mgiris .mg-sub{
+  font-size:14px; color:var(--muted); line-height:1.5;
+  margin:0 0 28px;
+}
+
+/* Form */
+#mgiris .mg-form{ text-align:left; }
+#mgiris .mg-field{ margin-bottom:16px; }
+#mgiris .mg-label{
+  display:block;
+  font-family:var(--gro);
+  font-size:11px; font-weight:500;
+  letter-spacing:.14em; text-transform:uppercase;
+  color:var(--body);
+  margin-bottom:6px;
+}
+#mgiris .mg-inputwrap{ position:relative; }
+#mgiris .mg-input{
+  width:100%; height:48px;
+  padding:0 14px;
+  font-family:var(--sans); font-size:16px; color:var(--ink);
+  background:var(--bg-alt);
+  border:1px solid var(--line);
+  border-radius:10px;
+  transition:border-color .18s ease, box-shadow .18s ease, background-color .18s ease;
+  appearance:none;
+}
+#mgiris .mg-input--pw{ padding-right:52px; }
+#mgiris .mg-input:hover{ border-color:#d3d8d6; }
+#mgiris .mg-input:focus{ outline:none; }
+#mgiris .mg-input:focus-visible{
+  border-color:var(--accent);
+  background:var(--bg);
+  box-shadow:0 0 0 3px var(--accent-tint), 0 0 0 1px var(--accent);
+}
+#mgiris .mg-eye{
+  position:absolute; top:50%; right:4px;
+  transform:translateY(-50%);
+  width:44px; height:44px;
+  display:flex; align-items:center; justify-content:center;
+  background:none; border:none; border-radius:8px;
+  color:var(--muted); cursor:pointer;
+  transition:color .18s ease, background-color .18s ease;
+}
+#mgiris .mg-eye:hover{ color:var(--accent); background:var(--accent-tint); }
+#mgiris .mg-eye:focus-visible{
+  outline:2px solid var(--accent); outline-offset:2px;
+}
+#mgiris .mg-eye svg{ width:20px; height:20px; display:block; }
+#mgiris .mg-eye .mg-eye-off{ display:none; }
+#mgiris .mg-eye[aria-pressed="true"] .mg-eye-on{ display:none; }
+#mgiris .mg-eye[aria-pressed="true"] .mg-eye-off{ display:block; }
+
+/* Hata mesajı */
+#mgiris .mg-error{
+  display:none;
+  align-items:flex-start; gap:8px;
+  margin:2px 0 14px;
+  padding:10px 12px;
+  font-size:13.5px; line-height:1.45;
+  color:#8a3b12;
+  background:#faf1ea;
+  border:1px solid #ecd5c4;
+  border-radius:10px;
+}
+#mgiris .mg-error.mg-error--on{ display:flex; }
+#mgiris .mg-error svg{ flex:none; width:16px; height:16px; margin-top:2px; }
+
+/* Buton */
+#mgiris .mg-btn{
+  width:100%; height:50px;
+  margin-top:6px;
+  font-family:var(--gro); font-size:15px; font-weight:500;
+  letter-spacing:.06em;
+  color:#fff;
+  background:var(--accent);
+  border:none; border-radius:10px;
+  cursor:pointer;
+  transition:background-color .18s ease, transform .12s ease;
+}
+#mgiris .mg-btn:hover{ background:var(--accent-d); }
+#mgiris .mg-btn:active{ transform:translateY(1px); }
+#mgiris .mg-btn:focus-visible{
+  outline:2px solid var(--accent-d); outline-offset:3px;
+}
+#mgiris .mg-btn[disabled]{ opacity:.65; cursor:default; transform:none; }
+
+/* Footer note — in flow, centered with the card, never overlaps */
+#mgiris .mg-foot{
+  margin:24px 0 auto;
+  padding:0 12px;
+  text-align:center;
+  font-size:12.5px; letter-spacing:.01em;
+  color:rgba(233,242,240,.72);
+}
+
+/* Küçük ekran */
+@media (max-width:420px){
+  #mgiris .mg-card{ padding:36px 24px 30px; border-radius:16px; }
+  #mgiris .mg-card::before{ left:24px; right:24px; }
+}
+
+/* Hareket azaltma */
+@media (prefers-reduced-motion:reduce){
+  #mgiris .mg-glow{ animation:none; opacity:.55; }
+  #mgiris .mg-shake{ animation:none; }
+  #mgiris .mg-input, #mgiris .mg-btn, #mgiris .mg-eye{ transition:none; }
+  #mgiris .mg-btn:active{ transform:none; }
+}
+</style>
+</head>
+<body style="margin:0">
+
+<div id="mgiris">
+  <div class="mg-glow" aria-hidden="true"></div>
+
+  <main class="mg-card" id="mg-card">
+    <img class="mg-logo" src="/assets/logo.png" alt="MUPLAB logosu">
+    <p class="mg-kicker">MUPLAB · Doctoral Seminar · 2026</p>
+    <h1 class="mg-title">Seminar Presentation</h1>
+    <p class="mg-sub">Enter the committee credentials you received to open the presentation.</p>
+
+    <form class="mg-form" id="mg-form" autocomplete="off" novalidate>
+      <div class="mg-field">
+        <label class="mg-label" for="mg-id">Committee ID</label>
+        <div class="mg-inputwrap">
+          <input class="mg-input" id="mg-id" name="juri-id" type="text"
+                 autocomplete="off" autocapitalize="none" autocorrect="off"
+                 spellcheck="false" inputmode="text" aria-describedby="mg-error" required>
+        </div>
+      </div>
+
+      <div class="mg-field">
+        <label class="mg-label" for="mg-pw">Password</label>
+        <div class="mg-inputwrap">
+          <input class="mg-input mg-input--pw" id="mg-pw" name="juri-sifre"
+                 type="password" autocomplete="off" aria-describedby="mg-error" required>
+          <button class="mg-eye" type="button" id="mg-eye"
+                  aria-label="Show or hide the password" aria-pressed="false">
+            <svg class="mg-eye-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M2 12s3.5-6.5 10-6.5S22 12 22 12s-3.5 6.5-10 6.5S2 12 2 12Z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+            <svg class="mg-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M2 12s3.5-6.5 10-6.5c2 0 3.7.6 5.1 1.4M22 12s-3.5 6.5-10 6.5c-2 0-3.7-.6-5.1-1.4"/>
+              <path d="M4 20 20 4"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <p class="mg-error" id="mg-error" role="alert">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="9"/><path d="M12 8v5"/><path d="M12 16.5h.01"/>
+        </svg>
+        <span id="mg-error-text">The credentials do not match — please try again.</span>
+      </p>
+
+      <button class="mg-btn" type="submit" id="mg-btn">Sign in</button>
+    </form>
+  </main>
+
+  <p class="mg-foot">Access is limited to invited committee members.</p>
+</div>
+
+<script>
+(function(){
+  'use strict';
+
+  var KEY = 'muplab_seminer';
+  var NEXT = 'seminer-sunum.html';
+  var EXPECTED = 'd81622ec24944df23c9892dd6f176bbc9933bd85d7381d9f8c54ab4d708e42e0';
+
+  /* Already signed in: go straight to the presentation */
+  try{
+    if (sessionStorage.getItem(KEY) === '1'){
+      location.replace(NEXT);
+      return;
+    }
+  }catch(e){ /* storage unavailable: fall back to normal sign-in */ }
+
+  var form  = document.querySelector('#mg-form');
+  var card  = document.querySelector('#mg-card');
+  var idEl  = document.querySelector('#mg-id');
+  var pwEl  = document.querySelector('#mg-pw');
+  var eye   = document.querySelector('#mg-eye');
+  var btn   = document.querySelector('#mg-btn');
+  var errEl = document.querySelector('#mg-error');
+  var errTx = document.querySelector('#mg-error-text');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  idEl.focus();
+
+  /* Password visibility — state conveyed via aria-pressed; label is fixed */
+  eye.addEventListener('click', function(){
+    var show = pwEl.type === 'password';
+    pwEl.type = show ? 'text' : 'password';
+    eye.setAttribute('aria-pressed', show ? 'true' : 'false');
+    pwEl.focus();
+  });
+
+  function showError(msg){
+    errTx.textContent = msg;
+    errEl.classList.add('mg-error--on');
+    if (!reduce.matches){
+      card.classList.remove('mg-shake');
+      /* animasyonu yeniden tetikle */
+      void card.offsetWidth;
+      card.classList.add('mg-shake');
+    }
+  }
+
+  card.addEventListener('animationend', function(){
+    card.classList.remove('mg-shake');
+  });
+
+  function hideError(){
+    errEl.classList.remove('mg-error--on');
+  }
+
+  idEl.addEventListener('input', hideError);
+  pwEl.addEventListener('input', hideError);
+
+  function sha256Hex(text){
+    var data = new TextEncoder().encode(text);
+    return crypto.subtle.digest('SHA-256', data).then(function(buf){
+      var bytes = new Uint8Array(buf);
+      var hex = '';
+      for (var i = 0; i < bytes.length; i++){
+        hex += bytes[i].toString(16).padStart(2, '0');
+      }
+      return hex;
+    });
+  }
+
+  form.addEventListener('submit', function(ev){
+    ev.preventDefault();
+
+    var id = idEl.value.trim().toLowerCase();
+    var pw = pwEl.value;
+
+    if (!id || !pw){
+      showError('Please fill in both fields.');
+      (!id ? idEl : pwEl).focus();
+      return;
+    }
+
+    if (!(window.crypto && crypto.subtle && window.TextEncoder)){
+      showError('Verification requires a secure connection. Please open the page from the https:// site address.');
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Verifying…';
+
+    sha256Hex(id + ':' + pw).then(function(hex){
+      if (hex === EXPECTED){
+        try{ sessionStorage.setItem(KEY, '1'); }catch(e){}
+        location.replace(NEXT);
+        return;
+      }
+      btn.disabled = false;
+      btn.textContent = 'Sign in';
+      showError('The credentials do not match — please try again.');
+      pwEl.value = '';
+      pwEl.focus();
+    }).catch(function(){
+      btn.disabled = false;
+      btn.textContent = 'Sign in';
+      showError('Verification failed — please reopen the page from the https:// address and try again.');
+    });
+  });
+})();
+</script>
+</body>
+</html>
