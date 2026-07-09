@@ -7,11 +7,57 @@
 <header class="nav"><div class="container nav-in"><a class="brand" href="index.html"><img class="blogo" src="../assets/logo.png" alt="MUPLAB"><span>MUP<span class="lb">LAB</span></span></a><input type="checkbox" id="navchk" class="navchk" aria-hidden="true"><label for="navchk" class="navtoggle" aria-label="Menü"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></label><nav class="links"><a href="index.html">Home</a><a href="news.html">News</a><a href="team.html">Team</a><a href="projects.html">Projects</a><a href="contact.html">Contact</a><a href="publications.html">Publications</a><a href="resources.html">Resources</a><a href="join.html">Join us</a><a class="lang" href="../living-ma.html">TR</a></nav></div></header>
 <section class="page-head"><div class="container"><span class="eyebrow">Bayesian Living Meta-Analysis · <span id="lm-ver">v1.0</span></span><h1>The effect of auricular taVNS on learning</h1><p>The effect of taVNS on accuracy and response time (RT) across declarative and working memory, cognitive control, and associative & skill acquisition. Bayesian random-effects (brms · bayesmeta); ACC and RT pooled <b>separately</b>, positive <em>g</em> favors taVNS.</p></div></section>
 <section class="block"><div class="container lmwide">
-  <div class="reglinks"><span>Registration: <b>PROSPERO</b></span><span>Data: <b>OSF</b></span><span>Code: <b>brms · bayesmeta</b></span><span>Updated: <b id="lm-date">23 June 2026</b></span></div>
+  <div class="reglinks"><span>Registration: <b>PROSPERO</b></span><span>Data &amp; Code: <b><a href="https://github.com/resulcakir/SR-BMA" target="_blank" rel="noopener">GitHub · SR-BMA</a></b></span><span>Code: <b>brms · bayesmeta</b></span><span>Updated: <b id="lm-date">23 June 2026</b></span></div>
   <h2 class="sech">Primary pooled (registered, brms)</h2>
   <div class="hl2"><div class="hl"><h4>Accuracy</h4><div class="big" style="color:#2f7d72">+0.15</div><div class="ci">95% CrI [0.06, 0.25]</div><div class="meta">P(g&gt;0) = 99.9% · τ = 0.11 · PI [-0.13, 0.44] · k = 22</div></div><div class="hl"><h4>Response time (RT)</h4><div class="big" style="color:#2f7d72">+0.18</div><div class="ci">95% CrI [0.02, 0.37]</div><div class="meta">P(g&gt;0) = 98.3% · τ = 0.24 · PI [-0.37, 0.76] · k = 14</div></div></div>
   <div class="success"><b>Key finding.</b> The strongest effect is on <b>response time in associative & skill learning</b>: RT × Associative & Skill <b>g = 0.62 [0.36, 0.88]</b> (fragile, k = 4). Overall ACC g = 0.15, RT g = 0.18. ρ(ACC,RT) = 0.14 [−0.73, 0.86].</div>
 
+  <style>
+  .lm-intro{margin:20px 0 4px}
+  .lm-intro-lead{font-size:15px;color:var(--body);margin:0 0 12px;max-width:80ch}
+  .lm-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+  .lm-step{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:3px;animation:lmstepin .6s ease-out backwards;transition:transform .2s,box-shadow .2s;cursor:default}
+  .lm-step.go{cursor:pointer}
+  .lm-step.go:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(27,72,66,.10)}
+  .lm-step:nth-child(1){animation-delay:.05s}.lm-step:nth-child(2){animation-delay:.15s}.lm-step:nth-child(3){animation-delay:.25s}.lm-step:nth-child(4){animation-delay:.35s}
+  .lm-step .n{width:26px;height:26px;border-radius:50%;background:#235e56;color:#fff;font-weight:700;font-size:13.5px;display:flex;align-items:center;justify-content:center;margin-bottom:4px;animation:lmpulse 3.2s ease-in-out infinite}
+  .lm-step:nth-child(2) .n{animation-delay:.8s}.lm-step:nth-child(3) .n{animation-delay:1.6s}.lm-step:nth-child(4) .n{animation-delay:2.4s}
+  .lm-step b{font-size:14px;color:var(--ink)}
+  .lm-step .t{font-size:12.5px;color:var(--muted);line-height:1.4}
+  @keyframes lmstepin{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  @keyframes lmpulse{0%,100%{box-shadow:0 0 0 0 rgba(47,125,114,.35)}50%{box-shadow:0 0 0 7px rgba(47,125,114,0)}}
+  .lm-layout{display:grid;grid-template-columns:215px minmax(0,1fr);gap:26px;align-items:start;margin-top:18px}
+  .lm-main{min-width:0}
+  .lm-side{position:sticky;top:84px;border:1px solid var(--line);border-radius:12px;background:var(--bg-alt);padding:14px 16px}
+  .lm-side h3{font-size:12.5px;letter-spacing:.6px;text-transform:uppercase;color:var(--muted);margin:0 0 12px;font-weight:700}
+  .lm-side .vrow{position:relative;padding:0 0 14px 18px;border-left:2px solid #cdd5d2;margin-left:5px;border-top:0}
+  .lm-side .vrow:last-child{border-left-color:transparent;padding-bottom:2px}
+  .lm-side .vrow::before{content:"";position:absolute;left:-6px;top:3px;width:10px;height:10px;border-radius:50%;background:#2f7d72;box-shadow:0 0 0 3px var(--bg-alt)}
+  .lm-side .vrow .v{display:block;font-weight:700;font-size:14px;color:var(--ink)}
+  .lm-side .vrow .d{display:block;font-size:12px;color:var(--muted);margin:1px 0 4px}
+  .lm-side .vrow p{margin:0;font-size:12.5px;color:var(--muted);line-height:1.45}
+  .lm-main .tabs{flex-wrap:wrap;overflow-x:visible;row-gap:0;border-bottom:0}
+  .lm-main .tabs button{padding:9px 14px;margin-bottom:0;border-bottom:0;box-shadow:inset 0 -1px var(--line)}
+  .lm-main .tabs button.on{box-shadow:inset 0 -2px var(--accent)}
+  @media(max-width:840px){.lm-layout{grid-template-columns:1fr}.lm-side{position:static;order:2}.lm-main{order:1}.lm-steps{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:420px){.lm-steps{grid-template-columns:1fr}}
+  @media(prefers-reduced-motion:reduce){.lm-step{animation:none}.lm-step .n{animation:none}}
+  </style>
+  <div class="lm-intro">
+    <p class="lm-intro-lead">This is a <b>living meta-analysis</b>: the corpus is updated and versioned as new studies are published. Browse the registered analysis in the tabs, or run your own subset with the real-R engine.</p>
+    <div class="lm-steps">
+      <div class="lm-step go" onclick="showTab('locked')" role="button" tabindex="0"><span class="n">1</span><b>Registered analysis</b><span class="t">Results and figures locked with brms · bayesmeta</span></div>
+      <div class="lm-step go" onclick="showTab('rmotor')" role="button" tabindex="0"><span class="n">2</span><b>R engine</b><span class="t">Pick studies, adjust priors — the analysis re-runs in real R in your browser</span></div>
+      <div class="lm-step go" onclick="showTab('figs')" role="button" tabindex="0"><span class="n">3</span><b>Diagnostics</b><span class="t">Leave-one-out and meta-regression; domain subgroups in their own tab</span></div>
+      <div class="lm-step"><span class="n">4</span><b>Living versions</b><span class="t">Corpus updates are recorded in the version history</span></div>
+    </div>
+  </div>
+  <div class="lm-layout">
+  <aside class="lm-side" aria-label="Version history">
+    <h3>Version history</h3>
+    <div id="lm-surumler"><div class="vrow"><span class="v">v1.0</span><span class="d">June 2026</span><p>Registered corpus: 24 studies, 36 primary ES. brms + bayesmeta.</p></div></div>
+  </aside>
+  <div class="lm-main">
   <div class="tabs" role="tablist">
     <button id="tab-locked" class="on" role="tab" aria-selected="true" aria-controls="panel-locked" onclick="showTab('locked')">Registered (locked)</button>
     <button id="tab-rmotor" role="tab" aria-selected="false" aria-controls="panel-rmotor" onclick="showTab('rmotor')">R engine (interactive)</button>
@@ -71,8 +117,8 @@
     <div style="overflow-x:auto"><table class="jt"><thead><tr><th>Domain</th><th style="text-align:right">k</th><th style="text-align:right">Accuracy g [95%]</th><th style="text-align:right">RT g [95%]</th></tr></thead><tbody><tr><td>Working Memory</td><td class="num">5</td><td class="num" style="color:#2f7d72">+0.27 [0.12, 0.42]</td><td class="num" style="color:#b5612f">−0.06 [−0.23, 0.13]</td></tr><tr><td>Cognitive Control</td><td class="num">3</td><td class="num" style="color:#2f7d72">+0.19 [−0.09, 0.45]</td><td class="num" style="color:#2f7d72">+0.24 [−0.05, 0.54]</td></tr><tr><td>Associative & Skill Acquisition</td><td class="num">3</td><td class="num" style="color:#2f7d72">+0.43 [0.10, 0.74]</td><td class="num" style="color:#2f7d72">+0.52 [0.18, 0.86]</td></tr></tbody></table></div>
     <p style="font-size:13.5px;color:var(--muted);margin:8px 0 4px">Working memory shifts toward "more accurate but slightly slower"; associative/skill learning shows the strongest dual benefit.</p>
   </div>
-  <h2 class="sech">Version history</h2>
-  <div id="lm-surumler"><div class="vrow"><span class="v">v1.0</span><span class="d">June 2026</span><p>Registered corpus: 24 studies, 36 primary ES. brms + bayesmeta.</p></div></div>
+  </div>
+  </div>
   <p style="font-size:13px;color:var(--muted);margin-top:22px;border-top:1px solid var(--line);padding-top:16px">The registered model runs in R / brms · bayesmeta; the real-R engine (bayesmeta · Shiny/webR) is embedded on this page and matches the registered model within ~0.01.</p>
 </div></section>
 <script>
@@ -87,6 +133,7 @@ function renderSATdecision(){var el=document.getElementById('sat-decision');if(!
 function renderSATsens(){var el=document.getElementById('sat-sens');if(!el)return;var EN=document.documentElement.lang==='en';var d=SAT_SENS,W=640,H=380,padL=56,padR=22,padT=44,padB=54;var xmin=-0.62,xmax=0.62,ymin=-0.9,ymax=1.0;var X=function(v){return padL+(v-xmin)/(xmax-xmin)*(W-padL-padR);},Y=function(v){return padT+(1-(v-ymin)/(ymax-ymin))*(H-padT-padB);};var s='<svg viewBox="0 0 '+W+' '+H+'" width="100%" font-family="Helvetica,Arial,sans-serif"><rect width="'+W+'" height="'+H+'" fill="#fff"/>';s+='<text x="'+((padL+W-padR)/2)+'" y="24" text-anchor="middle" font-size="15" font-weight="bold" fill="#1f2328">'+(EN?'Robustness of ρ to the assumed sampling correlation':'ρ’nun varsayılan örnekleme korelasyonuna sağlamlığı')+'</text>';niceTicks(ymin,ymax,6).forEach(function(t){var yy=Y(t);s+='<line x1="'+padL+'" y1="'+yy+'" x2="'+(W-padR)+'" y2="'+yy+'" stroke="#eef0ee"/><text x="'+(padL-8)+'" y="'+(yy+3.5)+'" text-anchor="end" font-size="10" fill="#111">'+(+t.toFixed(1))+'</text>';});var up='';d.forEach(function(p,i){up+=(i?' L':'M')+' '+X(p.r)+' '+Y(p.hi);});for(var i=d.length-1;i>=0;i--){up+=' L '+X(d[i].r)+' '+Y(d[i].lo);}up+=' Z';s+='<path d="'+up+'" fill="#dfe9e6"/>';s+='<line x1="'+padL+'" y1="'+Y(0)+'" x2="'+(W-padR)+'" y2="'+Y(0)+'" stroke="#1f2328" stroke-width="1" stroke-dasharray="4 3"/>';var ln='';d.forEach(function(p,i){ln+=(i?' L ':'M ')+X(p.r)+' '+Y(p.rho);});s+='<path d="'+ln+'" fill="none" stroke="'+SAT_TEAL+'" stroke-width="2"/>';d.forEach(function(p){s+='<circle cx="'+X(p.r)+'" cy="'+Y(p.rho)+'" r="3.6" fill="'+SAT_TEAL+'" stroke="#fff" stroke-width="1"/>';});d.forEach(function(p){var xx=X(p.r);s+='<line x1="'+xx+'" y1="'+Y(ymin)+'" x2="'+xx+'" y2="'+(Y(ymin)+5)+'" stroke="#111"/><text x="'+xx+'" y="'+(Y(ymin)+18)+'" text-anchor="middle" font-size="10.5" fill="#111">'+p.r+'</text>';});s+='<rect x="'+padL+'" y="'+padT+'" width="'+(W-padL-padR)+'" height="'+(H-padT-padB)+'" fill="none" stroke="#111" stroke-width="0.8"/>';s+='<text x="'+((padL+W-padR)/2)+'" y="'+(H-14)+'" text-anchor="middle" font-size="12" fill="#111">'+(EN?'Assumed within-study accuracy–RT sampling correlation':'Varsayılan çalışma-içi doğruluk–RT örnekleme korelasyonu')+'</text>';s+='<text transform="translate(15 '+((padT+H-padB)/2)+') rotate(-90)" text-anchor="middle" font-size="12" fill="#111">'+(EN?'Study-level ρ (95% CrI)':'Çalışma düzeyi ρ (%95 CrI)')+'</text>';s+='</svg>';el.innerHTML=s;}
 function niceTicks(lo,hi,n){var span=hi-lo;if(span<=0)return[lo];var raw=span/n,mag=Math.pow(10,Math.floor(Math.log10(raw))),norm=raw/mag,st=(norm<1.5?1:norm<3?2:norm<7?5:10)*mag,t=[],x=Math.ceil(lo/st)*st;for(;x<=hi+1e-9;x+=st)t.push(Math.round(x/st*1e6)/1e6);return t;}
 function showTab(t){['locked','rmotor','domains','figs','kunye','sat'].forEach(function(n){document.getElementById('panel-'+n).classList.toggle('on',n===t);var b=document.getElementById('tab-'+n);b.classList.toggle('on',n===t);b.setAttribute('aria-selected',n===t?'true':'false');});}
+document.querySelectorAll('.lm-step.go').forEach(function(c){c.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();c.click();}});});
 renderSAT();renderSATdecision();renderSATsens();
 /* Fetch the version history from api.muplab.com; the embedded v1.0 row remains as fallback. */
 (function(){
