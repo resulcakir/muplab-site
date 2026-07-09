@@ -7,6 +7,12 @@
 <header class="nav"><div class="container nav-in"><a class="brand" href="index.html"><img class="blogo" src="assets/logo.png" alt="MUPLAB"><span>MUP<span class="lb">LAB</span></span></a><input type="checkbox" id="navchk" class="navchk" aria-hidden="true"><label for="navchk" class="navtoggle" aria-label="Menü"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></label><nav class="links"><a href="index.html">Anasayfa</a><a href="haberler.html">Haberler</a><a href="ekip.html">Ekip</a><a href="projeler.html">Projeler</a><a href="iletisim.html">İletişim</a><a href="yayinlar.html">Yayınlar</a><a href="kaynaklar.html">Kaynaklar</a><a href="katilin.html">Bize Katılın</a><a class="lang" href="en/living-ma.html">EN</a></nav></div></header>
 <section class="page-head"><div class="container"><span class="eyebrow">Bayesçi Living Meta-Analiz · <span id="lm-ver">v1.0</span></span><h1>Auriküler taVNS'in öğrenme üzerindeki etkisi</h1><p>Bildirimsel ve çalışma belleği, bilişsel kontrol ve çağrışımsal-beceri öğrenmede taVNS'in doğruluk (accuracy) ve tepki süresi (RT) üzerindeki etkisi. Bayesçi rastgele-etkiler (brms · bayesmeta); ACC ve RT <b>ayrı</b> havuzlanır, pozitif <em>g</em> = taVNS lehine.</p></div></section>
 <section class="block"><div class="container lmwide">
+  <div class="lm-layout">
+  <aside class="lm-side" aria-label="Sürüm geçmişi">
+    <h3>Sürüm geçmişi</h3>
+    <div id="lm-surumler"><div class="vrow"><span class="v">v1.0</span><span class="d">Haziran 2026</span><p>Kayıtlı korpus: 24 çalışma, 36 primary ES. brms + bayesmeta.</p></div></div>
+  </aside>
+  <div class="lm-main">
   <div class="reglinks"><span>Kayıt: <b>PROSPERO</b></span><span>Veri &amp; Kod: <b><a href="https://github.com/resulcakir/SR-BMA" target="_blank" rel="noopener">GitHub · SR-BMA</a></b></span><span>Kod: <b>brms · bayesmeta</b></span><span>Güncelleme: <b id="lm-date">23 Haziran 2026</b></span></div>
   <h2 class="sech">Birincil havuz (kayıtlı, brms)</h2>
   <div class="hl2"><div class="hl"><h4>Doğruluk (Accuracy)</h4><div class="big" style="color:#2f7d72">+0.15</div><div class="ci">95% CrI [0.06, 0.25]</div><div class="meta">P(g&gt;0) = 99.9% · τ = 0.11 · PI [-0.13, 0.44] · k = 22</div></div><div class="hl"><h4>Tepki süresi (RT)</h4><div class="big" style="color:#2f7d72">+0.18</div><div class="ci">95% CrI [0.02, 0.37]</div><div class="meta">P(g&gt;0) = 98.3% · τ = 0.24 · PI [-0.37, 0.76] · k = 14</div></div></div>
@@ -26,7 +32,7 @@
   .lm-step .t{font-size:12.5px;color:var(--muted);line-height:1.4}
   @keyframes lmstepin{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
   @keyframes lmpulse{0%,100%{box-shadow:0 0 0 0 rgba(47,125,114,.35)}50%{box-shadow:0 0 0 7px rgba(47,125,114,0)}}
-  .lm-layout{display:grid;grid-template-columns:215px minmax(0,1fr);gap:26px;align-items:start;margin-top:18px}
+  .lm-layout{display:grid;grid-template-columns:215px minmax(0,1fr);gap:26px;align-items:start;margin-top:4px}
   .lm-main{min-width:0}
   .lm-side{position:sticky;top:84px;border:1px solid var(--line);border-radius:12px;background:var(--bg-alt);padding:14px 16px}
   .lm-side h3{font-size:12.5px;letter-spacing:.6px;text-transform:uppercase;color:var(--muted);margin:0 0 12px;font-weight:700}
@@ -52,12 +58,6 @@
       <div class="lm-step"><span class="n">4</span><b>Canlı sürüm</b><span class="t">Korpus güncellenince sürüm geçmişine işlenir</span></div>
     </div>
   </div>
-  <div class="lm-layout">
-  <aside class="lm-side" aria-label="Sürüm geçmişi">
-    <h3>Sürüm geçmişi</h3>
-    <div id="lm-surumler"><div class="vrow"><span class="v">v1.0</span><span class="d">Haziran 2026</span><p>Kayıtlı korpus: 24 çalışma, 36 primary ES. brms + bayesmeta.</p></div></div>
-  </aside>
-  <div class="lm-main">
   <div class="tabs" role="tablist">
     <button id="tab-locked" class="on" role="tab" aria-selected="true" aria-controls="panel-locked" onclick="showTab('locked')">Kayıtlı (sabit)</button>
     <button id="tab-rmotor" role="tab" aria-selected="false" aria-controls="panel-rmotor" onclick="showTab('rmotor')">R motoru (etkileşimli)</button>
