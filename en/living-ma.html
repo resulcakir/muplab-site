@@ -21,15 +21,16 @@
   <style>
   .lm-intro{margin:20px 0 4px}
   .lm-intro-lead{font-size:15px;color:var(--body);margin:0 0 12px;max-width:80ch}
-  .lm-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
-  .lm-step{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:3px;animation:lmstepin .6s ease-out backwards;transition:transform .2s,box-shadow .2s;cursor:default}
-  .lm-step.go{cursor:pointer}
-  .lm-step.go:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(27,72,66,.10)}
-  .lm-step:nth-child(1){animation-delay:.05s}.lm-step:nth-child(2){animation-delay:.15s}.lm-step:nth-child(3){animation-delay:.25s}.lm-step:nth-child(4){animation-delay:.35s}
-  .lm-step .n{width:26px;height:26px;border-radius:50%;background:#235e56;color:#fff;font-weight:700;font-size:13.5px;display:flex;align-items:center;justify-content:center;margin-bottom:4px;animation:lmpulse 3.2s ease-in-out infinite}
-  .lm-step:nth-child(2) .n{animation-delay:.8s}.lm-step:nth-child(3) .n{animation-delay:1.6s}.lm-step:nth-child(4) .n{animation-delay:2.4s}
-  .lm-step b{font-size:14px;color:var(--ink)}
-  .lm-step .t{font-size:12.5px;color:var(--muted);line-height:1.4}
+  .lm-flow{display:flex;align-items:flex-start;gap:8px;margin:14px 0 10px}
+  .lm-node{display:flex;flex-direction:column;align-items:center;gap:5px;min-width:86px;text-align:center;animation:lmstepin .6s ease-out backwards}
+  .lm-node:nth-child(3){animation-delay:.12s}.lm-node:nth-child(5){animation-delay:.24s}.lm-node:nth-child(7){animation-delay:.36s}
+  .lm-node .n{width:28px;height:28px;border-radius:50%;background:#235e56;color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;animation:lmpulse 3.2s ease-in-out infinite}
+  .lm-node:nth-child(3) .n{animation-delay:.8s}.lm-node:nth-child(5) .n{animation-delay:1.6s}.lm-node:nth-child(7) .n{animation-delay:2.4s}
+  .lm-node b{font-size:13px;color:var(--ink)}
+  .lm-arrow{flex:1;height:2px;margin-top:13px;min-width:24px;background:repeating-linear-gradient(90deg,#9db8b2 0 6px,transparent 6px 12px);background-size:12px 2px;animation:lmflow 1.1s linear infinite}
+  @keyframes lmflow{to{background-position:12px 0}}
+  .lm-note{background:var(--bg-alt);border:1px solid var(--line);border-radius:10px;padding:10px 14px;display:grid;gap:4px;font-size:12.5px;color:var(--muted);line-height:1.5}
+  .lm-note b{color:var(--ink)}
   @keyframes lmstepin{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
   @keyframes lmpulse{0%,100%{box-shadow:0 0 0 0 rgba(47,125,114,.35)}50%{box-shadow:0 0 0 7px rgba(47,125,114,0)}}
   .lm-layout{display:grid;grid-template-columns:215px minmax(0,1fr);gap:26px;align-items:start;margin-top:4px}
@@ -45,17 +46,26 @@
   .lm-main .tabs{flex-wrap:wrap;overflow-x:visible;row-gap:0;border-bottom:0}
   .lm-main .tabs button{padding:9px 14px;margin-bottom:0;border-bottom:0;box-shadow:inset 0 -1px var(--line)}
   .lm-main .tabs button.on{box-shadow:inset 0 -2px var(--accent)}
-  @media(max-width:840px){.lm-layout{grid-template-columns:1fr}.lm-side{position:static;order:2}.lm-main{order:1}.lm-steps{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:420px){.lm-steps{grid-template-columns:1fr}}
-  @media(prefers-reduced-motion:reduce){.lm-step{animation:none}.lm-step .n{animation:none}}
+  @media(max-width:840px){.lm-layout{grid-template-columns:1fr}.lm-side{position:static;order:2}.lm-main{order:1}}
+  @media(max-width:640px){.lm-flow{flex-wrap:wrap}.lm-arrow{display:none}.lm-node{min-width:72px}}
+  @media(prefers-reduced-motion:reduce){.lm-node{animation:none}.lm-node .n{animation:none}.lm-arrow{animation:none}}
   </style>
   <div class="lm-intro">
     <p class="lm-intro-lead">This is a <b>living meta-analysis</b>: the corpus is updated and versioned as new studies are published. Browse the registered analysis in the tabs, or run your own subset with the real-R engine.</p>
-    <div class="lm-steps">
-      <div class="lm-step go" onclick="showTab('locked')" role="button" tabindex="0"><span class="n">1</span><b>Registered analysis</b><span class="t">Results and figures locked with brms · bayesmeta</span></div>
-      <div class="lm-step go" onclick="showTab('rmotor')" role="button" tabindex="0"><span class="n">2</span><b>R engine</b><span class="t">Pick studies, adjust priors — the analysis re-runs in real R in your browser</span></div>
-      <div class="lm-step go" onclick="showTab('figs')" role="button" tabindex="0"><span class="n">3</span><b>Diagnostics</b><span class="t">Leave-one-out diagnostics; domain subgroups in their own tab</span></div>
-      <div class="lm-step"><span class="n">4</span><b>Living versions</b><span class="t">Corpus updates are recorded in the version history</span></div>
+    <div class="lm-flow" role="list">
+      <div class="lm-node" role="listitem"><span class="n">1</span><b>Registered analysis</b></div>
+      <div class="lm-arrow" aria-hidden="true"></div>
+      <div class="lm-node" role="listitem"><span class="n">2</span><b>R engine</b></div>
+      <div class="lm-arrow" aria-hidden="true"></div>
+      <div class="lm-node" role="listitem"><span class="n">3</span><b>Diagnostics</b></div>
+      <div class="lm-arrow" aria-hidden="true"></div>
+      <div class="lm-node" role="listitem"><span class="n">4</span><b>Living versions</b></div>
+    </div>
+    <div class="lm-note">
+      <span><b>1 · Registered analysis:</b> Results and figures locked with brms · bayesmeta.</span>
+      <span><b>2 · R engine:</b> Pick studies, adjust priors — the analysis re-runs in real R in your browser.</span>
+      <span><b>3 · Diagnostics:</b> Leave-one-out diagnostics; domain subgroups in their own tab.</span>
+      <span><b>4 · Living versions:</b> Corpus updates are recorded in the version history.</span>
     </div>
   </div>
   <div class="tabs" role="tablist">
@@ -83,7 +93,7 @@
   <div class="panel" id="panel-rmotor" role="tabpanel" aria-labelledby="tab-rmotor">
     <h3 class="sech" style="font-size:18px;margin-top:8px">Interactive explorer — real-R engine (bayesmeta · webR)</h3>
   <p style="color:var(--muted);font-size:15px;margin:6px 0 10px">Include or exclude any publication — the forest, funnel, Q–Q and all statistics recompute for your chosen subset with <b>real R</b> (bayesmeta · webR) in your browser; ACC and RT are shown together, and the affected pool updates automatically after a change (~15–25 s). The first visit downloads the R runtime (~90 MB; later visits use the cache). <a href="../shiny/" target="_blank" rel="noopener">Open full page ↗</a></p>
-  <style>#lm-shiny{width:100%;height:4900px;border:1px solid var(--line);border-radius:12px;background:var(--bg-alt)}@media(max-width:840px){#lm-shiny{height:7000px}}@media(max-width:640px){.tabs{flex-wrap:wrap;overflow-x:visible}}</style>
+  <style>#lm-shiny{width:100%;height:min(88vh,900px);min-height:560px;border:1px solid var(--line);border-radius:12px;background:var(--bg-alt)}@media(max-width:640px){.tabs{flex-wrap:wrap;overflow-x:visible}}</style>
   <iframe id="lm-shiny" src="../shiny/" title="Living MA — R engine (bayesmeta · webR)" loading="lazy"></iframe>
   </div>
   <div class="panel" id="panel-domains" role="tabpanel" aria-labelledby="tab-domains">
@@ -130,7 +140,6 @@ function renderSATdecision(){var el=document.getElementById('sat-decision');if(!
 function renderSATsens(){var el=document.getElementById('sat-sens');if(!el)return;var EN=document.documentElement.lang==='en';var d=SAT_SENS,W=640,H=380,padL=56,padR=22,padT=44,padB=54;var xmin=-0.62,xmax=0.62,ymin=-0.9,ymax=1.0;var X=function(v){return padL+(v-xmin)/(xmax-xmin)*(W-padL-padR);},Y=function(v){return padT+(1-(v-ymin)/(ymax-ymin))*(H-padT-padB);};var s='<svg viewBox="0 0 '+W+' '+H+'" width="100%" font-family="Helvetica,Arial,sans-serif"><rect width="'+W+'" height="'+H+'" fill="#fff"/>';s+='<text x="'+((padL+W-padR)/2)+'" y="24" text-anchor="middle" font-size="15" font-weight="bold" fill="#1f2328">'+(EN?'Robustness of ρ to the assumed sampling correlation':'ρ’nun varsayılan örnekleme korelasyonuna sağlamlığı')+'</text>';niceTicks(ymin,ymax,6).forEach(function(t){var yy=Y(t);s+='<line x1="'+padL+'" y1="'+yy+'" x2="'+(W-padR)+'" y2="'+yy+'" stroke="#eef0ee"/><text x="'+(padL-8)+'" y="'+(yy+3.5)+'" text-anchor="end" font-size="10" fill="#111">'+(+t.toFixed(1))+'</text>';});var up='';d.forEach(function(p,i){up+=(i?' L':'M')+' '+X(p.r)+' '+Y(p.hi);});for(var i=d.length-1;i>=0;i--){up+=' L '+X(d[i].r)+' '+Y(d[i].lo);}up+=' Z';s+='<path d="'+up+'" fill="#dfe9e6"/>';s+='<line x1="'+padL+'" y1="'+Y(0)+'" x2="'+(W-padR)+'" y2="'+Y(0)+'" stroke="#1f2328" stroke-width="1" stroke-dasharray="4 3"/>';var ln='';d.forEach(function(p,i){ln+=(i?' L ':'M ')+X(p.r)+' '+Y(p.rho);});s+='<path d="'+ln+'" fill="none" stroke="'+SAT_TEAL+'" stroke-width="2"/>';d.forEach(function(p){s+='<circle cx="'+X(p.r)+'" cy="'+Y(p.rho)+'" r="3.6" fill="'+SAT_TEAL+'" stroke="#fff" stroke-width="1"/>';});d.forEach(function(p){var xx=X(p.r);s+='<line x1="'+xx+'" y1="'+Y(ymin)+'" x2="'+xx+'" y2="'+(Y(ymin)+5)+'" stroke="#111"/><text x="'+xx+'" y="'+(Y(ymin)+18)+'" text-anchor="middle" font-size="10.5" fill="#111">'+p.r+'</text>';});s+='<rect x="'+padL+'" y="'+padT+'" width="'+(W-padL-padR)+'" height="'+(H-padT-padB)+'" fill="none" stroke="#111" stroke-width="0.8"/>';s+='<text x="'+((padL+W-padR)/2)+'" y="'+(H-14)+'" text-anchor="middle" font-size="12" fill="#111">'+(EN?'Assumed within-study accuracy–RT sampling correlation':'Varsayılan çalışma-içi doğruluk–RT örnekleme korelasyonu')+'</text>';s+='<text transform="translate(15 '+((padT+H-padB)/2)+') rotate(-90)" text-anchor="middle" font-size="12" fill="#111">'+(EN?'Study-level ρ (95% CrI)':'Çalışma düzeyi ρ (%95 CrI)')+'</text>';s+='</svg>';el.innerHTML=s;}
 function niceTicks(lo,hi,n){var span=hi-lo;if(span<=0)return[lo];var raw=span/n,mag=Math.pow(10,Math.floor(Math.log10(raw))),norm=raw/mag,st=(norm<1.5?1:norm<3?2:norm<7?5:10)*mag,t=[],x=Math.ceil(lo/st)*st;for(;x<=hi+1e-9;x+=st)t.push(Math.round(x/st*1e6)/1e6);return t;}
 function showTab(t){['locked','rmotor','domains','figs','kunye','sat'].forEach(function(n){document.getElementById('panel-'+n).classList.toggle('on',n===t);var b=document.getElementById('tab-'+n);b.classList.toggle('on',n===t);b.setAttribute('aria-selected',n===t?'true':'false');});}
-document.querySelectorAll('.lm-step.go').forEach(function(c){c.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();c.click();}});});
 renderSAT();renderSATdecision();renderSATsens();
 /* Fetch the version history from api.muplab.com; the embedded v1.0 row remains as fallback. */
 (function(){
