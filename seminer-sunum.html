@@ -341,10 +341,10 @@ html.jsanim .rvl.in+.rvl.in+.rvl.in+.rvl.in{transition-delay:.24s}
         chips:['Metric: <b>g + SE</b> (direction standardized)','Open data: <a href=\u0022https://github.com/resulcakir/SR-BMA\u0022 target=\u0022_blank\u0022 rel=\u0022noopener\u0022><b>GitHub</b></a>'],
         note:'Registered v1.0: 36 primary effect sizes (22 ACC + 14 RT).'},
       {ic:'curve',lbl:'Bayesian model in R',title:'5 · Bayesian model in R',
-        body:'Pooling is done on the lab’s analysis computer, in R, and is re-run from scratch at every version update. The model is specified with brms: a random-effects normal-normal setup, estimated by MCMC sampling on Stan; it is cross-checked with bayesmeta, and the classical backbone is metafor’s cluster-robust (RVE) model. Domain comparisons (subgroup / meta-regression) are part of the same model. The results are summarized from the posterior samples: pooled estimate, 95% CrI, P(g>0), and prediction interval.',
+        body:'Pooling is done on the lab’s analysis computer, in R, and is re-run from scratch at every version update. The model is specified with brms: a random-effects normal-normal setup, estimated by MCMC sampling on Stan; it is cross-checked with bayesmeta, and the classical backbone is metafor’s cluster-robust (RVE) model. Domain comparisons (a domain-stratified subgroup model) are part of the same model. The results are summarized from the posterior samples: pooled estimate, 95% CrI, P(g>0), and prediction interval.',
         steps:['Model specification: <b>brms</b> (random-effects; domain subgroups)','Estimation: <b>Stan MCMC</b> sampling — on the lab computer','Cross-check: <b>bayesmeta</b> · backbone: <b>metafor RVE</b>','Posterior summaries: g, 95% CrI, P(g>0), prediction interval → locked output'],
         chips:['Prior: <b>μ ~ N(0, 0.5)</b>','Prior: <b>τ ~ Half-Normal(0.3)</b>','<a href=\u0022https://github.com/resulcakir/SR-BMA\u0022 target=\u0022_blank\u0022 rel=\u0022noopener\u0022>Analysis code on GitHub</a>'],
-        note:'Registered ACC: g=+0.15, 95% CrI [0.06, 0.25], P(g>0)=99.9%, k=22. Registered RT: g=+0.18, 95% CrI [0.02, 0.37], P(g>0)=98.3%, k=14.'},
+        note:'Registered ACC: g=+0.15, 95% CrI [0.06, 0.25], P(g>0)=99.9%, k=21. Registered RT: g=+0.18, 95% CrI [0.02, 0.37], P(g>0)=98.3%, k=14.'},
       {ic:'browser',lbl:'Site update',title:'6 · Site update',
         body:'The results are committed to the site in two layers. The registered layer: brms figures are embedded as fixed PNGs in static pages and published on GitHub Pages. The exploration layer: the panel on the living-MA page computes directly in the visitor’s browser using conjugate math. Dynamic work such as forms and team data is handled by an API running on the lab’s own server — each layer does its own job.',
         steps:['Locked figures + values are committed to the static pages','Publication: GitHub Pages (every update is a traceable commit)','Exploration panel: computation in the visitor’s browser','Dynamic work (forms, team data): the API on the lab server'],
@@ -1637,19 +1637,18 @@ html.jsanim .rvl.in+.rvl.in+.rvl.in+.rvl.in{transition-delay:.24s}
       <div class="k6-stat0"><span>P(g&gt;0)</span><b id="k6rs-p">99.9%</b></div>
       <div class="k6-stat0"><span>Prediction interval</span><b id="k6rs-pi">[&minus;0.13, 0.44]</b></div>
       <div class="k6-stat0"><span>&tau; (heterogeneity)</span><b id="k6rs-tau">0.11</b></div>
-      <div class="k6-stat0"><span>k (studies)</span><b id="k6rs-k">22</b></div>
+      <div class="k6-stat0"><span>k (studies)</span><b id="k6rs-k">21</b></div>
     </div>
   </div>
   <div class="figrow" id="k6-figrow" hidden>
-    <figure class="figbox rvl"><img id="fig-forest" src="/figs/forest_subgroup_Accuracy.png" alt="Forest plot by subgroup (registered brms output)"><figcaption><b>Subgroup forest plot.</b> Registered brms model; pooled effects by domain. Accuracy pool: g=+0.15 [0.06, 0.25], k=22.</figcaption></figure>
+    <figure class="figbox rvl"><img id="fig-forest" src="/figs/forest_subgroup_Accuracy.png" alt="Forest plot by subgroup (registered brms output)"><figcaption><b>Subgroup forest plot.</b> Registered brms model; pooled effects by domain. Accuracy pool: g=+0.15 [0.06, 0.25], k=21.</figcaption></figure>
     <figure class="figbox rvl"><img id="fig-funnel" src="/figs/funnel_contour_Accuracy.png" alt="Contour-enhanced funnel plot (registered output)"><figcaption><b>Contour-enhanced funnel plot.</b> Visual check for small-study effects/publication bias.</figcaption></figure>
     <figure class="figbox rvl"><img id="fig-loo" src="/figs/loo_caterpillar_Accuracy.png" alt="Leave-one-out sensitivity analysis (registered output)"><figcaption><b>Leave-one-out (LOO) sensitivity.</b> How the pooled estimate changes as each study is removed in turn — the registered version of what you just did by hand.</figcaption></figure>
-    <figure class="figbox rvl"><img id="fig-bubble" src="/figs/bubble_Accuracy.png" alt="Bubble plot (registered output)"><figcaption><b>Bubble plot.</b> Relation between study size and effect; bubble area is proportional to weight.</figcaption></figure>
   </div>
 
   <div class="k6-sub k6-view" id="k6-domain" hidden>
     <h3>By domain: where is the effect concentrated?</h3>
-    <p class="k6-note">Registered domain subgroups (bayesmeta), as on the muplab.com/living-ma page. Dot = pooled g (size &prop; k), line = 95% CrI; teal = accuracy, clay = response time. The strongest — and most fragile — signal is <b>associative &amp; skill acquisition on RT</b>: g = +0.62 [0.36, 0.88], k = 4.</p>
+    <p class="k6-note">Registered domain subgroups (bayesmeta), as on the muplab.com/living-ma page. Dot = pooled g (size &prop; k), line = 95% CrI; teal = accuracy, clay = response time. The strongest — and most fragile — signal is <b>associative &amp; skill acquisition on RT</b>: g = +0.57 [0.28, 0.84], k = 4.</p>
     <figure class="k6-plot">
       <svg viewBox="0 0 720 320" role="img" aria-label="Registered domain subgroup estimates. Horizontal axis is Hedges g; each row shows the pooled estimate of one domain as a dot with its 95% credible interval; teal rows are accuracy, clay rows are response time.">
         <line class="k6dp-zero" x1="320" y1="30" x2="320" y2="262"/>
@@ -1659,35 +1658,35 @@ html.jsanim .rvl.in+.rvl.in+.rvl.in+.rvl.in{transition-delay:.24s}
 
         <text class="k6dp-h" x="8" y="46">ACCURACY</text>
         <text class="k6dp-lab" x="170" y="72" text-anchor="end">Declarative Memory — k=5</text>
-        <line class="k6dp-acc k6dp-ci" x1="324" y1="68" x2="388" y2="68"/>
-        <line class="k6dp-acc k6dp-ci" x1="324" y1="63" x2="324" y2="73"/><line class="k6dp-acc k6dp-ci" x1="388" y1="63" x2="388" y2="73"/>
-        <circle class="k6dp-accf" cx="356" cy="68" r="6.4"/>
+        <line class="k6dp-acc k6dp-ci" x1="295.897" y1="68" x2="408.104" y2="68"/>
+        <line class="k6dp-acc k6dp-ci" x1="295.897" y1="63" x2="295.897" y2="73"/><line class="k6dp-acc k6dp-ci" x1="408.104" y1="63" x2="408.104" y2="73"/>
+        <circle class="k6dp-accf" cx="354.173" cy="68" r="6.2"/>
         <text class="k6dp-lab" x="170" y="98" text-anchor="end">Working Memory — k=6</text>
-        <line class="k6dp-acc k6dp-ci" x1="380" y1="94" x2="472" y2="94"/>
-        <line class="k6dp-acc k6dp-ci" x1="380" y1="89" x2="380" y2="99"/><line class="k6dp-acc k6dp-ci" x1="472" y1="89" x2="472" y2="99"/>
-        <circle class="k6dp-accf" cx="428" cy="94" r="6.7"/>
+        <line class="k6dp-acc k6dp-ci" x1="372.119" y1="94" x2="481.993" y2="94"/>
+        <line class="k6dp-acc k6dp-ci" x1="372.119" y1="89" x2="372.119" y2="99"/><line class="k6dp-acc k6dp-ci" x1="481.993" y1="89" x2="481.993" y2="99"/>
+        <circle class="k6dp-accf" cx="426.63" cy="94" r="6.5"/>
         <text class="k6dp-lab" x="170" y="124" text-anchor="end">Cognitive Control — k=3</text>
-        <line class="k6dp-acc k6dp-ci" x1="300" y1="120" x2="500" y2="120"/>
-        <line class="k6dp-acc k6dp-ci" x1="300" y1="115" x2="300" y2="125"/><line class="k6dp-acc k6dp-ci" x1="500" y1="115" x2="500" y2="125"/>
-        <circle class="k6dp-accf" cx="400" cy="120" r="5.6"/>
-        <text class="k6dp-lab" x="170" y="150" text-anchor="end">Associative &amp; Skill — k=8</text>
-        <line class="k6dp-acc k6dp-ci" x1="264" y1="146" x2="468" y2="146"/>
-        <line class="k6dp-acc k6dp-ci" x1="264" y1="141" x2="264" y2="151"/><line class="k6dp-acc k6dp-ci" x1="468" y1="141" x2="468" y2="151"/>
-        <circle class="k6dp-accf" cx="364" cy="146" r="7.2"/>
+        <line class="k6dp-acc k6dp-ci" x1="290.264" y1="120" x2="501.215" y2="120"/>
+        <line class="k6dp-acc k6dp-ci" x1="290.264" y1="115" x2="290.264" y2="125"/><line class="k6dp-acc k6dp-ci" x1="501.215" y1="115" x2="501.215" y2="125"/>
+        <circle class="k6dp-accf" cx="395.378" cy="120" r="5.5"/>
+        <text class="k6dp-lab" x="170" y="150" text-anchor="end">Associative &amp; Skill — k=7</text>
+        <line class="k6dp-acc k6dp-ci" x1="270.442" y1="146" x2="403.049" y2="146"/>
+        <line class="k6dp-acc k6dp-ci" x1="270.442" y1="141" x2="270.442" y2="151"/><line class="k6dp-acc k6dp-ci" x1="403.049" y1="141" x2="403.049" y2="151"/>
+        <circle class="k6dp-accf" cx="332.469" cy="146" r="6.9"/>
 
         <text class="k6dp-h" x="8" y="182">RESPONSE TIME (RT)</text>
         <text class="k6dp-lab" x="170" y="208" text-anchor="end">Working Memory — k=5</text>
-        <line class="k6dp-rt k6dp-ci" x1="236" y1="204" x2="360" y2="204"/>
-        <line class="k6dp-rt k6dp-ci" x1="236" y1="199" x2="236" y2="209"/><line class="k6dp-rt k6dp-ci" x1="360" y1="199" x2="360" y2="209"/>
-        <circle class="k6dp-rtf" cx="296" cy="204" r="6.4"/>
+        <line class="k6dp-rt k6dp-ci" x1="232.942" y1="204" x2="365.789" y2="204"/>
+        <line class="k6dp-rt k6dp-ci" x1="232.942" y1="199" x2="232.942" y2="209"/><line class="k6dp-rt k6dp-ci" x1="365.789" y1="199" x2="365.789" y2="209"/>
+        <circle class="k6dp-rtf" cx="297.841" cy="204" r="6.2"/>
         <text class="k6dp-lab" x="170" y="234" text-anchor="end">Cognitive Control — k=5</text>
-        <line class="k6dp-rt k6dp-ci" x1="332" y1="230" x2="484" y2="230"/>
-        <line class="k6dp-rt k6dp-ci" x1="332" y1="225" x2="332" y2="235"/><line class="k6dp-rt k6dp-ci" x1="484" y1="225" x2="484" y2="235"/>
-        <circle class="k6dp-rtf" cx="408" cy="230" r="6.4"/>
+        <line class="k6dp-rt k6dp-ci" x1="316.951" y1="230" x2="490.094" y2="230"/>
+        <line class="k6dp-rt k6dp-ci" x1="316.951" y1="225" x2="316.951" y2="235"/><line class="k6dp-rt k6dp-ci" x1="490.094" y1="225" x2="490.094" y2="235"/>
+        <circle class="k6dp-rtf" cx="404.053" cy="230" r="6.2"/>
         <text class="k6dp-lab k6dp-strong" x="170" y="260" text-anchor="end">Associative &amp; Skill — k=4</text>
-        <line class="k6dp-rt k6dp-ci" x1="464" y1="256" x2="672" y2="256"/>
-        <line class="k6dp-rt k6dp-ci" x1="464" y1="251" x2="464" y2="261"/><line class="k6dp-rt k6dp-ci" x1="672" y1="251" x2="672" y2="261"/>
-        <circle class="k6dp-rtf" cx="568" cy="256" r="6"/>
+        <line class="k6dp-rt k6dp-ci" x1="431.911" y1="256" x2="657.526" y2="256"/>
+        <line class="k6dp-rt k6dp-ci" x1="431.911" y1="251" x2="431.911" y2="261"/><line class="k6dp-rt k6dp-ci" x1="657.526" y1="251" x2="657.526" y2="261"/>
+        <circle class="k6dp-rtf" cx="546.35" cy="256" r="5.9"/>
 
         <line class="k6dp-ax" x1="180" y1="272" x2="700" y2="272"/>
         <line class="k6dp-ax" x1="200" y1="272" x2="200" y2="278"/><text class="k6dp-axt" x="200" y="292" text-anchor="middle">&minus;0.3</text>
@@ -1697,18 +1696,18 @@ html.jsanim .rvl.in+.rvl.in+.rvl.in+.rvl.in{transition-delay:.24s}
         <line class="k6dp-ax" x1="680" y1="272" x2="680" y2="278"/><text class="k6dp-axt" x="680" y="292" text-anchor="middle">+0.9</text>
         <text class="k6dp-xt" x="440" y="312" text-anchor="middle">Hedges g — positive favors taVNS</text>
       </svg>
-      <figcaption><b>Registered domain subgroups.</b> Each row is one domain&rsquo;s pooled estimate from the registered bayesmeta model — the interval-plot counterpart of the table below.</figcaption>
+      <figcaption><b>Registered domain subgroups.</b> Each row is one domain&rsquo;s pooled estimate from the registered brms model — the interval-plot counterpart of the table below.</figcaption>
     </figure>
     <div class="k6-scroll"><table class="k6-table">
       <thead><tr><th>Outcome</th><th>Domain</th><th class="num">k</th><th class="num">Pooled g</th><th class="num">95% CrI</th></tr></thead>
       <tbody>
-        <tr><td>Accuracy</td><td>Declarative Memory</td><td class="num">5</td><td class="num pos">+0.09</td><td class="num">[0.01, 0.17]</td></tr>
-        <tr><td>Accuracy</td><td>Working Memory</td><td class="num">6</td><td class="num pos">+0.27</td><td class="num">[0.15, 0.38]</td></tr>
-        <tr><td>Accuracy</td><td>Cognitive Control</td><td class="num">3</td><td class="num pos">+0.20</td><td class="num">[&minus;0.05, 0.45]</td></tr>
-        <tr><td>Accuracy</td><td>Associative &amp; Skill Acquisition</td><td class="num">8</td><td class="num pos">+0.11</td><td class="num">[&minus;0.14, 0.37]</td></tr>
-        <tr><td>Response time (RT)</td><td>Working Memory</td><td class="num">5</td><td class="num neg">&minus;0.06</td><td class="num">[&minus;0.21, 0.10]</td></tr>
-        <tr><td>Response time (RT)</td><td>Cognitive Control</td><td class="num">5</td><td class="num pos">+0.22</td><td class="num">[0.03, 0.41]</td></tr>
-        <tr><td>Response time (RT)</td><td>Associative &amp; Skill Acquisition</td><td class="num">4</td><td class="num pos">+0.62</td><td class="num">[0.36, 0.88]</td></tr>
+        <tr><td>Accuracy</td><td>Declarative Memory</td><td class="num">5</td><td class="num pos">+0.09</td><td class="num">[&minus;0.06, 0.22]</td></tr>
+        <tr><td>Accuracy</td><td>Working Memory</td><td class="num">6</td><td class="num pos">+0.27</td><td class="num">[0.13, 0.40]</td></tr>
+        <tr><td>Accuracy</td><td>Cognitive Control</td><td class="num">3</td><td class="num pos">+0.19</td><td class="num">[&minus;0.07, 0.45]</td></tr>
+        <tr><td>Accuracy</td><td>Associative &amp; Skill Acquisition</td><td class="num">7</td><td class="num pos">+0.03</td><td class="num">[&minus;0.12, 0.21]</td></tr>
+        <tr><td>Response time (RT)</td><td>Working Memory</td><td class="num">5</td><td class="num neg">&minus;0.06</td><td class="num">[&minus;0.22, 0.11]</td></tr>
+        <tr><td>Response time (RT)</td><td>Cognitive Control</td><td class="num">5</td><td class="num pos">+0.21</td><td class="num">[&minus;0.01, 0.43]</td></tr>
+        <tr><td>Response time (RT)</td><td>Associative &amp; Skill Acquisition</td><td class="num">4</td><td class="num pos">+0.57</td><td class="num">[0.28, 0.84]</td></tr>
       </tbody>
     </table></div>
   </div>
@@ -1952,10 +1951,9 @@ figBtns.forEach(function(b){
     document.getElementById("fig-forest").src="/figs/forest_subgroup_"+k+".png";
     document.getElementById("fig-funnel").src="/figs/funnel_contour_"+k+".png";
     document.getElementById("fig-loo").src="/figs/loo_caterpillar_"+k+".png";
-    document.getElementById("fig-bubble").src="/figs/bubble_"+k+".png";
     var cap=document.querySelector("#fig-forest").parentElement.querySelector("figcaption");
     cap.innerHTML=(k==="Accuracy")
-      ? "<b>Subgroup forest plot.</b> Registered brms model; pooled effects by domain. Accuracy pool: g=+0.15 [0.06, 0.25], k=22."
+      ? "<b>Subgroup forest plot.</b> Registered brms model; pooled effects by domain. Accuracy pool: g=+0.15 [0.06, 0.25], k=21."
       : "<b>Subgroup forest plot.</b> Registered brms model; pooled effects by domain. Response time pool: g=+0.18 [0.02, 0.37], k=14.";
     k6SetStats(k);
   });
