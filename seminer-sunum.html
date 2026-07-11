@@ -657,7 +657,7 @@ html.jsanim .rvl.in+.rvl.in+.rvl.in+.rvl.in{transition-delay:.24s}
   </div>
 
   <style>
-    #sec-tarama .dsx-wrap{max-width:560px;margin:52px auto 4px;text-align:center}
+    #sec-tarama .dsx-wrap{max-width:430px;margin:40px auto 4px;text-align:center}
     #sec-tarama .dsx-kick{font-family:var(--gro);font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin:0 0 14px}
     #sec-tarama .dsx-stage{--tealA:#2c7568;--tealB:#12332e;--gold:#e8c07a;--cream:#f6efe2;
       position:relative;width:100%;aspect-ratio:16/10;border-radius:20px;overflow:hidden;margin:0 auto;
@@ -677,26 +677,26 @@ html.jsanim .rvl.in+.rvl.in+.rvl.in+.rvl.in{transition-delay:.24s}
     #sec-tarama .dsx-stage.go .dsx-r2{animation-delay:.14s}
     #sec-tarama .dsx-stage.go .dsx-r3{animation-delay:.28s}
     @keyframes dsxSonar{0%{opacity:.85;transform:scale(.25)}70%{opacity:.25}100%{opacity:0;transform:scale(3.4)}}
-    #sec-tarama .dsx-plane{position:absolute;top:50%;left:50%;width:44px;height:44px;margin:-22px;z-index:5;display:flex;align-items:center;justify-content:center;color:#0f2a26;border-radius:13px;background:linear-gradient(150deg,var(--cream),var(--gold));box-shadow:0 12px 30px -6px rgba(232,192,122,.6),0 0 0 6px rgba(232,192,122,.12);opacity:0;transform:scale(.4);offset-path:path("M0,0 C 70,-40 150,-120 250,-150");offset-rotate:auto}
+    #sec-tarama .dsx-plane{position:absolute;top:50%;left:50%;width:44px;height:44px;margin:-22px;z-index:5;display:flex;align-items:center;justify-content:center;color:#0f2a26;border-radius:13px;background:linear-gradient(150deg,var(--cream),var(--gold));box-shadow:0 12px 30px -6px rgba(232,192,122,.6),0 0 0 6px rgba(232,192,122,.12);opacity:0;transform:scale(.4);offset-path:path("M0,0 C 55,-31 118,-94 195,-117");offset-rotate:auto}
     #sec-tarama .dsx-plane svg{width:22px;height:22px}
     #sec-tarama .dsx-stage.go .dsx-plane{animation:dsxFly 1.15s cubic-bezier(.5,0,.2,1) .15s forwards}
     @keyframes dsxFly{0%{opacity:0;transform:scale(.4);offset-distance:0%}12%{opacity:1;transform:scale(1)}85%{opacity:1}100%{opacity:0;transform:scale(.5);offset-distance:100%}}
-    #sec-tarama .dsx-trail{position:absolute;top:50%;left:50%;width:44px;height:44px;margin:-22px;z-index:4;border-radius:50%;background:radial-gradient(circle,rgba(232,192,122,.9),transparent 60%);filter:blur(6px);opacity:0;offset-path:path("M0,0 C 70,-40 150,-120 250,-150")}
+    #sec-tarama .dsx-trail{position:absolute;top:50%;left:50%;width:44px;height:44px;margin:-22px;z-index:4;border-radius:50%;background:radial-gradient(circle,rgba(232,192,122,.9),transparent 60%);filter:blur(6px);opacity:0;offset-path:path("M0,0 C 55,-31 118,-94 195,-117")}
     #sec-tarama .dsx-stage.go .dsx-trail{animation:dsxTrail 1.15s cubic-bezier(.5,0,.2,1) .15s forwards}
     @keyframes dsxTrail{0%{opacity:0;offset-distance:0%}15%{opacity:.7}100%{opacity:0;offset-distance:92%}}
     #sec-tarama .dsx-burst{position:absolute;top:50%;left:50%;width:0;height:0;z-index:4;pointer-events:none}
     #sec-tarama .dsx-pt{position:absolute;width:7px;height:7px;margin:-3.5px;border-radius:2px;background:var(--gold);opacity:0}
     #sec-tarama .dsx-stage.go .dsx-pt{animation:dsxPt .8s ease-out forwards}
     @keyframes dsxPt{0%{opacity:1;transform:translate(0,0) scale(1) rotate(0)}100%{opacity:0;transform:translate(var(--px),var(--py)) scale(.2) rotate(var(--pr))}}
-    #sec-tarama .dsx-btn{position:relative;z-index:7;border:0;cursor:pointer;width:104px;height:104px;border-radius:50%;background:radial-gradient(circle at 38% 32%,#fdfaf2,var(--cream) 45%,#eadcb8);color:var(--accent-d);display:flex;align-items:center;justify-content:center;box-shadow:0 20px 45px -12px rgba(0,0,0,.5),0 0 0 0 rgba(232,192,122,.55),inset 0 2px 4px rgba(255,255,255,.9),inset 0 -6px 12px rgba(140,110,60,.25);transition:transform .18s cubic-bezier(.2,.9,.2,1.2),box-shadow .3s;animation:dsxBreathe 3.4s ease-in-out infinite}
-    #sec-tarama .dsx-btn svg{width:40px;height:40px;transform:translateX(2px)}
+    #sec-tarama .dsx-btn{position:relative;z-index:7;border:0;cursor:pointer;width:82px;height:82px;border-radius:50%;background:radial-gradient(circle at 38% 32%,#fdfaf2,var(--cream) 45%,#eadcb8);color:var(--accent-d);display:flex;align-items:center;justify-content:center;box-shadow:0 20px 45px -12px rgba(0,0,0,.5),0 0 0 0 rgba(232,192,122,.55),inset 0 2px 4px rgba(255,255,255,.9),inset 0 -6px 12px rgba(140,110,60,.25);transition:transform .18s cubic-bezier(.2,.9,.2,1.2),box-shadow .3s;animation:dsxBreathe 3.4s ease-in-out infinite}
+    #sec-tarama .dsx-btn svg{width:32px;height:32px;transform:translateX(2px)}
     #sec-tarama .dsx-btn:hover{transform:scale(1.06)}
     #sec-tarama .dsx-btn:active{transform:scale(.94)}
     @keyframes dsxBreathe{0%,100%{box-shadow:0 20px 45px -12px rgba(0,0,0,.5),0 0 0 0 rgba(232,192,122,.5),inset 0 2px 4px rgba(255,255,255,.9),inset 0 -6px 12px rgba(140,110,60,.25)}50%{box-shadow:0 20px 45px -12px rgba(0,0,0,.5),0 0 0 16px rgba(232,192,122,0),inset 0 2px 4px rgba(255,255,255,.9),inset 0 -6px 12px rgba(140,110,60,.25)}}
     #sec-tarama .dsx-stage.go .dsx-btn{animation:dsxPunch .5s cubic-bezier(.3,1.4,.4,1)}
     @keyframes dsxPunch{0%{transform:scale(1)}30%{transform:scale(.8)}60%{transform:scale(1.12)}100%{transform:scale(1)}}
     #sec-tarama .dsx-stage.done .dsx-btn{opacity:0;transform:scale(.3);transition:.4s;pointer-events:none}
-    #sec-tarama .dsx-seal{position:absolute;z-index:8;width:126px;height:126px;opacity:0;transform:scale(.3);pointer-events:none}
+    #sec-tarama .dsx-seal{position:absolute;z-index:8;width:100px;height:100px;opacity:0;transform:scale(.3);pointer-events:none}
     #sec-tarama .dsx-seal circle{fill:none;stroke:var(--gold);stroke-width:5;stroke-dasharray:352;stroke-dashoffset:352}
     #sec-tarama .dsx-seal path{fill:none;stroke:var(--cream);stroke-width:8;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:60;stroke-dashoffset:60}
     #sec-tarama .dsx-stage.done .dsx-seal{opacity:1;transform:scale(1);transition:transform .55s cubic-bezier(.3,1.6,.4,1),opacity .3s}
@@ -711,6 +711,9 @@ html.jsanim .rvl.in+.rvl.in+.rvl.in+.rvl.in{transition-delay:.24s}
     #sec-tarama .dsx-flash{position:absolute;inset:0;z-index:9;background:rgba(232,192,122,.55);opacity:0;pointer-events:none;mix-blend-mode:screen}
     #sec-tarama .dsx-stage.go .dsx-flash{animation:dsxFlash .5s ease}
     @keyframes dsxFlash{0%{opacity:.6}100%{opacity:0}}
+    #sec-tarama .dsx-stage.err{animation:dsxErr .55s ease}
+    #sec-tarama .dsx-stage.err .dsx-btn{animation:none}
+    @keyframes dsxErr{10%,90%{transform:translateX(-5px)}20%,80%{transform:translateX(5px)}30%,50%,70%{transform:translateX(-3px)}40%,60%{transform:translateX(3px)}}
     @media (prefers-reduced-motion:reduce){#sec-tarama .dsx-stage *{animation-duration:.01ms!important}}
   </style>
 
@@ -718,9 +721,11 @@ html.jsanim .rvl.in+.rvl.in+.rvl.in+.rvl.in{transition-delay:.24s}
   (function(){
     var wrap=document.getElementById('dsx-wrap');
     if(!wrap) return;
-    /* ADMIN GATE: reveal only for the presenter's admin session (id/password). */
-    try{ if(sessionStorage.getItem('muplab_seminer_rol')==='admin') wrap.removeAttribute('hidden'); }catch(e){}
-    if(wrap.hasAttribute('hidden')) return;   /* jury sessions: never wired, never shown */
+    /* GATE: only on the presenter's LOCAL machine (localhost) AND admin session.
+       On the live muplab.com the button never appears — the real demo runs locally. */
+    var onLocal=(location.hostname==='localhost'||location.hostname==='127.0.0.1');
+    try{ if(onLocal && sessionStorage.getItem('muplab_seminer_rol')==='admin') wrap.removeAttribute('hidden'); }catch(e){}
+    if(wrap.hasAttribute('hidden')) return;   /* live site + jury sessions: never wired, never shown */
 
     var stage=document.getElementById('dsx-stage'),
         btn=document.getElementById('dsx-btn'),
@@ -729,13 +734,13 @@ html.jsanim .rvl.in+.rvl.in+.rvl.in+.rvl.in{transition-delay:.24s}
         NODES=12, running=false;
     for(var i=0;i<NODES;i++){
       var n=document.createElement('i');n.className='dsx-node';
-      n.style.setProperty('--a',(i/NODES*360)+'deg');n.style.setProperty('--r','150px');
+      n.style.setProperty('--a',(i/NODES*360)+'deg');n.style.setProperty('--r','116px');
       nodesWrap.appendChild(n);
     }
     var nodeEls=[].slice.call(nodesWrap.children);
     function fire(){
       if(running) return; running=true;
-      stage.classList.remove('go','done');
+      stage.classList.remove('go','done','err');
       nodeEls.forEach(function(n){n.classList.remove('lit');});
       burst.innerHTML='';
       void stage.offsetWidth;
@@ -750,8 +755,21 @@ html.jsanim .rvl.in+.rvl.in+.rvl.in+.rvl.in{transition-delay:.24s}
       }
       stage.classList.add('go');
       nodeEls.forEach(function(n,idx){ setTimeout(function(){n.classList.add('lit');}, 260+idx*55); });
-      setTimeout(function(){ stage.classList.add('done'); }, 1250);
-      setTimeout(function(){ running=false; }, 2600);
+      var local=(location.hostname==='localhost'||location.hostname==='127.0.0.1');
+      if(!local){
+        /* live muplab.com: visual only — the browser cannot send mail, so nothing is dispatched */
+        setTimeout(function(){ stage.classList.add('done'); }, 1250);
+        setTimeout(function(){ running=false; }, 2600);
+        return;
+      }
+      /* served locally: really send through the local seminar server (proven Proton Bridge path) */
+      var settled=false;
+      var ok=function(){ if(settled) return; settled=true; stage.classList.add('done'); running=false; };
+      var bad=function(e){ if(settled) return; settled=true; stage.classList.add('err'); running=false; if(e) try{console.error('dispatch failed',e);}catch(_){} };
+      fetch('/dispatch',{method:'POST'}).then(function(r){return r.json();}).then(function(d){
+        if(d&&d.ok){ setTimeout(ok,1100); } else { bad(d&&d.error); }
+      }).catch(bad);
+      setTimeout(function(){ if(!settled) bad('timeout'); }, 200000);
     }
     btn.addEventListener('click',fire);
     stage.addEventListener('click',function(e){ if(e.target!==btn && stage.classList.contains('done')) fire(); });
