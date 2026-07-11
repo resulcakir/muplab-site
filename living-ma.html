@@ -5,18 +5,18 @@
 <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/assets/fonts/inter-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css"><link rel="icon" type="image/png" href="assets/favicon.png"><link rel="apple-touch-icon" href="/assets/apple-touch-icon.png"><meta name="theme-color" content="#235e56"><script src="lang.js"></script></head><body>
 <header class="nav"><div class="container nav-in"><a class="brand" href="index.html"><img class="blogo" src="assets/logo.png" alt="MUPLAB"><span>MUP<span class="lb">LAB</span></span></a><input type="checkbox" id="navchk" class="navchk" aria-hidden="true"><label for="navchk" class="navtoggle" aria-label="Menü"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></label><nav class="links"><a href="index.html">Anasayfa</a><a href="haberler.html">Haberler</a><a href="ekip.html">Ekip</a><a href="projeler.html">Projeler</a><a href="iletisim.html">İletişim</a><a href="yayinlar.html">Yayınlar</a><a href="kaynaklar.html">Kaynaklar</a><a href="katilin.html">Bize Katılın</a><a class="lang" href="en/living-ma.html">EN</a></nav></div></header>
-<section class="page-head"><div class="container"><span class="eyebrow">Bayesçi Living Meta-Analiz · <span id="lm-ver">v1.0</span></span><h1>Auriküler taVNS'in öğrenme üzerindeki etkisi</h1><p>Bildirimsel ve çalışma belleği, bilişsel kontrol ve çağrışımsal-beceri öğrenmede taVNS'in doğruluk (accuracy) ve tepki süresi (RT) üzerindeki etkisi. Bayesçi rastgele-etkiler (brms · bayesmeta); ACC ve RT <b>ayrı</b> havuzlanır, pozitif <em>g</em> = taVNS lehine.</p></div></section>
+<section class="page-head"><div class="container"><span class="eyebrow">Bayesçi Living Meta-Analiz · <span id="lm-ver">v1.0</span></span><h1>Auriküler taVNS'in öğrenme üzerindeki etkisi</h1><p>taVNS'in <b>doğruluk (accuracy)</b> ve <b>tepki süresi (RT)</b> üzerindeki etkisi. İki sonuç ayrı havuzlanır; pozitif <em>g</em> taVNS lehinedir.</p></div></section>
 <section class="block"><div class="container lmwide">
   <div class="lm-layout">
   <aside class="lm-side" aria-label="Sürüm geçmişi">
     <h3>Sürüm geçmişi</h3>
-    <div id="lm-surumler"><div class="vrow"><span class="v">v1.0</span><span class="d">Haziran 2026</span><p>Kayıtlı korpus: 24 çalışma, 36 primary ES. brms + bayesmeta.</p></div></div>
+    <div id="lm-surumler"><div class="vrow"><span class="v">v1.0</span><span class="d">Haziran 2026</span><p>Kayıtlı korpus: 24 çalışma, 36 primary ES.</p></div></div>
   </aside>
   <div class="lm-main">
-  <div class="reglinks"><span>Kayıt: <b>PROSPERO</b></span><span>Veri &amp; Kod: <b><a href="https://github.com/resulcakir/SR-BMA" target="_blank" rel="noopener">GitHub · SR-BMA</a></b></span><span>Kod: <b>brms · bayesmeta</b></span><span>Güncelleme: <b id="lm-date">23 Haziran 2026</b></span></div>
-  <h2 class="sech">Birincil havuz (kayıtlı, brms)</h2>
+  <div class="reglinks"><span>Veri &amp; Kod: <b><a href="https://github.com/resulcakir/SR-BMA" target="_blank" rel="noopener">GitHub</a></b></span><span>Güncelleme: <b id="lm-date">23 Haziran 2026</b></span></div>
+  <h2 class="sech">Birincil havuz</h2>
   <div class="hl2"><div class="hl"><h4>Doğruluk (Accuracy)</h4><div class="big" style="color:#2f7d72">+0.15</div><div class="ci">95% CrI [0.06, 0.25]</div><div class="meta">P(g&gt;0) = 99.9% · τ = 0.11 · PI [-0.13, 0.44] · k = 21</div></div><div class="hl"><h4>Tepki süresi (RT)</h4><div class="big" style="color:#2f7d72">+0.18</div><div class="ci">95% CrI [0.02, 0.37]</div><div class="meta">P(g&gt;0) = 98.3% · τ = 0.24 · PI [-0.37, 0.76] · k = 14</div></div></div>
-  <div class="success"><b>Ana bulgu.</b> En güçlü etki <b>çağrışımsal/beceri öğrenmede, RT'de</b>: RT × Çağrışımsal-beceri <b>g = 0.57 [0.28, 0.84]</b> (kırılgan, k = 4). Genel ACC g = 0.15, RT g = 0.18. ρ(ACC,RT) = 0.14 [−0.73, 0.86].</div>
+  <div class="success"><b>Ana bulgu.</b> En güçlü etki <b>çağrışımsal/beceri öğrenmede, RT'de</b>.<div class="lm-kf"><span>RT × Çağrışımsal-beceri: <b>g = 0.57 [0.28, 0.84]</b> (kırılgan, k = 4)</span><span>Genel: ACC g = 0.15 · RT g = 0.18</span><span>ρ(ACC,RT) = 0.14 [−0.73, 0.86]</span></div></div>
 
   <style>
   .lm-intro{margin:20px 0 4px}
@@ -33,6 +33,8 @@
   .lm-note b{color:var(--ink)}
   @keyframes lmstepin{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
   @keyframes lmpulse{0%,100%{box-shadow:0 0 0 0 rgba(47,125,114,.35)}50%{box-shadow:0 0 0 7px rgba(47,125,114,0)}}
+  .container.lmwide{max-width:min(1540px,96%)}
+  .lm-kf{display:flex;flex-wrap:wrap;gap:4px 22px;margin-top:7px;font-size:13.5px}
   .lm-layout{display:grid;grid-template-columns:215px minmax(0,1fr);gap:26px;align-items:start;margin-top:4px}
   .lm-main{min-width:0}
   .lm-side{position:sticky;top:84px;border:1px solid var(--line);border-radius:12px;background:var(--bg-alt);padding:14px 16px}
@@ -70,14 +72,14 @@
   </div>
   <div class="tabs" role="tablist">
     <button id="tab-locked" class="on" role="tab" aria-selected="true" aria-controls="panel-locked" onclick="showTab('locked')">Kayıtlı (sabit)</button>
-    <button id="tab-rmotor" role="tab" aria-selected="false" aria-controls="panel-rmotor" onclick="showTab('rmotor')">R motoru (etkileşimli)</button>
+    <button id="tab-rmotor" role="tab" aria-selected="false" aria-controls="panel-rmotor" onclick="showTab('rmotor')">R motoru</button>
     <button id="tab-domains" role="tab" aria-selected="false" aria-controls="panel-domains" onclick="showTab('domains')">Alanlar</button>
     <button id="tab-figs" role="tab" aria-selected="false" aria-controls="panel-figs" onclick="showTab('figs')">Tanılama</button>
     <button id="tab-kunye" role="tab" aria-selected="false" aria-controls="panel-kunye" onclick="showTab('kunye')">Künyeler</button>
     <button id="tab-sat" role="tab" aria-selected="false" aria-controls="panel-sat" onclick="showTab('sat')">Hız–Doğruluk</button>
   </div>
   <div class="panel on" id="panel-locked" role="tabpanel" aria-labelledby="tab-locked">
-    <div class="lockbar"><b>Kayıtlı analiz (sabit referans)</b> — PROSPERO kayıtlı korpus · brms · bayesmeta · metafor. Buradaki <b>figürler kayıtlı R çıktısıdır ve değişmez</b>; aşağıdaki etkileşimli motordaki dahil/çıkar seçimlerinden bağımsızdır.</div>
+    <div class="lockbar"><b>Kayıtlı analiz (sabit referans)</b> — kayıtlı korpus · brms · bayesmeta · metafor. Buradaki <b>figürler kayıtlı R çıktısıdır ve değişmez</b>; aşağıdaki etkileşimli motordaki dahil/çıkar seçimlerinden bağımsızdır.</div>
     <div class="callout" style="border-color:#cdd5d2;background:var(--bg-alt);color:var(--body)"><b>v1.0 — kayıtlı.</b> 24 çalışma, 36 primary etki büyüklüğü (22 ACC + 14 RT). Manşet değerler kayıtlı brms; aşağıdaki <b>etkileşimli</b> bölümde istediğin çalışmayı dahil/çıkar edip analizi seçtiğin alt-küme üzerinde gerçek R (bayesmeta) ile çalıştırabilirsin (tarayıcıda, kayıt edilmez).</div>
     <h3 class="sech" style="font-size:18px">Doğruluk (Accuracy) — kayıtlı brms</h3>
     <div class="lm-stats"><div class="lm-stat"><div class="num" style="color:#2f7d72">+0.15</div><div class="lbl">Havuz g</div></div><div class="lm-stat"><div class="num">[0.06, 0.25]</div><div class="lbl">%95 CrI</div></div><div class="lm-stat"><div class="num">99.9%</div><div class="lbl">P(g &gt; 0)</div></div><div class="lm-stat"><div class="num">[-0.13, 0.44]</div><div class="lbl">Öngörü aralığı</div></div><div class="lm-stat"><div class="num">0.11</div><div class="lbl">τ</div></div><div class="lm-stat"><div class="num">22</div><div class="lbl">k</div></div></div>
@@ -92,7 +94,7 @@
   </div>
   <div class="panel" id="panel-rmotor" role="tabpanel" aria-labelledby="tab-rmotor">
     <h3 class="sech" style="font-size:18px;margin-top:8px">Etkileşimli keşif — gerçek R motoru (bayesmeta · webR)</h3>
-  <p style="color:var(--muted);font-size:15px;margin:6px 0 10px">İstediğin yayını dahil/çıkar et — forest, funnel, Q–Q ve tüm istatistikler seçtiğin alt-küme için <b>gerçek R</b> (bayesmeta · webR) ile tarayıcında yeniden hesaplanır; ACC ve RT birlikte gösterilir, değişiklikten sonra ilgili havuz otomatik güncellenir (~15–25 sn). İlk açılış R çalışma ortamını indirir (~90 MB; sonraki ziyaretler önbellekten). <a href="shiny/" target="_blank" rel="noopener">Tam sayfada aç ↗</a></p>
+  <p style="color:var(--muted);font-size:15px;margin:6px 0 10px">İstediğin yayını dahil/çıkar et — forest, funnel, Q–Q ve tüm istatistikler seçtiğin alt-küme için <b>gerçek R</b> (bayesmeta · webR) ile tarayıcında yeniden hesaplanır; ACC ve RT birlikte gösterilir; seçimini yaptıktan sonra <b>Re-run</b> düğmesine bas — her havuz ~15–25 sn'de yeniden hesaplanır. İlk açılış R çalışma ortamını indirir (~90 MB; sonraki ziyaretler önbellekten). <a href="shiny/" target="_blank" rel="noopener">Tam sayfada aç ↗</a></p>
   <style>#lm-shiny{width:100%;height:min(88vh,900px);min-height:560px;border:1px solid var(--line);border-radius:12px;background:var(--bg-alt)}@media(max-width:640px){.tabs{flex-wrap:wrap;overflow-x:visible}}</style>
   <iframe id="lm-shiny" src="shiny/" title="Living MA — R motoru (bayesmeta · webR)" loading="lazy"></iframe>
   </div>
@@ -126,7 +128,6 @@
   </div>
   </div>
   </div>
-  <p style="font-size:13px;color:var(--muted);margin-top:22px;border-top:1px solid var(--line);padding-top:16px">Kayıtlı model R / brms · bayesmeta ile çalışır; gerçek R motoru (bayesmeta · Shiny/webR) bu sayfaya gömülüdür ve kayıtlı modelle ~0.01 içinde örtüşür.</p>
 </div></section>
 <script>
 const MUT='#6b7178';
