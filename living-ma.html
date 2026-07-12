@@ -144,8 +144,6 @@ function showTab(t){['locked','rmotor','domains','figs','kunye','sat'].forEach(f
 renderSAT();renderSATdecision();renderSATsens();
 /* Sürüm geçmişini api.muplab.com'dan çek; başarısız olursa gömülü v1.0 satırı kalır. */
 (function(){
-  return; /* ŞİMDİLİK KAPALI: sürüm ucunda test kayıtları var (v.0.1, 2026-test).
-             API'ye gerçek sürüm kayıtları girilince bu satırı sil. */
   function lmTarih(iso){try{var d=new Date(iso);if(isNaN(d))return iso;var p=function(n){return(n<10?'0':'')+n;};return p(d.getDate())+'.'+p(d.getMonth()+1)+'.'+d.getFullYear();}catch(e){return iso;}}
   function esc(s){return String(s==null?'':s).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];});}
   fetch("https://api.muplab.com/api/living-ma/surumler",{cache:"no-store"})

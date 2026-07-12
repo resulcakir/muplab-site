@@ -144,8 +144,6 @@ function showTab(t){['locked','rmotor','domains','figs','kunye','sat'].forEach(f
 renderSAT();renderSATdecision();renderSATsens();
 /* Fetch the version history from api.muplab.com; the embedded v1.0 row remains as fallback. */
 (function(){
-  return; /* DISABLED FOR NOW: the version endpoint still holds test records (v.0.1, 2026-test).
-             Delete this line once real version records are registered in the API. */
   function lmTarih(iso){try{var d=new Date(iso);if(isNaN(d))return iso;var p=function(n){return(n<10?'0':'')+n;};return p(d.getDate())+'.'+p(d.getMonth()+1)+'.'+d.getFullYear();}catch(e){return iso;}}
   function esc(s){return String(s==null?'':s).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];});}
   fetch("https://api.muplab.com/api/living-ma/surumler",{cache:"no-store"})
