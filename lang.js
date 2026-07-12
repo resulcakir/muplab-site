@@ -1,7 +1,9 @@
-/* Dil tercihi + yönlendirme.
-   Varsayılan: İngilizce. Tercih yoksa kök (TR) sayfalar en/ karşılığına yönlenir.
-   "TR"/"EN" tıklanınca tercih sessionStorage'a yazılır — yalnız o oturum için;
-   yeni ziyaret her zaman İngilizce açılır. Eski kalıcı localStorage kaydı temizlenir.
+/* Dil yönlendirmesi.
+   Varsayılan: İngilizce — adres çubuğundan ya da dışarıdan her giriş EN açılır.
+   TR yalnızca site içinden gezinirken korunur: EN sayfadaki "TR" bağlantısına
+   tıklayan ziyaretçi TR sayfalarda gezmeye devam eder (referrer site içi olduğu
+   sürece dokunulmaz); yeni bir giriş yine EN'dir. Tercih hiçbir yerde saklanmaz;
+   eski localStorage/sessionStorage kayıtları temizlenir.
    <head>'de senkron yüklenir → sayfa boyanmadan önce çalışır (flash yok). */
 (function () {
   try {
@@ -13,36 +15,21 @@
       "yayinlar.html": "en/publications.html", "kaynaklar.html": "en/resources.html",
       "katilin.html": "en/join.html", "living-ma.html": "en/living-ma.html"
     };
-    var E2T = {
-      "index.html": "../index.html", "research.html": "../arastirma.html",
-      "news.html": "../haberler.html", "team.html": "../ekip.html",
-      "projects.html": "../projeler.html", "contact.html": "../iletisim.html",
-      "publications.html": "../yayinlar.html", "resources.html": "../kaynaklar.html",
-      "join.html": "../katilin.html", "living-ma.html": "../living-ma.html"
-    };
+
+    /* eski sürümlerin tercih kayıtları — artık kullanılmıyor */
+    try { localStorage.removeItem(KEY); } catch (e) {}
+    try { sessionStorage.removeItem(KEY); } catch (e) {}
+
     var path = location.pathname;
-    var cur = /\/en\//.test(path) ? "en" : "tr";
+    if (/\/en\//.test(path)) return;   /* EN sayfaları hiç yönlenmez */
+
+    /* site içinden mi gelindi? (içeriden gezinme: TR'de kalınabilir) */
+    var icden = false;
+    try { icden = document.referrer.indexOf(location.origin + "/") === 0; } catch (e) {}
+    if (icden) return;
+
     var file = path.substring(path.lastIndexOf("/") + 1) || "index.html";
-
-    var pref = null;
-    try { pref = sessionStorage.getItem(KEY); } catch (e) {}
-    try { localStorage.removeItem(KEY); } catch (e) {} // eski kalıcı tercih kalıntısı
-    var want = pref || "en";  // varsayılan İngilizce
-
-    if (want !== cur) {
-      var t = cur === "tr" ? T2E[file] : E2T[file];
-      if (t) { window.__muplabRedirect = 1; location.replace(t); return; }
-    }
-
-    // Dil bağlantısı tıklanınca tercihi kaydet
-    document.addEventListener("DOMContentLoaded", function () {
-      var L = document.querySelector("a.lang");
-      if (!L) return;
-      L.addEventListener("click", function () {
-        var href = L.getAttribute("href") || "";
-        var to = (href.indexOf("en/") === 0 || /\/en\//.test(href)) ? "en" : "tr";
-        try { sessionStorage.setItem(KEY, to); } catch (e) {}
-      });
-    });
+    var t = T2E[file];
+    if (t) { window.__muplabRedirect = 1; location.replace(t); }
   } catch (e) {}
 })();
