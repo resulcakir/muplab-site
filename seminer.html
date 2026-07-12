@@ -208,18 +208,117 @@
   color:rgba(233,242,240,.72);
 }
 
+/* ---- Giriş sonrası açılış ekranı (splash) ----
+   Tema: prior → posterior. Soluk geniş eğri (prior) sabit durur;
+   posterior eğrisi ~0.85 sn'de çizilir, ortalama çizgisi ve g etiketi belirir.
+   Toplam ~1.95 sn, sonda beyaza geçip sunuma bağlanır (sunum beyaz açılır). */
+#mgiris .mg-splash{
+  position:fixed; inset:0; z-index:60;
+  display:none;
+  flex-direction:column; align-items:center; justify-content:center;
+  background:radial-gradient(120% 120% at 50% 18%, #256058 0%, #1a4a42 55%, #123a34 100%);
+}
+#mgiris .mg-splash--on{ display:flex; animation:mgiris-sp-in .24s ease-out; }
+@keyframes mgiris-sp-in{ from{ opacity:0; } to{ opacity:1; } }
+
+#mgiris .mg-splash::after{
+  content:""; position:absolute; inset:0; background:#fff;
+  opacity:0; pointer-events:none; transition:opacity .34s ease;
+}
+#mgiris .mg-splash--out::after{ opacity:1; }
+#mgiris .mg-splash--out .mg-splash-ic{ opacity:0; transform:translateY(-6px); }
+
+#mgiris .mg-splash-ic{
+  display:flex; flex-direction:column; align-items:center;
+  padding:0 20px;
+  transition:opacity .3s ease, transform .3s ease;
+}
+#mgiris .mg-splash-logo{ height:52px; width:auto; margin-bottom:16px; }
+#mgiris .mg-splash-kick{
+  font-family:var(--gro);
+  font-size:11px; font-weight:500;
+  letter-spacing:.18em; text-transform:uppercase;
+  color:rgba(233,242,240,.66);
+  margin:0 0 22px;
+}
+
+#mgiris .mg-splash-chart{ width:min(300px,74vw); height:auto; display:block; overflow:visible; }
+#mgiris .mg-sp-axis{ stroke:rgba(255,255,255,.28); stroke-width:1; }
+#mgiris .mg-sp-prior{
+  fill:none; stroke:rgba(255,255,255,.4); stroke-width:1.6;
+  stroke-dasharray:4 5; stroke-linecap:round;
+}
+#mgiris .mg-sp-post{
+  fill:#d98e57; fill-opacity:0;
+  stroke:#e0995f; stroke-width:2.2; stroke-linecap:round;
+  stroke-dasharray:1; stroke-dashoffset:1; /* pathLength=1: soldan çizilir */
+  animation:mgiris-sp-draw .85s cubic-bezier(.55,.08,.28,1) .2s forwards,
+            mgiris-sp-fill .45s ease .85s forwards;
+}
+@keyframes mgiris-sp-draw{ to{ stroke-dashoffset:0; } }
+@keyframes mgiris-sp-fill{ to{ fill-opacity:.15; } }
+#mgiris .mg-sp-mean{
+  stroke:rgba(255,255,255,.55); stroke-width:1; stroke-dasharray:3 3;
+  transform-box:fill-box; transform-origin:50% 100%; transform:scaleY(0);
+  animation:mgiris-sp-rise .3s ease-out .95s forwards;
+}
+@keyframes mgiris-sp-rise{ to{ transform:scaleY(1); } }
+#mgiris .mg-sp-dot{
+  fill:#e8b98f;
+  transform-box:fill-box; transform-origin:center; transform:scale(0);
+  animation:mgiris-sp-pop .3s cubic-bezier(.34,1.56,.64,1) 1.05s forwards;
+}
+@keyframes mgiris-sp-pop{ to{ transform:scale(1); } }
+#mgiris .mg-sp-lab{
+  font-family:var(--gro); font-size:9px; letter-spacing:.08em;
+  fill:rgba(255,255,255,.55); opacity:0;
+  animation:mgiris-sp-lab .35s ease forwards;
+}
+#mgiris .mg-sp-lab--p{ animation-delay:.45s; }
+#mgiris .mg-sp-lab--g{ fill:#eec39c; animation-delay:1.1s; }
+@keyframes mgiris-sp-lab{ to{ opacity:1; } }
+
+#mgiris .mg-splash-status{
+  margin-top:18px; min-height:22px;
+  font-size:14px; color:rgba(233,242,240,.9);
+}
+#mgiris .mg-sp-msg{ display:inline-flex; align-items:center; gap:8px; }
+#mgiris .mg-sp-msg svg{ width:15px; height:15px; color:#8fd0be; flex:none; }
+#mgiris .mg-sp-msg--in{ animation:mgiris-sp-msg .32s ease; }
+@keyframes mgiris-sp-msg{ from{ opacity:0; transform:translateY(5px); } to{ opacity:1; transform:none; } }
+
+#mgiris .mg-splash-bar{
+  width:210px; height:2px; margin-top:20px; border-radius:2px;
+  background:rgba(255,255,255,.16); overflow:hidden;
+}
+#mgiris .mg-splash-bar i{
+  display:block; height:100%; width:0; border-radius:2px;
+  background:linear-gradient(90deg,#79b3a5,#d98e57);
+  animation:mgiris-sp-bar 1.5s cubic-bezier(.3,.6,.4,1) .1s forwards;
+}
+@keyframes mgiris-sp-bar{ to{ width:100%; } }
+
 /* Küçük ekran */
 @media (max-width:420px){
   #mgiris .mg-card{ padding:36px 24px 30px; border-radius:16px; }
   #mgiris .mg-card::before{ left:24px; right:24px; }
 }
 
-/* Hareket azaltma */
+/* Hareket azaltma — splash animasyonsuz son hâliyle kısa görünür */
 @media (prefers-reduced-motion:reduce){
   #mgiris .mg-glow{ animation:none; opacity:.55; }
   #mgiris .mg-shake{ animation:none; }
   #mgiris .mg-input, #mgiris .mg-btn, #mgiris .mg-eye{ transition:none; }
   #mgiris .mg-btn:active{ transform:none; }
+  #mgiris .mg-splash--on{ animation:none; }
+  #mgiris .mg-splash::after{ transition:none; }
+  #mgiris .mg-splash-ic{ transition:none; }
+  #mgiris .mg-sp-post{ animation:none; stroke-dashoffset:0; fill-opacity:.15; }
+  #mgiris .mg-sp-mean{ animation:none; transform:none; }
+  #mgiris .mg-sp-dot{ animation:none; transform:none; }
+  #mgiris .mg-sp-lab{ animation:none; opacity:1; }
+  #mgiris .mg-splash-bar i{ animation:none; width:100%; }
+  #mgiris .mg-sp-msg--in{ animation:none; }
 }
 </style>
 </head>
@@ -275,6 +374,27 @@
   </main>
 
   <p class="mg-foot">Access is limited to invited committee members.</p>
+
+  <!-- Giriş sonrası açılış ekranı -->
+  <div class="mg-splash" id="mg-splash">
+    <div class="mg-splash-ic">
+      <img class="mg-splash-logo" src="/assets/logo.png" alt="">
+      <p class="mg-splash-kick">Living Bayesian Meta-Analysis</p>
+      <svg class="mg-splash-chart" viewBox="0 0 240 100" aria-hidden="true">
+        <line class="mg-sp-axis" x1="10" y1="88" x2="230" y2="88"/>
+        <path class="mg-sp-prior" d="M12 87 C 58 85, 86 58, 118 58 C 150 58, 178 85, 224 87"/>
+        <text class="mg-sp-lab mg-sp-lab--p" x="30" y="70">prior</text>
+        <path class="mg-sp-post" pathLength="1" d="M12 87.5 C 86 87, 106 14, 126 14 C 146 14, 166 87, 224 87.5"/>
+        <line class="mg-sp-mean" x1="126" y1="88" x2="126" y2="14"/>
+        <circle class="mg-sp-dot" cx="126" cy="14" r="3.4"/>
+        <text class="mg-sp-lab mg-sp-lab--g" x="136" y="17">g = +0.15</text>
+      </svg>
+      <div class="mg-splash-status" role="status" aria-live="polite">
+        <span class="mg-sp-msg mg-sp-msg--in" id="mg-sp-msg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Credentials verified</span>
+      </div>
+      <div class="mg-splash-bar"><i></i></div>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -338,6 +458,40 @@
   idEl.addEventListener('input', hideError);
   pwEl.addEventListener('input', hideError);
 
+  /* Giriş sonrası açılış ekranı: ~1.95 sn oynar, sonra sunuma geçer */
+  function acilisGoster(){
+    var sp  = document.getElementById('mg-splash');
+    var msg = document.getElementById('mg-sp-msg');
+
+    /* splash oynarken sunum sayfasını önden ısıt */
+    try{
+      var on = document.createElement('link');
+      on.rel = 'prefetch'; on.href = NEXT;
+      document.head.appendChild(on);
+    }catch(e){}
+
+    function mesaj(t){
+      msg.classList.remove('mg-sp-msg--in');
+      /* animasyonu yeniden tetikle */
+      void msg.offsetWidth;
+      msg.textContent = t;
+      msg.classList.add('mg-sp-msg--in');
+    }
+
+    sp.classList.add('mg-splash--on');
+
+    if (reduce.matches){
+      mesaj('Opening the presentation…');
+      setTimeout(function(){ location.replace(NEXT); }, 650);
+      return;
+    }
+
+    setTimeout(function(){ mesaj('Loading registered results…'); }, 620);
+    setTimeout(function(){ mesaj('Preparing live panels…'); }, 1180);
+    setTimeout(function(){ sp.classList.add('mg-splash--out'); }, 1550);
+    setTimeout(function(){ location.replace(NEXT); }, 1950);
+  }
+
   form.addEventListener('submit', function(ev){
     ev.preventDefault();
 
@@ -366,7 +520,7 @@
           sessionStorage.setItem(KEY + '_rol', r.veri.rol || 'juri');
           if (r.veri.etiket) sessionStorage.setItem(KEY + '_ad', r.veri.etiket);
         }catch(e){}
-        location.replace(NEXT);
+        acilisGoster();
         return;
       }
       btn.disabled = false;
