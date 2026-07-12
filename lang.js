@@ -1,6 +1,7 @@
 /* Dil tercihi + yönlendirme.
    Varsayılan: İngilizce. Tercih yoksa kök (TR) sayfalar en/ karşılığına yönlenir.
-   "TR"/"EN" bağlantısına tıklayınca tercih localStorage'a kaydedilir.
+   "TR"/"EN" tıklanınca tercih sessionStorage'a yazılır — yalnız o oturum için;
+   yeni ziyaret her zaman İngilizce açılır. Eski kalıcı localStorage kaydı temizlenir.
    <head>'de senkron yüklenir → sayfa boyanmadan önce çalışır (flash yok). */
 (function () {
   try {
@@ -24,7 +25,8 @@
     var file = path.substring(path.lastIndexOf("/") + 1) || "index.html";
 
     var pref = null;
-    try { pref = localStorage.getItem(KEY); } catch (e) {}
+    try { pref = sessionStorage.getItem(KEY); } catch (e) {}
+    try { localStorage.removeItem(KEY); } catch (e) {} // eski kalıcı tercih kalıntısı
     var want = pref || "en";  // varsayılan İngilizce
 
     if (want !== cur) {
@@ -39,7 +41,7 @@
       L.addEventListener("click", function () {
         var href = L.getAttribute("href") || "";
         var to = (href.indexOf("en/") === 0 || /\/en\//.test(href)) ? "en" : "tr";
-        try { localStorage.setItem(KEY, to); } catch (e) {}
+        try { sessionStorage.setItem(KEY, to); } catch (e) {}
       });
     });
   } catch (e) {}
